@@ -1,0 +1,1482 @@
+# PONS $101 — ROB TELEMETRY & MIXED-METHODS RESEARCH PROTOCOL
+
+ROB means:
+
+RESEARCH OBSERVER FOR BOT-LIKE ACTIVITY
+
+ROB is the evidence and telemetry layer of PONS $101.
+
+Its purpose is to observe public blockchain activity surrounding registered token-launch experiments and convert that activity into a reproducible research record.
+
+ROB does not begin with the conclusion:
+
+“THIS WALLET IS A BOT.”
+
+ROB begins with:
+
+WHAT HAPPENED?
+
+WHEN DID IT HAPPEN?
+
+WHAT DOES THE CHAIN PROVE?
+
+WHAT CAN BE CALCULATED?
+
+WHAT CAN ONLY BE INFERRED?
+
+WHAT REMAINS UNKNOWN?
+
+The governing question remains:
+
+WHAT DID WE KNOW BEFORE THE OUTCOME?
+
+==================================================
+RESEARCH OBJECTIVE
+==================================================
+
+The ROB research program studies whether autonomous, algorithmic, or bot-like market participants discover newly launched tokens without advance promotion and whether their observable behavior can be measured reproducibly.
+
+Primary variables include:
+
+• launch-to-first-trade latency
+• launch-to-first-buy latency
+• block distance from launch
+• transaction ordering
+• transaction construction
+• wallet recurrence
+• trade sizing
+• gas behavior
+• early entry frequency
+• early exit frequency
+• fee components
+• creator entitlement
+• actual treasury receipts
+• cross-launch behavioral repetition
+
+ROB studies behavior.
+
+ROB does not attempt to deanonymize participants.
+
+==================================================
+PRIMARY RESEARCH QUESTION
+==================================================
+
+Do newly launched experimental tokens receive observable trading activity before human-directed public promotion?
+
+==================================================
+SECONDARY QUESTIONS
+==================================================
+
+1. How quickly does the first trade occur after launch?
+
+2. Does the first trade occur in the same block as launch?
+
+3. How many wallets transact during the opening observation window?
+
+4. Are the same wallets observed across independent launches?
+
+5. Do repeated wallets exhibit similar transaction timing?
+
+6. Do repeated wallets use similar trade sizes?
+
+7. Do repeated wallets exhibit similar entry and exit behavior?
+
+8. What fee components are associated with opening-window trades?
+
+9. Can any additional opening-window fee component be distinguished from ordinary fees?
+
+10. What portion of creator entitlement is actually received by the creator or treasury?
+
+11. How much of the observed behavior is consistent with automation?
+
+12. Which findings replicate across independent experiments?
+
+==================================================
+NULL HYPOTHESIS
+==================================================
+
+H0:
+
+A newly launched token receiving no advance public promotion will not demonstrate systematically distinguishable automated or bot-like early trading behavior beyond what could reasonably occur through ordinary public discovery and human participation.
+
+==================================================
+ALTERNATIVE HYPOTHESIS
+==================================================
+
+H1:
+
+A newly launched token receiving no advance public promotion will demonstrate measurable early trading patterns that are consistent with automated discovery or execution.
+
+==================================================
+EXPERIMENTAL CONDITION
+==================================================
+
+STEALTH / NO-PRE-ANNOUNCEMENT CONDITION
+
+For a registered stealth experiment:
+
+• token metadata remains truthful
+• protocol economics remain visible
+• material fees remain inspectable
+• no artificial liquidity signal is created
+• no fake community activity is created
+• no wallet is intentionally targeted
+• no specific participant is baited
+• no pre-launch promotional post is used to intentionally attract traders
+
+The experimental variable is:
+
+ADVANCE PUBLIC PROMOTION = NO
+
+The experiment does not attempt to hide the existence of the token once it becomes publicly visible on-chain.
+
+==================================================
+CONTROL CONDITION
+==================================================
+
+A later research phase may compare stealth launches with disclosed promotional conditions.
+
+Example conditions:
+
+CONDITION A
+
+No advance public promotion.
+
+CONDITION B
+
+Public Discord announcement.
+
+CONDITION C
+
+Public Telegram announcement.
+
+CONDITION D
+
+Public social-media announcement.
+
+CONDITION E
+
+Structured educational release.
+
+Such comparisons should be separately registered before launch.
+
+==================================================
+UNIT OF ANALYSIS
+==================================================
+
+Possible units of analysis include:
+
+TOKEN LAUNCH
+
+WALLET-LAUNCH INTERACTION
+
+TRADE
+
+OPENING-WINDOW INTERACTION
+
+WALLET
+
+EXPERIMENT
+
+PAIR / REFERENCE ASSET
+
+BLOCK
+
+TRANSACTION
+
+Each table and statistical test should identify its unit of analysis explicitly.
+
+==================================================
+TIME ZERO
+==================================================
+
+Every experiment defines a canonical:
+
+T0
+
+Recommended T0:
+
+the block timestamp of the canonical launch event.
+
+Alternative high-resolution values may include:
+
+transaction position within block
+
+log index
+
+transaction receipt ordering
+
+Do not use:
+
+social-media timestamp
+
+manual stopwatch
+
+or
+
+screen-recording time
+
+as the primary T0 when a canonical blockchain event exists.
+
+==================================================
+OBSERVATION WINDOWS
+==================================================
+
+ROB should support multiple observation windows.
+
+WINDOW 0
+
+Launch transaction only.
+
+WINDOW 1
+
+First block.
+
+WINDOW 2
+
+First 5 seconds.
+
+WINDOW 3
+
+First 30 seconds.
+
+WINDOW 4
+
+First minute.
+
+WINDOW 5
+
+First 5 minutes.
+
+WINDOW 6
+
+First 15 minutes.
+
+WINDOW 7
+
+First hour.
+
+WINDOW 8
+
+First 24 hours.
+
+WINDOW 9
+
+Full experiment period.
+
+The exact windows used in analysis should be registered before outcome review whenever practical.
+
+==================================================
+CANONICAL LAUNCH EVIDENCE
+==================================================
+
+For every launch preserve:
+
+experiment_id
+
+chain_id
+
+factory_address
+
+factory_version
+
+block_number
+
+block_hash
+
+block_timestamp
+
+transaction_hash
+
+transaction_index
+
+log_index
+
+deployer
+
+token_address
+
+curve_address
+
+pair_asset
+
+creator_address
+
+creator_fee_recipient
+
+creator_tax_configuration
+
+announcement_condition
+
+manifest_hash
+
+payload_hash
+
+human_release_record
+
+==================================================
+CANONICAL TRADE EVIDENCE
+==================================================
+
+For every relevant trade preserve:
+
+experiment_id
+
+chain_id
+
+token_address
+
+curve_address
+
+block_number
+
+block_hash
+
+block_timestamp
+
+transaction_hash
+
+transaction_index
+
+log_index
+
+wallet
+
+direction
+
+input_asset
+
+input_amount
+
+output_asset
+
+output_amount
+
+reported_fee
+
+ordinary_base_fee
+
+creator_tax
+
+other_reported_fee_components
+
+inferred_opening_fee
+
+seconds_since_launch
+
+blocks_since_launch
+
+transaction_position
+
+classification
+
+classification_confidence
+
+evidence_class
+
+==================================================
+RAW DATA RULE
+==================================================
+
+RAW DATA IS NEVER OVERWRITTEN BY INTERPRETATION.
+
+Preserve:
+
+raw event values
+
+decoded event values
+
+calculated values
+
+classifications
+
+human interpretation
+
+as separate layers.
+
+Recommended structure:
+
+RAW
+
+NORMALIZED
+
+DERIVED
+
+CLASSIFIED
+
+INTERPRETED
+
+==================================================
+EVIDENCE CLASSES
+==================================================
+
+VERIFIED
+
+Direct primary evidence establishes the statement.
+
+Examples:
+
+transaction exists
+
+wallet address interacted
+
+fee value appears in event
+
+block timestamp exists
+
+CORROBORATED
+
+Multiple independent forms of evidence support the statement.
+
+Examples:
+
+RPC event plus explorer receipt
+
+event plus contract-state query
+
+AUTHOR-ORIGINATED
+
+The researcher records a personal observation, decision, or interpretation.
+
+Examples:
+
+“I did not announce the launch before broadcast.”
+
+“I manually approved the transaction.”
+
+PROPOSED
+
+A future methodology or system design has been documented but not yet executed.
+
+FUTURE EXPERIMENT
+
+A hypothesis is awaiting testing.
+
+==================================================
+BOT-LIKE CLASSIFICATION FRAMEWORK
+==================================================
+
+ROB uses conservative language.
+
+CLASS 0 — UNKNOWN
+
+Insufficient evidence.
+
+CLASS 1 — OPENING-WINDOW PARTICIPANT
+
+The wallet participated within the defined opening period.
+
+No automation claim.
+
+CLASS 2 — AUTOMATED-CANDIDATE
+
+Multiple behavioral signals are consistent with automated execution.
+
+CLASS 3 — REPEATED AUTOMATED-CANDIDATE
+
+The same wallet or behavioral fingerprint appears across independent experiments with repeated characteristics consistent with automation.
+
+CLASS 4 — AUTOMATION CONFIRMED
+
+Independent evidence establishes automated operation.
+
+Do not use CLASS 4 from timing alone.
+
+==================================================
+POSSIBLE AUTOMATION SIGNALS
+==================================================
+
+Signals may include:
+
+S1 — same-block participation
+
+S2 — extremely low launch-to-trade latency
+
+S3 — repeated first-block participation across launches
+
+S4 — repeated fixed or formulaic trade sizing
+
+S5 — repeated transaction construction
+
+S6 — repeated gas strategy
+
+S7 — repeated entry/exit timing
+
+S8 — repeated interaction with unrelated experimental launches
+
+S9 — recurring participation without corresponding public promotion
+
+S10 — machine-identifiable calling pattern
+
+S11 — independently documented bot infrastructure
+
+No single signal should automatically determine classification.
+
+==================================================
+CLASSIFICATION SCORE
+==================================================
+
+A research score may be calculated for comparison.
+
+Example conceptual score:
+
+AUTOMATION SCORE
+
+=
+TIMING SIGNAL
++
+REPETITION SIGNAL
++
+TRANSACTION-PATTERN SIGNAL
++
+CROSS-LAUNCH SIGNAL
++
+INDEPENDENT EVIDENCE SIGNAL
+
+The score is a research heuristic.
+
+It is not proof of identity.
+
+The exact weighting system must be versioned.
+
+Do not silently change weights between experiments.
+
+==================================================
+CONFIDENCE
+==================================================
+
+Recommended confidence labels:
+
+VERY LOW
+
+LOW
+
+MODERATE
+
+HIGH
+
+VERY HIGH
+
+A HIGH behavioral confidence still does not establish a real-world identity.
+
+==================================================
+OPENING-WINDOW FEE ANALYSIS
+==================================================
+
+ROB separates fee components.
+
+ORDINARY BASE FEE
+
+Normal configured protocol fee.
+
+CREATOR TAX
+
+Creator-related allocation where applicable.
+
+OPENING-WINDOW FEE
+
+Additional protocol-defined early-period fee where applicable.
+
+OTHER FEE
+
+Any separately identified protocol component.
+
+TOTAL REPORTED FEE
+
+The value reported by the relevant trade event or protocol interface.
+
+Where event semantics make the calculation valid:
+
+INFERRED OPENING FEE
+
+=
+TOTAL REPORTED FEE
+-
+ORDINARY BASE FEE
+-
+CREATOR TAX
+-
+OTHER EXPLICIT FEE COMPONENTS
+
+If the protocol does not expose sufficient information:
+
+INFERRED OPENING FEE = UNKNOWN
+
+Do not reverse-engineer a precise number from insufficient evidence.
+
+==================================================
+CREATOR ECONOMICS
+==================================================
+
+ROB distinguishes:
+
+FEE OBSERVED
+
+CREATOR ENTITLEMENT
+
+CLAIMABLE CREATOR ENTITLEMENT
+
+CLAIMED CREATOR FEE
+
+TREASURY RECEIPT
+
+PUBLIC-GOOD ALLOCATION
+
+PUBLIC-GOOD DISBURSEMENT
+
+Each is a different state.
+
+==================================================
+NO DOUBLE COUNTING
+==================================================
+
+Fees must not be counted twice because they appear in:
+
+trade events
+
+creator accounting events
+
+wallet transfers
+
+claim events
+
+or
+
+treasury receipts.
+
+Each fee should receive a unique provenance reference.
+
+==================================================
+WALLET-LEVEL ANALYSIS
+==================================================
+
+ROB may create a behavioral profile for a wallet.
+
+Recommended fields:
+
+wallet
+
+first_seen
+
+last_seen
+
+launches_observed
+
+opening_window_launches
+
+same_block_launches
+
+first_transaction_count
+
+total_buys
+
+total_sells
+
+median_launch_latency
+
+mean_launch_latency
+
+median_trade_size
+
+repeated_trade_size_score
+
+entry_exit_pattern_score
+
+automation_score
+
+classification
+
+confidence
+
+Do not attach:
+
+real name
+
+employer
+
+physical location
+
+email
+
+social account
+
+or
+
+other identity information
+
+unless the information is already independently public and directly relevant to authorized research.
+
+The preferred design remains pseudonymous.
+
+==================================================
+CROSS-LAUNCH ANALYSIS
+==================================================
+
+The strongest ROB research value comes from repeated experiments.
+
+For each wallet calculate:
+
+number of experiments observed
+
+percentage of launches entered
+
+percentage entered in first block
+
+percentage entered within 5 seconds
+
+percentage entered before public promotion
+
+median latency
+
+median position
+
+buy/sell sequence
+
+trade-size similarity
+
+pair similarity
+
+factory interaction similarity
+
+This allows study of recurring behavior without asserting hidden identity.
+
+==================================================
+EXPERIMENT MATRIX
+==================================================
+
+A future matrix may contain:
+
+EXPERIMENT
+
+DATE
+
+TOKEN
+
+PAIR
+
+ANNOUNCEMENT CONDITION
+
+FIRST TRADE
+
+FIRST-BLOCK ACTIVITY
+
+OPENING-WINDOW WALLETS
+
+AUTOMATED CANDIDATES
+
+CREATOR FEE OBSERVED
+
+TREASURY RECEIPT
+
+HYPOTHESIS RESULT
+
+AAR STATUS
+
+==================================================
+MIXED-METHODS DESIGN
+==================================================
+
+PONS $101 uses a mixed-methods research design.
+
+QUANTITATIVE STREAM
+
+Blockchain telemetry.
+
+QUALITATIVE STREAM
+
+Human and agent research records.
+
+INTEGRATION
+
+Compare both streams after preserving them independently.
+
+==================================================
+QUANTITATIVE DATA
+==================================================
+
+Possible variables:
+
+launch block
+
+launch time
+
+first trade time
+
+latency
+
+wallet count
+
+buy count
+
+sell count
+
+volume
+
+trade sizes
+
+block concentration
+
+opening-window participation
+
+fee components
+
+creator entitlement
+
+creator receipts
+
+wallet repetition
+
+automation score
+
+==================================================
+QUALITATIVE DATA
+==================================================
+
+Possible sources:
+
+researcher field notes
+
+Discord decision records
+
+agent recommendations
+
+human approval rationale
+
+screenshots
+
+unexpected observations
+
+technical incident notes
+
+external reviewer comments
+
+after-action reviews
+
+==================================================
+MIXED-METHODS INTEGRATION
+==================================================
+
+The analysis may ask:
+
+Did the chain evidence support the researcher's expectation?
+
+Did the agent prediction match the observed outcome?
+
+Did a wallet that appeared automated once recur later?
+
+Did a no-promotion launch receive rapid activity anyway?
+
+Did a public announcement materially change the pattern?
+
+Did creator-fee expectations match actual treasury receipts?
+
+Did technical failures alter the result?
+
+==================================================
+CONVERGENCE
+==================================================
+
+Evidence converges when multiple independent sources support the same interpretation.
+
+Example:
+
+CHAIN DATA
+
+Wallet enters within the first block.
+
+PLUS
+
+CROSS-LAUNCH DATA
+
+Same wallet appears in the first block of six unrelated launches.
+
+PLUS
+
+TRANSACTION PATTERN
+
+Trade construction is highly repetitive.
+
+This may support:
+
+REPEATED AUTOMATED-CANDIDATE
+
+It still does not automatically establish operator identity.
+
+==================================================
+DIVERGENCE
+==================================================
+
+Evidence diverges when sources conflict.
+
+Example:
+
+Human researcher believes no announcement occurred.
+
+But Discord logs show the token address was posted before launch.
+
+The research record must preserve the conflict.
+
+Do not rewrite the experiment condition after the fact.
+
+==================================================
+NEGATIVE FINDINGS
+==================================================
+
+A valid experiment may find:
+
+no early trade
+
+no repeated wallets
+
+no opening-window activity
+
+no measurable creator fees
+
+no evidence of automation
+
+failed launch
+
+failed transaction
+
+incorrect configuration
+
+RPC outage
+
+pair approval failure
+
+insufficient evidence
+
+A negative finding remains part of the dataset.
+
+==================================================
+AAR — AFTER-ACTION REVIEW
+==================================================
+
+Every completed experiment should answer:
+
+EXPERIMENT ID
+
+ORIGINAL QUESTION
+
+ORIGINAL HYPOTHESIS
+
+REGISTERED CONDITION
+
+WHAT DID WE KNOW BEFORE THE OUTCOME?
+
+WHAT ACTUALLY HAPPENED?
+
+FIRST TRADE LATENCY
+
+FIRST-BLOCK ACTIVITY
+
+OPENING-WINDOW ACTIVITY
+
+REPEATED WALLETS
+
+BOT-LIKE CLASSIFICATION
+
+FEES OBSERVED
+
+CREATOR ENTITLEMENT
+
+TREASURY RECEIPT
+
+PUBLIC-GOOD RECEIPT
+
+WHAT WAS VERIFIED?
+
+WHAT WAS INFERRED?
+
+WHAT REMAINS UNKNOWN?
+
+WHAT FAILED?
+
+WHAT SURPRISED US?
+
+DID THE HYPOTHESIS SURVIVE?
+
+REPLICATION DECISION
+
+==================================================
+HYPOTHESIS RESULT
+==================================================
+
+Recommended status:
+
+SUPPORTED
+
+PARTIALLY SUPPORTED
+
+NOT SUPPORTED
+
+INCONCLUSIVE
+
+TECHNICALLY INVALIDATED
+
+TECHNICALLY INVALIDATED means the experiment failed in a way that prevents meaningful interpretation.
+
+Example:
+
+wrong network
+
+incorrect factory
+
+launch transaction reverted
+
+observation service failed during the critical period
+
+==================================================
+REPLICATION
+==================================================
+
+A research result becomes stronger when replicated.
+
+Recommended replication sequence:
+
+GENESIS
+
+First documented experiment.
+
+REPLICATION 1
+
+Same process, new token.
+
+REPLICATION 2
+
+Same process, different pair/reference asset.
+
+REPLICATION 3
+
+Same process, different day/time.
+
+REPLICATION 4
+
+Same process, public-announcement condition.
+
+REPLICATION 5
+
+Cross-model or independent-researcher replication.
+
+Where practical:
+
+change one important variable at a time.
+
+==================================================
+REPRODUCIBILITY STANDARD
+==================================================
+
+An independent researcher should be able to reconstruct:
+
+what was planned
+
+what was approved
+
+what transaction executed
+
+what events occurred
+
+how each metric was calculated
+
+how classifications were produced
+
+which code version was used
+
+and
+
+which findings came from interpretation rather than direct evidence
+
+==================================================
+MINIMUM REPRODUCIBILITY BUNDLE
+==================================================
+
+experiment manifest
+
+manifest hash
+
+commit SHA
+
+software version
+
+chain ID
+
+factory address
+
+factory ABI version
+
+pair asset
+
+launch transaction
+
+launch event
+
+raw trade events
+
+normalized observations
+
+fee calculations
+
+classification method
+
+human approval record
+
+agent-output hashes
+
+AAR
+
+dataset hash
+
+README
+
+==================================================
+DATA INTEGRITY
+==================================================
+
+Each dataset version receives:
+
+dataset_id
+
+schema_version
+
+created_at
+
+experiment_range
+
+record_count
+
+software_version
+
+commit_sha
+
+dataset_hash
+
+==================================================
+CHAIN REORGANIZATION POLICY
+==================================================
+
+ROB should not assume that a newly observed block is permanently canonical.
+
+Records may be:
+
+UNCONFIRMED
+
+CONFIRMED
+
+REORGED
+
+If an event is reorged:
+
+retain the original record
+
+mark it REORGED
+
+record the replacement canonical result
+
+Never silently erase the observation history.
+
+==================================================
+RPC DIVERGENCE
+==================================================
+
+Where possible, material evidence may be corroborated using:
+
+primary RPC
+
+secondary RPC
+
+block explorer
+
+contract reads
+
+If providers disagree:
+
+flag the record.
+
+Do not silently choose whichever source supports the hypothesis.
+
+==================================================
+CLOCK POLICY
+==================================================
+
+Blockchain timestamp is the primary research clock.
+
+Local device time may be retained as supplemental evidence.
+
+Discord timestamps and social timestamps may be used for announcement-condition analysis.
+
+Do not mix clocks without recording their source.
+
+==================================================
+ANNOUNCEMENT PROVENANCE
+==================================================
+
+For experimental conditions involving promotion preserve:
+
+platform
+
+message identifier
+
+timestamp
+
+content hash
+
+token address visibility
+
+audience condition
+
+This makes:
+
+BEFORE ANNOUNCEMENT
+
+and
+
+AFTER ANNOUNCEMENT
+
+testable.
+
+==================================================
+STEALTH CONDITION PROOF
+==================================================
+
+Because proving a negative is difficult, a stealth experiment should preserve affirmative research records such as:
+
+pre-launch declaration:
+
+NO ADVANCE PROMOTION PLANNED
+
+human attestation:
+
+NO PUBLIC TOKEN ADDRESS POSTED BEFORE BROADCAST TO MY KNOWLEDGE
+
+Discord review:
+
+no token-address announcement in designated server channels before T0
+
+GitHub record:
+
+manifest existed before execution
+
+These support the experimental condition without claiming omniscience.
+
+==================================================
+ROBINHOOD / PONS EXTERNAL REVIEW PACKAGE
+==================================================
+
+A review package should emphasize:
+
+research objective
+
+experimental design
+
+chain configuration
+
+protocol version
+
+launch condition
+
+human release process
+
+raw on-chain evidence
+
+fee calculations
+
+classification limitations
+
+negative findings
+
+replication results
+
+security boundaries
+
+public-good provenance
+
+Questions for protocol teams may include:
+
+Are our event interpretations correct?
+
+Are our fee calculations correct?
+
+Are opening-window semantics interpreted correctly?
+
+Are there protocol fields we should use instead?
+
+Can this telemetry help protocol research?
+
+Are there additional disclosures or safeguards recommended?
+
+Do not represent submission as endorsement.
+
+==================================================
+PUBLIC RESEARCH DASHBOARD
+==================================================
+
+A future public dashboard may show:
+
+PONS $101 ROB LAB
+
+TOTAL EXPERIMENTS
+
+VALID EXPERIMENTS
+
+FAILED EXPERIMENTS
+
+LAUNCHES OBSERVED
+
+OPENING-WINDOW TRADES
+
+UNIQUE WALLETS
+
+REPEATED WALLETS
+
+AUTOMATED CANDIDATES
+
+REPEATED AUTOMATED CANDIDATES
+
+OBSERVED FEES
+
+CREATOR ENTITLEMENT
+
+CONFIRMED TREASURY RECEIPTS
+
+PUBLIC-GOOD DISBURSEMENTS
+
+REPLICATION RATE
+
+DATASET VERSION
+
+LAST VERIFIED BLOCK
+
+==================================================
+CONTROL TOWER RESEARCH REPORT
+==================================================
+
+For each experiment:
+
+PONS $101 — ROB CONTROL TOWER REPORT
+
+EXPERIMENT ID:
+
+STATUS:
+
+QUESTION:
+
+HYPOTHESIS:
+
+CONDITION:
+
+T0:
+
+FIRST TRADE:
+
+FIRST-BLOCK ACTIVITY:
+
+OPENING-WINDOW ACTIVITY:
+
+UNIQUE WALLETS:
+
+REPEATED WALLETS:
+
+AUTOMATED CANDIDATES:
+
+FEE OBSERVATION:
+
+CREATOR ENTITLEMENT:
+
+TREASURY RECEIPT:
+
+PUBLIC-GOOD STATUS:
+
+VERIFIED FINDINGS:
+
+INFERRED FINDINGS:
+
+UNKNOWN:
+
+TECHNICAL ISSUES:
+
+HYPOTHESIS RESULT:
+
+REPLICATION STATUS:
+
+NEXT HUMAN DECISION:
+
+==================================================
+RESEARCH ETHIC
+==================================================
+
+ROB does not need to defeat bots.
+
+ROB does not need to bait bots.
+
+ROB does not need to identify the human behind every wallet.
+
+ROB needs to observe what the public network actually records.
+
+The scientific value comes from:
+
+REGISTERED EXPECTATION
+
+PUBLIC EVENT
+
+REPEATABLE MEASUREMENT
+
+TRANSPARENT LIMITATIONS
+
+REPLICATION
+
+==================================================
+CORE ROB DOCTRINE
+==================================================
+
+OBSERVE BEFORE INTERPRETING.
+
+MEASURE BEFORE LABELING.
+
+PRESERVE BEFORE SUMMARIZING.
+
+REPLICATE BEFORE GENERALIZING.
+
+BEHAVIOR IS NOT IDENTITY.
+
+A FAST WALLET IS NOT AUTOMATICALLY A BOT.
+
+EXPECTED FEES ARE NOT RECEIVED FEES.
+
+NEGATIVE RESULTS ARE RESULTS.
+
+THE HUMAN RECORD AND THE MACHINE RECORD MUST REMAIN DISTINGUISHABLE.
+
+==================================================
+GENESIS STATEMENT
+==================================================
+
+ROB turns the launch window into a laboratory.
+
+The chain provides the evidence.
+
+The agents provide the instrumentation.
+
+The human provides the authority.
+
+GitHub preserves the record.
+
+Discord preserves the operating context.
+
+The Control Tower routes the next decision.
+
+The research question remains:
+
+WHAT DID WE KNOW BEFORE THE OUTCOME?
+
+PONS $101
+
+ROB — RESEARCH OBSERVER FOR BOT-LIKE ACTIVITY
+
+OBSERVE
+→ MEASURE
+→ CLASSIFY
+→ VERIFY
+→ PRESERVE
+→ REPLICATE
+
+IN JESUS' NAME.
