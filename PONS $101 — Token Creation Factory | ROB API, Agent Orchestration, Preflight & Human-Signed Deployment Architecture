@@ -1,0 +1,1857 @@
+# PONS $101 — TOKEN CREATION FACTORY
+
+The PONS $101 Token Creation Factory is the technical execution-preparation layer of the ROB Lab.
+
+Its purpose is to allow humans and authorized agents—including @hashwarlock-operated agents—to reproducibly prepare token-launch experiments, validate launch parameters, generate unsigned deployment payloads, observe public on-chain activity, calculate protocol-defined fees, and preserve the resulting evidence.
+
+The system is deliberately divided into:
+
+RESEARCH AUTOMATION
+
+and
+
+FINANCIAL AUTHORITY.
+
+Agents automate research and preparation.
+
+Humans retain authority over irreversible mainnet transactions.
+
+==================================================
+CORE PRINCIPLE
+==================================================
+
+AUTOMATE THE REPEATABLE.
+
+PRESERVE THE IRREVERSIBLE FOR HUMAN APPROVAL.
+
+The factory may automatically:
+
+• create experiment manifests
+• validate schemas
+• check chain connectivity
+• inspect contract state
+• validate token metadata
+• validate pair/reference assets
+• inspect current fee configuration
+• verify creator recipient configuration
+• check launch eligibility
+• estimate gas
+• simulate transactions where supported
+• generate unsigned calldata
+• hash proposed payloads
+• index launch events
+• index trade events
+• calculate fee components
+• identify opening-window participation
+• detect repeated behavioral patterns
+• prepare after-action reviews
+• export datasets
+• generate reproducibility bundles
+
+The factory does not independently:
+
+• sign wallet transactions
+• broadcast unauthorized launches
+• buy newly launched tokens
+• sell tokens
+• generate wash volume
+• target wallets
+• spoof transactions
+• manufacture market activity
+• claim protocol revenue
+• withdraw treasury assets
+• change treasury recipients
+• authorize public-good spending
+
+==================================================
+FACTORY ARCHITECTURE
+==================================================
+
+The Token Creation Factory consists of ten services.
+
+01 — EXPERIMENT REGISTRY
+
+02 — CONFIGURATION ENGINE
+
+03 — NETWORK ADAPTER
+
+04 — CONTRACT ADAPTER
+
+05 — PREFLIGHT ENGINE
+
+06 — PAYLOAD BUILDER
+
+07 — HUMAN RELEASE GATE
+
+08 — ROB INDEXER
+
+09 — RESEARCH API
+
+10 — REPRODUCIBILITY EXPORTER
+
+The canonical pipeline is:
+
+EXPERIMENT REGISTRY
+↓
+CONFIGURATION ENGINE
+↓
+NETWORK ADAPTER
+↓
+CONTRACT ADAPTER
+↓
+PREFLIGHT ENGINE
+↓
+PAYLOAD BUILDER
+↓
+HUMAN RELEASE GATE
+↓
+HUMAN-SIGNED TRANSACTION
+↓
+ROB INDEXER
+↓
+RESEARCH API
+↓
+REPRODUCIBILITY EXPORTER
+
+==================================================
+01 — EXPERIMENT REGISTRY
+==================================================
+
+Every experiment receives a canonical identifier before execution.
+
+Recommended identifier:
+
+P101-YYYYMMDD-###-SHORTNAME
+
+Example:
+
+P101-20260905-001-ROB-GENESIS
+
+The experiment record should contain:
+
+experiment_id
+created_at
+created_by
+human_owner
+research_question
+hypothesis
+experimental_condition
+announcement_condition
+token_name
+ticker
+description
+network
+chain_id
+factory_address
+pair_asset
+creator_address
+creator_fee_recipient
+creator_tax_configuration
+expected_observation_window
+software_version
+manifest_version
+status
+manifest_hash
+
+RECOMMENDED STATUS VALUES
+
+DRAFT
+
+REGISTERED
+
+PREFLIGHT
+
+BLOCKED
+
+READY_FOR_HUMAN_REVIEW
+
+APPROVED
+
+REJECTED
+
+BROADCAST
+
+OBSERVING
+
+AAR
+
+ARCHIVED
+
+==================================================
+02 — CONFIGURATION ENGINE
+==================================================
+
+The Configuration Engine normalizes all experiment parameters into a machine-readable configuration object.
+
+REQUIRED NETWORK CONFIGURATION
+
+network_name
+
+chain_id
+
+rpc_http
+
+rpc_ws
+
+explorer_base_url
+
+native_asset_symbol
+
+confirmation_depth
+
+factory_address
+
+factory_version
+
+contract_interface_version
+
+REQUIRED TOKEN CONFIGURATION
+
+name
+
+symbol
+
+description
+
+pair_asset
+
+creator
+
+creator_fee_recipient
+
+creator_tax
+
+research_tag
+
+experiment_id
+
+announcement_condition
+
+REQUIRED SAFETY CONFIGURATION
+
+require_human_signature = true
+
+allow_agent_broadcast = false
+
+allow_agent_trading = false
+
+allow_treasury_withdrawal = false
+
+allow_hidden_fee_changes = false
+
+preserve_raw_events = true
+
+preserve_negative_findings = true
+
+==================================================
+03 — NETWORK ADAPTER
+==================================================
+
+The Network Adapter provides a vendor-neutral interface to Robinhood Chain-compatible JSON-RPC infrastructure.
+
+SUPPORTED READ OPERATIONS SHOULD INCLUDE
+
+eth_chainId
+
+eth_blockNumber
+
+eth_getBlockByNumber
+
+eth_getTransactionByHash
+
+eth_getTransactionReceipt
+
+eth_getLogs
+
+eth_call
+
+eth_estimateGas
+
+eth_getCode
+
+eth_getBalance
+
+eth_getTransactionCount
+
+eth_feeHistory
+
+RPC HEALTH CHECK
+
+The adapter must verify:
+
+1. RPC responds.
+
+2. Returned chain ID matches experiment configuration.
+
+3. Latest block is available.
+
+4. Factory address contains contract bytecode.
+
+5. Block timestamps are progressing.
+
+6. RPC lag remains within configured tolerance.
+
+If chain ID does not match:
+
+STOP.
+
+Do not prepare a live payload.
+
+==================================================
+04 — CONTRACT ADAPTER
+==================================================
+
+The Contract Adapter translates between the research system and the current Pons-compatible contract interfaces.
+
+The adapter should never assume that:
+
+a previously known ABI,
+factory address,
+fee,
+pair approval,
+or launch permission
+
+remains current forever.
+
+Before each live experiment, resolve current contract state.
+
+READ OPERATIONS MAY INCLUDE
+
+factory version
+
+launch eligibility
+
+approved pair assets
+
+current fee configuration
+
+creator-tax bounds
+
+curve parameters
+
+graduation parameters
+
+token metadata
+
+existing token/curve relationships
+
+launch status
+
+accrued creator entitlement where publicly exposed
+
+WRITE OPERATIONS
+
+Write operations are represented as unsigned payloads only until human authorization.
+
+The factory creates:
+
+target_contract
+
+function_signature
+
+encoded_arguments
+
+value
+
+gas_estimate
+
+chain_id
+
+nonce_hint where used
+
+payload_hash
+
+human-readable decoded summary
+
+==================================================
+05 — PREFLIGHT ENGINE
+==================================================
+
+The Preflight Engine determines whether the experiment is technically ready to be shown to the human signer.
+
+PREFLIGHT RESULT
+
+PASS
+
+WARNING
+
+BLOCK
+
+A PASS means:
+
+the known technical requirements are satisfied.
+
+It does not mean:
+
+the transaction is financially advisable.
+
+A WARNING means:
+
+the experiment may proceed only if the human explicitly reviews the condition.
+
+A BLOCK means:
+
+no live payload should be released until the problem is resolved.
+
+==================================================
+PREFLIGHT CHECKS
+==================================================
+
+NETWORK
+
+[ ] RPC available
+
+[ ] chain ID verified
+
+[ ] current block verified
+
+[ ] explorer configured
+
+FACTORY
+
+[ ] factory address resolved
+
+[ ] contract bytecode present
+
+[ ] expected interface available
+
+[ ] launch permission checked
+
+PAIR
+
+[ ] pair/reference asset address verified
+
+[ ] pair supported where approval is required
+
+[ ] pair symbol independently checked
+
+TOKEN
+
+[ ] name reviewed
+
+[ ] ticker reviewed
+
+[ ] description reviewed
+
+[ ] duplicate ticker risk acknowledged
+
+[ ] experiment identifier embedded where appropriate
+
+CREATOR
+
+[ ] creator address verified
+
+[ ] creator-fee recipient verified
+
+[ ] creator tax reviewed
+
+[ ] treasury destination reviewed if used
+
+FEES
+
+[ ] ordinary protocol fee reviewed
+
+[ ] opening-window mechanics reviewed
+
+[ ] creator allocation reviewed
+
+[ ] no unexpected fee path detected
+
+RESEARCH
+
+[ ] experiment ID exists
+
+[ ] hypothesis registered
+
+[ ] announcement condition recorded
+
+[ ] expected observation window defined
+
+[ ] raw evidence retention enabled
+
+TRANSACTION
+
+[ ] calldata created
+
+[ ] target contract verified
+
+[ ] value verified
+
+[ ] simulation attempted where available
+
+[ ] estimated gas captured
+
+[ ] payload decoded
+
+[ ] payload hash generated
+
+HUMAN
+
+[ ] transaction ready for human inspection
+
+==================================================
+06 — PAYLOAD BUILDER
+==================================================
+
+The Payload Builder creates an unsigned transaction proposal.
+
+CANONICAL OUTPUT
+
+experiment_id
+
+network
+
+chain_id
+
+target
+
+value
+
+data
+
+decoded_function
+
+decoded_arguments
+
+estimated_gas
+
+estimated_network_fee
+
+factory_address
+
+pair_asset
+
+creator_fee_recipient
+
+creator_tax
+
+manifest_hash
+
+payload_hash
+
+warnings
+
+generated_at
+
+software_version
+
+The human should be able to compare:
+
+WHAT THE MANIFEST SAYS
+
+with
+
+WHAT THE TRANSACTION WILL ACTUALLY DO.
+
+The system should show both.
+
+==================================================
+PAYLOAD HASHING
+==================================================
+
+Before human review, create deterministic hashes for:
+
+experiment manifest
+
+token metadata
+
+network configuration
+
+contract configuration
+
+unsigned payload
+
+The release record can then state:
+
+MANIFEST HASH
+
+CONFIGURATION HASH
+
+PAYLOAD HASH
+
+This makes later alteration detectable.
+
+==================================================
+07 — HUMAN RELEASE GATE
+==================================================
+
+The factory stops here.
+
+The agent presents:
+
+EXPERIMENT ID
+
+RESEARCH QUESTION
+
+HYPOTHESIS
+
+TOKEN NAME
+
+TICKER
+
+NETWORK
+
+CHAIN ID
+
+FACTORY
+
+PAIR ASSET
+
+CREATOR RECIPIENT
+
+CREATOR TAX
+
+TARGET CONTRACT
+
+NATIVE VALUE
+
+FUNCTION
+
+ARGUMENTS
+
+ESTIMATED GAS
+
+MANIFEST HASH
+
+PAYLOAD HASH
+
+WARNINGS
+
+The human chooses:
+
+APPROVE
+
+REJECT
+
+RETURN FOR CHANGES
+
+No agent recommendation counts as approval.
+
+==================================================
+HUMAN APPROVAL RECORD
+==================================================
+
+experiment_id:
+
+approver:
+
+decision:
+
+timestamp:
+
+manifest_hash:
+
+payload_hash:
+
+warnings_reviewed:
+
+notes:
+
+If approved and broadcast by the human-controlled wallet, append:
+
+transaction_hash:
+
+broadcast_timestamp:
+
+broadcast_wallet:
+
+==================================================
+08 — ROB INDEXER
+==================================================
+
+After a human-authorized transaction is broadcast, ROB begins observation.
+
+ROB should operate from public blockchain events.
+
+ROB does not need to trust:
+
+screenshots
+
+social posts
+
+human recollection
+
+or
+
+price charts
+
+when primary chain evidence is available.
+
+ROB attempts to resolve:
+
+launch transaction
+
+launch block
+
+launch timestamp
+
+deployer
+
+token address
+
+curve address
+
+pair/reference asset
+
+launch configuration
+
+creator recipient
+
+opening-window trades
+
+subsequent buys
+
+subsequent sells
+
+fee events
+
+creator entitlement
+
+transaction receipts
+
+==================================================
+CANONICAL LAUNCH RECORD
+==================================================
+
+experiment_id
+
+chain_id
+
+block_number
+
+block_hash
+
+block_timestamp
+
+transaction_hash
+
+transaction_index
+
+log_index
+
+deployer
+
+token_address
+
+curve_address
+
+pair_asset
+
+creator_fee_recipient
+
+creator_tax
+
+launch_condition
+
+manifest_hash
+
+evidence_class
+
+==================================================
+CANONICAL TRADE RECORD
+==================================================
+
+experiment_id
+
+chain_id
+
+token_address
+
+curve_address
+
+block_number
+
+block_timestamp
+
+transaction_hash
+
+transaction_index
+
+log_index
+
+wallet
+
+direction
+
+input_asset
+
+input_amount
+
+output_asset
+
+output_amount
+
+reported_fee
+
+base_fee
+
+creator_tax
+
+inferred_opening_fee
+
+seconds_since_launch
+
+blocks_since_launch
+
+classification
+
+classification_confidence
+
+evidence_class
+
+==================================================
+OPENING WINDOW ANALYSIS
+==================================================
+
+ROB calculates:
+
+seconds_since_launch
+
+blocks_since_launch
+
+transaction position
+
+trade amount
+
+reported fee
+
+configured ordinary fee
+
+creator tax
+
+additional fee component where derivable
+
+The system may calculate:
+
+inferred_opening_fee
+=
+reported_trade_fee
+-
+ordinary_base_fee
+-
+other explicitly reported fee components
+
+Only perform this calculation when the underlying event semantics support it.
+
+If semantics are uncertain:
+
+record UNKNOWN.
+
+Do not invent precision.
+
+==================================================
+BOT-LIKE BEHAVIOR ENGINE
+==================================================
+
+ROB classifies behavior.
+
+It does not attempt to deanonymize users.
+
+Possible signals include:
+
+• extremely low launch-to-trade latency
+• repeated first-block participation
+• repeated transaction construction
+• repeated gas strategy
+• repeated trade sizing
+• repeated behavior across unrelated launches
+• repeated entry/exit sequencing
+• repeated interaction with the same factory pattern
+• recurring participation without public promotion
+
+Each signal receives a research weight.
+
+A score does not prove identity.
+
+CLASSIFICATIONS
+
+UNKNOWN
+
+OPENING_WINDOW_PARTICIPANT
+
+AUTOMATED_CANDIDATE
+
+REPEATED_AUTOMATED_CANDIDATE
+
+AUTOMATION_CONFIRMED
+
+AUTOMATION_CONFIRMED requires evidence beyond timing alone.
+
+==================================================
+09 — RESEARCH API
+==================================================
+
+The Research API exposes normalized experiment and telemetry data.
+
+BASE ROUTE
+
+/api/v1
+
+==================================================
+HEALTH
+==================================================
+
+GET /api/v1/health
+
+Returns:
+
+service_status
+
+database_status
+
+rpc_status
+
+indexer_status
+
+chain_id
+
+latest_chain_block
+
+latest_indexed_block
+
+indexer_lag
+
+software_version
+
+==================================================
+NETWORK
+==================================================
+
+GET /api/v1/network
+
+Returns:
+
+network_name
+
+chain_id
+
+rpc_status
+
+factory_address
+
+factory_version
+
+latest_block
+
+==================================================
+EXPERIMENTS
+==================================================
+
+GET /api/v1/experiments
+
+List experiments.
+
+GET /api/v1/experiments/{experiment_id}
+
+Return complete experiment record.
+
+POST /api/v1/experiments/validate
+
+Validate a proposed experiment manifest.
+
+The endpoint should not launch the experiment.
+
+==================================================
+PREFLIGHT
+==================================================
+
+POST /api/v1/launch-preflight
+
+Input:
+
+experiment_id
+
+token configuration
+
+network configuration
+
+pair configuration
+
+creator configuration
+
+Output:
+
+PASS / WARNING / BLOCK
+
+checks
+
+warnings
+
+resolved addresses
+
+fee configuration
+
+launch eligibility
+
+simulation summary
+
+==================================================
+PAYLOAD
+==================================================
+
+POST /api/v1/launch-payload
+
+Returns:
+
+UNSIGNED payload only.
+
+Output:
+
+target
+
+value
+
+data
+
+decoded_function
+
+decoded_arguments
+
+gas_estimate
+
+manifest_hash
+
+payload_hash
+
+warnings
+
+human_review_required = true
+
+broadcast_available = false
+
+==================================================
+LAUNCHES
+==================================================
+
+GET /api/v1/launches
+
+Optional filters:
+
+experiment_id
+
+token
+
+deployer
+
+date_from
+
+date_to
+
+block_from
+
+block_to
+
+GET /api/v1/launches/{launch_id}
+
+==================================================
+OBSERVATIONS
+==================================================
+
+GET /api/v1/observations
+
+Optional filters:
+
+experiment_id
+
+token
+
+wallet
+
+classification
+
+opening_window
+
+block range
+
+date range
+
+==================================================
+FEE SUMMARY
+==================================================
+
+GET /api/v1/fees/summary
+
+Returns separate values for:
+
+observed_protocol_fees
+
+observed_base_fees
+
+observed_creator_tax
+
+inferred_opening_window_fees
+
+creator_entitlement
+
+confirmed_treasury_receipts
+
+Never report:
+
+confirmed_treasury_receipts
+
+from event estimates alone.
+
+Treasury receipts require wallet-level evidence.
+
+==================================================
+WALLET PATTERNS
+==================================================
+
+GET /api/v1/research/wallet-patterns
+
+Research-oriented endpoint.
+
+Returns behavioral summaries, not real-world identities.
+
+Example:
+
+wallet
+
+launches_observed
+
+first_block_count
+
+opening_window_count
+
+median_launch_latency
+
+repeated_pattern_score
+
+classification
+
+confidence
+
+==================================================
+AFTER-ACTION REVIEW
+==================================================
+
+GET /api/v1/experiments/{experiment_id}/aar
+
+POST /api/v1/experiments/{experiment_id}/aar/generate
+
+Generate a draft AAR from preserved evidence.
+
+Human review is required before publication.
+
+==================================================
+10 — REPRODUCIBILITY EXPORTER
+==================================================
+
+Every completed experiment should be exportable as a self-contained research package.
+
+PACKAGE CONTENTS
+
+experiment manifest
+
+manifest hash
+
+network configuration snapshot
+
+contract configuration snapshot
+
+unsigned payload summary
+
+payload hash
+
+human approval record
+
+transaction hash
+
+launch record
+
+raw event records
+
+normalized trade records
+
+fee calculations
+
+classification results
+
+agent logs required for reconstruction
+
+human observations
+
+after-action review
+
+negative findings
+
+treasury evidence if applicable
+
+software version
+
+schema version
+
+dataset hash
+
+README describing reproduction steps
+
+==================================================
+MIXED-METHODS EXPORT
+==================================================
+
+QUANTITATIVE DATA
+
+block timing
+
+transactions
+
+wallet addresses
+
+trade sizes
+
+fee components
+
+launch latency
+
+repeat participation
+
+creator entitlement
+
+treasury receipts
+
+QUALITATIVE DATA
+
+human notes
+
+agent recommendations
+
+Discord decisions
+
+release-gate rationale
+
+unexpected observations
+
+research interpretations
+
+screenshots where relevant
+
+external reviewer notes
+
+These evidence classes remain separate until analysis.
+
+==================================================
+DATABASE MODEL
+==================================================
+
+Recommended logical tables:
+
+experiments
+
+experiment_versions
+
+networks
+
+factories
+
+tokens
+
+launches
+
+trades
+
+wallet_observations
+
+fee_observations
+
+creator_entitlements
+
+treasury_receipts
+
+human_approvals
+
+agent_jobs
+
+agent_outputs
+
+after_action_reviews
+
+evidence_objects
+
+public_good_disbursements
+
+==================================================
+EXPERIMENT TABLE
+==================================================
+
+PRIMARY KEY
+
+experiment_id
+
+FIELDS
+
+created_at
+
+updated_at
+
+human_owner
+
+research_question
+
+hypothesis
+
+announcement_condition
+
+status
+
+manifest_hash
+
+software_version
+
+==================================================
+LAUNCH TABLE
+==================================================
+
+PRIMARY KEY
+
+chain_id + transaction_hash + log_index
+
+FIELDS
+
+experiment_id
+
+token_address
+
+curve_address
+
+deployer
+
+pair_asset
+
+creator_recipient
+
+block_number
+
+block_timestamp
+
+transaction_hash
+
+manifest_hash
+
+==================================================
+TRADE TABLE
+==================================================
+
+PRIMARY KEY
+
+chain_id + transaction_hash + log_index
+
+FIELDS
+
+experiment_id
+
+token_address
+
+curve_address
+
+wallet
+
+direction
+
+input_amount
+
+output_amount
+
+reported_fee
+
+base_fee
+
+creator_tax
+
+inferred_opening_fee
+
+seconds_since_launch
+
+blocks_since_launch
+
+classification
+
+confidence
+
+==================================================
+TREASURY RECEIPT TABLE
+==================================================
+
+PRIMARY KEY
+
+chain_id + transaction_hash + log_index
+
+FIELDS
+
+experiment_id
+
+asset
+
+amount
+
+from_address
+
+to_address
+
+timestamp
+
+source_classification
+
+evidence_hash
+
+accounting_status
+
+==================================================
+AGENT FACTORY
+==================================================
+
+The system may support multiple specialized agents.
+
+MANIFEST AGENT
+
+Creates and validates experiment manifests.
+
+NETWORK AGENT
+
+Checks chain connectivity and contract deployment.
+
+CONTRACT AGENT
+
+Validates factory and ABI compatibility.
+
+PREFLIGHT AGENT
+
+Runs release checks.
+
+PAYLOAD AGENT
+
+Creates unsigned payloads.
+
+ROB INDEXER AGENT
+
+Indexes public blockchain events.
+
+FEE AGENT
+
+Separates protocol fee components.
+
+PATTERN AGENT
+
+Analyzes repeated behavioral patterns.
+
+AAR AGENT
+
+Creates evidence-based after-action review drafts.
+
+PROVENANCE AGENT
+
+Hashes and packages evidence.
+
+CONTROL TOWER AGENT
+
+Routes unresolved decisions to the correct human.
+
+==================================================
+@HASHWARLOCK AGENT CONTRACT
+==================================================
+
+Every authorized agent receives:
+
+agent_id
+
+operator
+
+software/model
+
+version
+
+purpose
+
+allowed_operations
+
+prohibited_operations
+
+API scope
+
+expiration/review date
+
+Every agent output should preserve:
+
+agent_id
+
+job_id
+
+experiment_id
+
+timestamp
+
+input hash
+
+output hash
+
+software version
+
+status
+
+warnings
+
+==================================================
+AGENT JOB CONTRACT
+==================================================
+
+JOB
+
+job_id:
+
+experiment_id:
+
+agent_id:
+
+task_type:
+
+input_reference:
+
+expected_output:
+
+permissions:
+
+human_gate_required:
+
+created_at:
+
+started_at:
+
+completed_at:
+
+status:
+
+output_hash:
+
+warnings:
+
+==================================================
+AGENT SECURITY POLICY
+==================================================
+
+Agents must not receive:
+
+seed phrases
+
+raw private keys
+
+wallet backup files
+
+unnecessary production credentials
+
+unnecessary treasury credentials
+
+Secrets should be:
+
+scoped
+
+revocable
+
+environment-specific
+
+rotated
+
+auditable where possible
+
+Production signing keys should remain outside the normal research-agent runtime.
+
+==================================================
+ENVIRONMENT SEPARATION
+==================================================
+
+LOCAL
+
+Development and unit testing.
+
+SIMULATION
+
+Read-only RPC and transaction simulation.
+
+TEST / SANDBOX
+
+Controlled non-production experimentation where available.
+
+MAINNET PREPARATION
+
+Creates the unsigned payload.
+
+MAINNET SIGNING
+
+Human-controlled wallet environment.
+
+TREASURY
+
+Separate custody environment.
+
+The research API should not automatically bridge MAINNET PREPARATION into TREASURY authority.
+
+==================================================
+OBSERVABILITY
+==================================================
+
+Each service should expose:
+
+health
+
+version
+
+uptime
+
+latest processed block
+
+error count
+
+RPC latency
+
+indexing lag
+
+active experiment
+
+last successful job
+
+last failed job
+
+==================================================
+FAIL-CLOSED RULE
+==================================================
+
+When critical configuration cannot be verified:
+
+STOP.
+
+Examples:
+
+wrong chain
+
+unknown factory
+
+unexpected bytecode
+
+unapproved pair
+
+unknown ABI
+
+creator recipient mismatch
+
+unexpected fee structure
+
+simulation revert
+
+payload hash mismatch
+
+manifest hash mismatch
+
+The agent must return:
+
+BLOCKED
+
+rather than guess.
+
+==================================================
+REORG HANDLING
+==================================================
+
+Blockchain data may be reorganized.
+
+ROB should preserve:
+
+block number
+
+block hash
+
+confirmation status
+
+Data may be marked:
+
+UNCONFIRMED
+
+CONFIRMED
+
+REORGED
+
+If an indexed event disappears after a chain reorganization, do not silently delete the research history.
+
+Record:
+
+original observation
+
+reorg status
+
+replacement canonical evidence
+
+==================================================
+IDEMPOTENCY
+==================================================
+
+Indexing the same event twice must not create duplicate observations.
+
+Canonical event identity:
+
+CHAIN ID
++
+TRANSACTION HASH
++
+LOG INDEX
+
+==================================================
+EVIDENCE FIRST
+==================================================
+
+The factory is not optimized around:
+
+HOW MANY TOKENS CAN WE LAUNCH?
+
+It is optimized around:
+
+HOW MANY EXPERIMENTS CAN WE REPRODUCE?
+
+A valid experiment can produce:
+
+positive findings
+
+negative findings
+
+unexpected findings
+
+or
+
+no meaningful activity.
+
+All are retained.
+
+==================================================
+FACTORY SAFETY BOUNDARY
+==================================================
+
+Do not build an automated loop whose objective is:
+
+LAUNCH
+→ WAIT FOR TRADERS
+→ EXTRACT FEES
+→ LAUNCH AGAIN
+→ REPEAT
+
+without fresh research justification and human authorization.
+
+The system instead requires:
+
+QUESTION
+→ HYPOTHESIS
+→ EXPERIMENT
+→ OBSERVATION
+→ REVIEW
+→ NEXT HUMAN DECISION
+
+This keeps PONS $101 functioning as a research laboratory rather than a transaction-spam engine.
+
+==================================================
+PUBLIC-GOOD INTEGRATION
+==================================================
+
+Where creator fees are legitimately received:
+
+ROB measures protocol activity.
+
+A treasury observer independently verifies receipts.
+
+The system then records:
+
+FEE OBSERVED
+
+CREATOR ENTITLEMENT
+
+TREASURY RECEIVED
+
+PUBLIC-GOOD ALLOCATED
+
+PUBLIC-GOOD DISBURSED
+
+Each is a separate state.
+
+No agent may automatically convert:
+
+FEE OBSERVED
+
+into
+
+PUBLIC-GOOD DISBURSED.
+
+Human authorization remains required.
+
+==================================================
+CONTROL TOWER OUTPUT
+==================================================
+
+For every active experiment, the factory should be able to produce:
+
+PONS $101 CONTROL TOWER
+
+EXPERIMENT:
+
+STATUS:
+
+CHAIN:
+
+TOKEN:
+
+PAIR:
+
+MANIFEST HASH:
+
+PREFLIGHT:
+
+PAYLOAD HASH:
+
+HUMAN RELEASE:
+
+TRANSACTION:
+
+ROB STATUS:
+
+FIRST OBSERVATION:
+
+OPENING WINDOW:
+
+FEE OBSERVATION:
+
+CREATOR ENTITLEMENT:
+
+TREASURY RECEIPT:
+
+BOT-LIKE CLASSIFICATION:
+
+EVIDENCE GAPS:
+
+AAR STATUS:
+
+NEXT HUMAN DECISION:
+
+==================================================
+GENESIS OPERATING RULE
+==================================================
+
+THE FACTORY BUILDS.
+
+ROB WATCHES.
+
+THE CHAIN RECORDS.
+
+THE CONTROL TOWER ROUTES.
+
+THE HUMAN DECIDES.
+
+GITHUB PRESERVES.
+
+THE RESEARCH COMMUNITY REPLICATES.
+
+PONS $101
+
+WHAT DID WE KNOW BEFORE THE OUTCOME?
+
+LEARN
+→ BUILD
+→ VERIFY
+→ APPROVE
+→ OBSERVE
+→ PRESERVE
+→ REPLICATE
+
+IN JESUS' NAME.
