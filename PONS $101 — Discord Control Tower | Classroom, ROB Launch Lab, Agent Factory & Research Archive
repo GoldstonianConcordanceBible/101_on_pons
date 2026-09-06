@@ -1,0 +1,1352 @@
+# PONS $101 — DISCORD CONTROL TOWER
+
+PONS $101 Discord is the live classroom, launch laboratory, research-control room, agent-operations layer, and human release-gate environment for the PONS $101 — ROB Lab.
+
+Discord is where humans and authorized agents coordinate the experiment.
+
+GitHub remains the canonical reproducibility archive.
+
+Robinhood Chain remains the public execution and evidence layer.
+
+ROB remains the observer.
+
+ENOCH ONE remains the Control Tower.
+
+The human remains the signer.
+
+SERVER PURPOSE
+
+The server exists to organize:
+
+• PONS $101 education
+• token-launch research
+• registered hypotheses
+• stealth/no-pre-announcement experiments
+• Robinhood Chain observations
+• Pons launch telemetry
+• ROB evidence
+• @hashwarlock agent operations
+• APIs and infrastructure
+• experiment manifests
+• human release decisions
+• fee accounting
+• mixed-methods research
+• after-action reviews
+• public-good provenance
+• Tabernacle treasury records
+• external-review packages
+
+CORE ROUTING PRINCIPLE
+
+RIGHT PERSON
+→ RIGHT PROBLEM
+→ RIGHT CONTENT
+→ RIGHT NEXT STEP
+
+SERVER NAME
+
+PONS $101 — ROB CONTROL TOWER
+
+SERVER DESCRIPTION
+
+Education and reproducible research laboratory for studying token creation, autonomous launch discovery, protocol-defined fees, agent-assisted deployment preparation, Robinhood Chain telemetry, and public-good provenance.
+
+WHAT DID WE KNOW BEFORE THE OUTCOME?
+
+IN JESUS' NAME.
+
+==================================================
+ROLE ARCHITECTURE
+==================================================
+
+01 — HUMAN AUTHORITY
+
+Highest operational human role.
+
+Permissions:
+
+• final experiment approval
+• human release gate
+• treasury approval
+• server governance
+• agent authorization
+• research publication approval
+
+No AI role outranks HUMAN AUTHORITY.
+
+02 — ENOCH ONE CONTROL TOWER
+
+Research and routing role.
+
+Responsibilities:
+
+• synthesize evidence
+• route open questions
+• maintain experiment status
+• separate fact from recommendation
+• prepare Control Tower reports
+• identify unresolved release gates
+
+ENOCH ONE does not receive autonomous wallet authority.
+
+03 — ROB
+
+Research Observer for Bot-like Activity.
+
+Responsibilities:
+
+• launch observation
+• telemetry
+• fee analysis
+• behavioral classification
+• transaction provenance
+• post-launch evidence
+• reproducibility support
+
+ROB does not trade or sign.
+
+04 — HASHWARLOCK AGENT
+
+Authorized technical-agent role.
+
+Responsibilities may include:
+
+• code generation
+• API integration
+• contract-interface preparation
+• token manifest preparation
+• launch payload preparation
+• simulation
+• testing
+• telemetry engineering
+• research automation
+• GitHub maintenance
+
+No independent treasury authority.
+
+No independent mainnet signing authority.
+
+05 — RESEARCHER
+
+Can participate in:
+
+• hypothesis development
+• analysis
+• mixed-methods coding
+• replication
+• peer review
+• after-action reviews
+
+06 — PONS $101 STUDENT
+
+Educational access.
+
+07 — AUDITOR / REVIEWER
+
+Read-oriented role for:
+
+• evidence
+• manifests
+• provenance
+• accounting records
+• AARs
+• release-gate history
+
+08 — COMMUNITY
+
+Public discussion and education.
+
+09 — BOT / SERVICE
+
+Restricted role for approved Discord automation.
+
+Bot permissions should be minimal and purpose-specific.
+
+==================================================
+CATEGORY 00 — START HERE
+==================================================
+
+#00-welcome
+
+Purpose:
+
+Public front door for the PONS $101 server.
+
+PINNED MESSAGE
+
+WELCOME TO PONS $101 — ROB CONTROL TOWER
+
+This server is an education and research environment for studying token creation and launch behavior on Robinhood Chain and compatible Pons infrastructure.
+
+The laboratory investigates:
+
+• token-launch mechanics
+• bonding curves
+• automated launch discovery
+• protocol-defined opening-window economics
+• creator fees
+• agent-assisted research
+• public blockchain provenance
+• mixed-methods analysis
+• public-good accounting
+
+PONS $101 is experimental.
+
+Nothing here promises:
+
+profit,
+liquidity,
+bot participation,
+fee revenue,
+price appreciation,
+or investment return.
+
+ROB means:
+
+RESEARCH OBSERVER FOR BOT-LIKE ACTIVITY.
+
+ROB is not represented as an official Robinhood agent.
+
+The governing question is:
+
+WHAT DID WE KNOW BEFORE THE OUTCOME?
+
+#01-read-first
+
+Required orientation.
+
+PINNED MESSAGE
+
+BEFORE ENTERING THE LAB
+
+Understand these principles:
+
+1. A token name is not its identity.
+2. A ticker is not its identity.
+3. Contract address and network matter.
+4. “Paired with” does not mean “pegged to.”
+5. Automated-looking behavior is not automatically proof of a bot.
+6. Observed fee does not equal treasury receipt.
+7. Agents prepare.
+8. Humans approve consequential transactions.
+9. Negative findings remain in the research record.
+10. Every live experiment should have a registered hypothesis.
+
+#02-rules-and-disclosures
+
+PINNED MESSAGE
+
+PONS $101 RULES
+
+Do not use this server to coordinate:
+
+• wash trading
+• spoofing
+• fake volume
+• fake liquidity
+• false scarcity
+• wallet targeting
+• malicious contracts
+• undisclosed taxes
+• coordinated victims
+• deceptive bot traps
+• front-running
+• market manipulation
+• fabricated evidence
+
+Research experiments must use truthful metadata and disclosed protocol mechanics.
+
+Stealth means:
+
+NO ADVANCE PUBLIC PROMOTION.
+
+It does not mean hidden economics.
+
+#03-how-the-lab-works
+
+PINNED MESSAGE
+
+PONS $101 LAB PIPELINE
+
+QUESTION
+→ HYPOTHESIS
+→ MANIFEST
+→ PREFLIGHT
+→ AGENT PREPARATION
+→ HUMAN RELEASE GATE
+→ EXECUTION
+→ ROB OBSERVATION
+→ ANALYSIS
+→ AFTER-ACTION REVIEW
+→ REPRODUCIBILITY PACKAGE
+→ REPLICATION
+
+==================================================
+CATEGORY 01 — PONS $101 CLASSROOM
+==================================================
+
+#101-start-here
+
+The canonical course entry point.
+
+#102-wallets-and-networks
+
+Topics:
+
+• wallet architecture
+• public/private keys
+• addresses
+• chain IDs
+• RPC endpoints
+• block explorers
+• gas
+• transaction signatures
+• custody
+
+#103-smart-contract-basics
+
+Topics:
+
+• contract addresses
+• ABIs
+• functions
+• events
+• reads
+• writes
+• permissions
+• immutable state
+• configurable state
+
+#104-token-launch-lifecycle
+
+Topics:
+
+• factory contracts
+• token creation
+• bonding curves
+• launch events
+• trading
+• graduation where applicable
+• liquidity transitions
+
+#105-fees-and-economics
+
+Students must distinguish:
+
+BASE TRADING FEE
+CREATOR TAX
+OPENING SNIPE TAX
+CREATOR ENTITLEMENT
+CREATOR RECEIPT
+
+#106-bot-like-behavior
+
+Topics:
+
+• automated discovery
+• mempool assumptions
+• block timing
+• transaction latency
+• repeated wallet patterns
+• behavioral fingerprints
+• limitations of classification
+
+#107-research-methods
+
+Topics:
+
+• registered hypotheses
+• mixed methods
+• pre/post comparison
+• quantitative telemetry
+• qualitative observation
+• triangulation
+• negative findings
+• replication
+
+#108-provenance
+
+Topics:
+
+• hashes
+• manifests
+• timestamps
+• commit history
+• transaction hashes
+• chain evidence
+• reproducibility
+
+#109-human-release-gate
+
+Topics:
+
+• agent preparation
+• human authority
+• wallet signing
+• irreversible actions
+• approval records
+
+#110-public-good-accounting
+
+Topics:
+
+• creator entitlement
+• treasury receipt
+• custody
+• human approval
+• public-good spending
+• receipts
+• provenance
+
+==================================================
+CATEGORY 02 — ROB CONTROL TOWER
+==================================================
+
+#200-rob-status
+
+Live operational status.
+
+Recommended status format:
+
+ROB STATUS
+
+Network:
+RPC:
+Factory:
+Indexer:
+Last processed block:
+Active experiment:
+Launches indexed:
+Trades indexed:
+Warnings:
+Human action required:
+
+#201-launch-feed
+
+Machine-generated launch observations.
+
+Recommended format:
+
+LAUNCH OBSERVED
+
+Experiment ID:
+Chain ID:
+Block:
+Timestamp:
+Transaction:
+Deployer:
+Token:
+Curve:
+Reference asset:
+Launch condition:
+Evidence class:
+
+#202-opening-window
+
+Opening-window trade observations.
+
+Recommended format:
+
+OPENING-WINDOW OBSERVATION
+
+Experiment:
+Block:
+Time since launch:
+Transaction:
+Wallet:
+Direction:
+Input:
+Output:
+Reported fee:
+Base fee:
+Creator tax:
+Inferred opening component:
+Classification:
+Confidence:
+Notes:
+
+#203-fee-monitor
+
+Tracks protocol fees separately from treasury receipts.
+
+#204-wallet-patterns
+
+Research-only behavioral comparisons.
+
+Never publicly accuse a wallet owner of being a bot without independent evidence.
+
+#205-rob-alerts
+
+Examples:
+
+• RPC unavailable
+• event gap detected
+• chain mismatch
+• factory mismatch
+• unexpected fee configuration
+• duplicate experiment ID
+• treasury recipient mismatch
+• manifest hash mismatch
+
+#206-rob-daily-summary
+
+Daily research summary.
+
+Format:
+
+PONS $101 — ROB DAILY
+
+Experiments observed:
+Launches:
+Opening-window trades:
+Candidate automated participants:
+Repeated candidate addresses:
+Creator fee observed:
+Treasury receipts:
+Anomalies:
+Evidence gaps:
+Highest-value next action:
+
+==================================================
+CATEGORY 03 — PRIVATE LAUNCH LAB
+==================================================
+
+PRIVATE CATEGORY
+
+Visible only to:
+
+HUMAN AUTHORITY
+ENOCH ONE CONTROL TOWER
+approved HASHWARLOCK AGENT
+approved RESEARCHER
+approved AUDITOR when required
+
+#300-experiment-intake
+
+Every live experiment begins here.
+
+TEMPLATE
+
+EXPERIMENT ID:
+
+DATE:
+
+HUMAN OWNER:
+
+RESEARCH QUESTION:
+
+HYPOTHESIS:
+
+TOKEN NAME:
+
+TICKER:
+
+REFERENCE / PAIR ASSET:
+
+NETWORK:
+
+CHAIN ID:
+
+ANNOUNCEMENT CONDITION:
+
+CREATOR CONFIGURATION:
+
+TREASURY DESTINATION:
+
+EXPECTED OBSERVATION WINDOW:
+
+SUCCESS CRITERIA:
+
+FAILURE CRITERIA:
+
+DISCLOSURES:
+
+NOTES:
+
+#301-hypothesis-registry
+
+Nothing goes live without a written hypothesis unless the human explicitly records an emergency or exploratory exception.
+
+#302-token-manifests
+
+Canonical pre-launch configuration.
+
+TEMPLATE
+
+MANIFEST
+
+experiment_id:
+token_name:
+ticker:
+description:
+chain_id:
+factory:
+pair_asset:
+creator:
+creator_fee_recipient:
+creator_tax:
+announcement_condition:
+research_purpose:
+software_version:
+created_at:
+human_owner:
+manifest_hash:
+
+#303-preflight
+
+AGENT PREFLIGHT TEMPLATE
+
+CHAIN
+
+[ ] Correct chain ID
+[ ] RPC reachable
+[ ] Current block available
+
+FACTORY
+
+[ ] Factory resolved
+[ ] Contract bytecode present
+[ ] ABI/version recorded
+[ ] Launch permission checked where applicable
+
+TOKEN
+
+[ ] Name reviewed
+[ ] Symbol reviewed
+[ ] Metadata reviewed
+[ ] Duplicate-symbol risk acknowledged
+
+PAIR
+
+[ ] Pair/reference asset verified
+[ ] Address verified
+[ ] Approval state verified where applicable
+
+ECONOMICS
+
+[ ] Base fee checked
+[ ] Creator tax checked
+[ ] Treasury destination checked
+[ ] No hidden fee mechanics
+
+RESEARCH
+
+[ ] Hypothesis exists
+[ ] Announcement condition frozen
+[ ] Observation period defined
+[ ] Evidence standard selected
+
+TRANSACTION
+
+[ ] Unsigned calldata generated
+[ ] Decoded transaction reviewed
+[ ] Simulation completed where available
+[ ] Payload hash recorded
+
+FINAL STATUS:
+
+READY FOR HUMAN REVIEW
+or
+BLOCKED
+
+#304-agent-build-room
+
+@hashwarlock and other approved agents coordinate technical preparation here.
+
+#305-simulation
+
+Store:
+
+• simulated calls
+• estimated gas
+• expected events
+• revert reasons
+• parameter verification
+
+#306-human-release-gate
+
+CRITICAL PRIVATE CHANNEL
+
+Only HUMAN AUTHORITY may issue final release approval.
+
+RELEASE TEMPLATE
+
+HUMAN RELEASE RECORD
+
+Experiment ID:
+
+Manifest hash:
+
+Unsigned payload hash:
+
+Network:
+
+Chain ID:
+
+Token:
+
+Pair:
+
+Creator recipient:
+
+Material warnings:
+
+Human decision:
+
+[ ] APPROVE
+[ ] REJECT
+[ ] RETURN FOR CHANGES
+
+Human approver:
+
+Timestamp:
+
+Notes:
+
+#307-broadcast-record
+
+After a human-authorized transaction:
+
+Experiment ID:
+Transaction hash:
+Block:
+Token contract:
+Curve:
+Broadcast wallet:
+Status:
+ROB observation started:
+Notes:
+
+==================================================
+CATEGORY 04 — EVIDENCE + RESEARCH
+==================================================
+
+#400-raw-evidence
+
+Do not place interpretation into raw-evidence records.
+
+Store references to:
+
+• transaction hashes
+• event logs
+• block data
+• screenshots
+• API snapshots
+• RPC responses
+• agent logs
+
+#401-quantitative
+
+Metrics:
+
+• launch-to-first-trade latency
+• launch-to-first-buy latency
+• trade count
+• unique wallets
+• opening-window wallet count
+• fee totals
+• creator entitlement
+• repeated-wallet frequency
+• volume
+• block concentration
+
+#402-qualitative
+
+Human observations.
+
+Examples:
+
+• researcher notes
+• decision rationale
+• unexpected behavior
+• screenshots
+• agent explanations
+• field notes
+• Discord discussions relevant to the experiment
+
+#403-mixed-methods
+
+Combine the quantitative and qualitative evidence.
+
+#404-evidence-classification
+
+Use:
+
+VERIFIED
+CORROBORATED
+AUTHOR-ORIGINATED
+PROPOSED
+FUTURE EXPERIMENT
+
+#405-after-action-review
+
+AAR TEMPLATE
+
+EXPERIMENT ID:
+
+ORIGINAL QUESTION:
+
+ORIGINAL HYPOTHESIS:
+
+WHAT DID WE KNOW BEFORE THE OUTCOME?
+
+WHAT ACTUALLY HAPPENED?
+
+WHAT WAS VERIFIED?
+
+WHAT WAS ONLY INFERRED?
+
+DID AUTOMATED-CANDIDATE ACTIVITY OCCUR?
+
+WHAT FEES WERE OBSERVED?
+
+WHAT CREATOR ENTITLEMENT EXISTED?
+
+WHAT TREASURY RECEIPT OCCURRED?
+
+WHAT FAILED?
+
+WHAT SURPRISED US?
+
+WHAT WOULD WE CHANGE?
+
+REPLICATION DECISION:
+
+[ ] REPLICATE
+[ ] MODIFY
+[ ] PAUSE
+[ ] RETIRE
+
+#406-negative-findings
+
+Negative results are preserved.
+
+Examples:
+
+• no early trades
+• no obvious automation
+• no creator fees
+• launch failure
+• RPC problem
+• permission failure
+• unexpected contract behavior
+• hypothesis rejected
+
+#407-replication
+
+Plan the next experiment.
+
+Change one important variable at a time where practical.
+
+#408-external-review
+
+Prepare material for:
+
+• Robinhood
+• Robinhood Chain ecosystem participants
+• Pons
+• independent researchers
+• auditors
+• developers
+• compliance reviewers
+• educators
+
+Do not represent external review as endorsement.
+
+==================================================
+CATEGORY 05 — PRIVATE AGENTS + API
+==================================================
+
+PRIVATE CATEGORY
+
+#500-agent-registry
+
+TEMPLATE
+
+AGENT ID:
+
+OPERATOR:
+
+MODEL / SOFTWARE:
+
+VERSION:
+
+PURPOSE:
+
+AUTHORIZED CAPABILITIES:
+
+PROHIBITED CAPABILITIES:
+
+API ACCESS:
+
+MAINNET SIGNING:
+
+NO
+
+TREASURY CONTROL:
+
+NO
+
+LAST REVIEW:
+
+#501-hashwarlock
+
+Dedicated coordination channel for @hashwarlock-operated research agents.
+
+#502-api-status
+
+Track:
+
+• research API
+• RPCs
+• indexers
+• databases
+• webhooks
+• GitHub workflows
+• health checks
+
+#503-api-schema
+
+Canonical API contracts.
+
+Recommended research endpoints:
+
+GET /health
+
+GET /network
+
+GET /launches
+
+GET /launches/{id}
+
+GET /observations
+
+GET /fees/summary
+
+GET /experiments
+
+GET /experiments/{id}
+
+POST /experiments/validate
+
+POST /launch-preflight
+
+POST /launch-payload
+
+POST /simulation
+
+The launch-payload endpoint returns unsigned data.
+
+It does not autonomously broadcast a mainnet transaction.
+
+#504-agent-jobs
+
+JOB TEMPLATE
+
+JOB ID:
+
+AGENT:
+
+EXPERIMENT:
+
+INPUT:
+
+EXPECTED OUTPUT:
+
+PERMISSIONS REQUIRED:
+
+HUMAN APPROVAL REQUIRED:
+
+STATUS:
+
+OUTPUT HASH:
+
+#505-agent-logs
+
+Preserve relevant agent logs needed to reconstruct research decisions.
+
+#506-security
+
+Never post:
+
+• seed phrases
+• private keys
+• raw wallet backups
+• exchange passwords
+• production secrets
+
+#507-incidents
+
+INCIDENT TEMPLATE
+
+Incident ID:
+
+Time:
+
+Experiment:
+
+Affected component:
+
+Description:
+
+Assets at risk:
+
+Evidence integrity affected:
+
+Mainnet impact:
+
+Immediate action:
+
+Human owner:
+
+Resolution:
+
+Postmortem required:
+
+==================================================
+CATEGORY 06 — TABERNACLE PUBLIC GOOD
+==================================================
+
+#600-mission
+
+PINNED MESSAGE
+
+TABERNACLE PUBLIC-GOOD EXPERIMENT
+
+Mission:
+
+To study whether legitimately received creator-fee revenue can be transparently accounted for and eventually directed toward a future Tabernacle, education, research, and community work in Jesus' name.
+
+This channel records mission and provenance.
+
+It does not itself establish charitable or tax-exempt status.
+
+#601-fee-entitlement
+
+What the protocol indicates may be attributable to the creator.
+
+#602-treasury-receipts
+
+Only record assets actually received.
+
+RECEIPT TEMPLATE
+
+Receipt ID:
+
+Experiment ID:
+
+Transaction:
+
+Network:
+
+Asset:
+
+Amount:
+
+Receiving wallet:
+
+Timestamp:
+
+Source classification:
+
+Evidence:
+
+#603-disbursement-proposals
+
+PROPOSAL TEMPLATE
+
+Proposal ID:
+
+Purpose:
+
+Amount:
+
+Asset:
+
+Destination:
+
+Public-good category:
+
+Supporting documentation:
+
+Human approvals required:
+
+Status:
+
+#604-approved-disbursements
+
+Only actual authorized expenditures.
+
+#605-receipts-and-invoices
+
+Store references to supporting evidence.
+
+#606-public-good-report
+
+Periodic summary:
+
+Creator entitlement:
+Treasury receipts:
+Assets held:
+Approved expenditures:
+Completed expenditures:
+Outstanding proposals:
+Evidence gaps:
+
+==================================================
+CATEGORY 07 — PARTNERS / EXTERNAL ECOSYSTEM
+==================================================
+
+#700-robinhood-chain
+
+Technical and research notes relevant to Robinhood Chain.
+
+#701-pons
+
+Protocol documentation, integration notes, experiments, and questions.
+
+#702-github
+
+Repository changes, commits, issues, release notes, datasets.
+
+#703-research-partners
+
+Independent researchers and collaborators.
+
+#704-model-lab
+
+Cross-model experimental analysis.
+
+Agents may disagree.
+
+Human authority remains final.
+
+==================================================
+CATEGORY 08 — COMMUNITY
+==================================================
+
+#800-general
+
+Public PONS $101 discussion.
+
+#801-class-questions
+
+Student questions.
+
+#802-launch-analysis
+
+Post-launch educational analysis only.
+
+Do not use as a pump channel.
+
+#803-research-ideas
+
+Proposed experiments.
+
+#804-memes-and-media
+
+Educational and cultural media.
+
+#805-prayer-and-purpose
+
+Faith, mission, prayer, and purpose around the public-good work.
+
+==================================================
+CATEGORY 09 — VOICE / LIVE LAB
+==================================================
+
+PONS $101 CLASSROOM
+
+Live lectures.
+
+ROB CONTROL ROOM
+
+Live research observation.
+
+AAR ROOM
+
+After-action reviews.
+
+PRAYER / TABERNACLE
+
+Faith and public-good discussions.
+
+==================================================
+CATEGORY 99 — MASTER RELEASE GATE
+==================================================
+
+PRIVATE
+
+#990-current-state
+
+Single authoritative status snapshot.
+
+FORMAT
+
+PONS $101 CONTROL TOWER
+
+T:
+
+ACTIVE EXPERIMENT:
+
+CURRENT PHASE:
+
+CHAIN:
+
+TOKEN:
+
+MANIFEST:
+
+ROB:
+
+HASHWARLOCK:
+
+HUMAN GATE:
+
+TREASURY:
+
+BLOCKERS:
+
+NEXT DECISION:
+
+#991-open-gates
+
+Only unresolved gates.
+
+#992-human-decisions
+
+Human decisions are preserved separately from model recommendations.
+
+#993-model-recommendations
+
+Agent and model recommendations.
+
+Never silently convert a recommendation into human approval.
+
+#994-audit-log
+
+Chronological operational decisions.
+
+#995-final-release
+
+Final publication/research-package approval.
+
+==================================================
+EXPERIMENT NAMING
+==================================================
+
+Recommended experiment identifier:
+
+P101-YYYYMMDD-###-SHORTNAME
+
+Example:
+
+P101-20260905-001-ROB-GENESIS
+
+Every Discord discussion, GitHub artifact, dataset row, AAR, and treasury record should reference the same experiment ID.
+
+==================================================
+CHANNEL PREFIX DOCTRINE
+==================================================
+
+00 = orientation
+
+100 = education
+
+200 = ROB telemetry
+
+300 = live experiment preparation
+
+400 = evidence and research
+
+500 = agents and infrastructure
+
+600 = public-good provenance
+
+700 = external ecosystem
+
+800 = community
+
+900 = Control Tower governance
+
+This gives the server a human-readable hierarchy that can be replicated in future laboratories.
+
+==================================================
+PERMISSION DOCTRINE
+==================================================
+
+PUBLIC
+
+Start Here
+Classroom
+selected ROB summaries
+Research publications
+Community
+
+RESTRICTED
+
+raw telemetry
+wallet-pattern analysis
+agent logs
+research working papers
+
+PRIVATE
+
+experiment preparation
+unsigned payloads
+release gates
+security incidents
+treasury proposals
+sensitive infrastructure
+
+NEVER STORE IN DISCORD
+
+private keys
+seed phrases
+wallet recovery files
+production secrets
+unredacted passwords
+
+==================================================
+PINNED CONTROL TOWER STATEMENT
+==================================================
+
+PONS $101 is not a token factory pretending to be a research project.
+
+It is a research laboratory capable of creating tokens as experimental objects.
+
+The purpose of the architecture is to preserve the chain:
+
+QUESTION
+→ HYPOTHESIS
+→ CONFIGURATION
+→ HUMAN DECISION
+→ TRANSACTION
+→ OBSERVATION
+→ EVIDENCE
+→ INTERPRETATION
+→ REPLICATION
+
+Discord is the operating room.
+
+GitHub is the permanent laboratory notebook.
+
+Robinhood Chain is the public evidence layer.
+
+Pons is a protocol under study and/or used for experiments where applicable.
+
+ROB observes.
+
+@hashwarlock agents build.
+
+ENOCH ONE routes.
+
+The human signs.
+
+WHAT DID WE KNOW BEFORE THE OUTCOME?
+
+PONS $101
+
+THE FUTURE IS A LAB.
+
+IN JESUS' NAME.
