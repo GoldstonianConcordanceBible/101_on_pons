@@ -1,0 +1,1889 @@
+# PONS $101 — SECURITY, 402 COMPLIANCE & HUMAN GOVERNANCE
+
+PONS $101 is designed as an experimental research system operating around public blockchain infrastructure, token launches, autonomous agents, APIs, wallets, treasury accounting, and reproducibility.
+
+Because those components can touch real assets and irreversible transactions, security is not an optional layer.
+
+Security is part of the experiment.
+
+The governing rule is:
+
+CAN DOES NOT MEAN MAY.
+
+A system may technically be capable of performing an action while still being prohibited from doing so without human authorization.
+
+The PONS $101 security architecture therefore separates:
+
+CAPABILITY
+
+from
+
+AUTHORITY.
+
+Agents may have technical capability.
+
+Humans retain consequential financial authority.
+
+==================================================
+SECURITY OBJECTIVE
+==================================================
+
+Protect:
+
+• human wallet authority
+• experiment integrity
+• research provenance
+• treasury assets
+• API credentials
+• contract configuration
+• launch manifests
+• unsigned payloads
+• agent boundaries
+• public-good accounting
+• reproducibility evidence
+
+while preserving enough transparency for independent review.
+
+==================================================
+402
+==================================================
+
+402 is the PONS $101 legal, compliance, provenance, credentialing, machine-payment, audit, and release-control layer.
+
+402 is not merely a disclaimer page.
+
+402 is a control architecture.
+
+Its purpose is to ask:
+
+WHO MAY DO WHAT?
+
+UNDER WHICH CONDITIONS?
+
+WITH WHAT EVIDENCE?
+
+WHO APPROVED IT?
+
+WHAT WAS ACTUALLY EXECUTED?
+
+WHAT HAPPENED AFTERWARD?
+
+CAN THE RECORD BE AUDITED?
+
+402 should remain distinct from:
+
+software capability
+
+market prediction
+
+agent recommendation
+
+and
+
+human legal authority.
+
+==================================================
+402 RELEASE PRINCIPLE
+==================================================
+
+Every consequential action should be evaluated through:
+
+CAN
+
+MAY
+
+SHOULD
+
+DID
+
+PROVED
+
+CAN
+
+Is the system technically capable?
+
+MAY
+
+Is the action permitted under the current governance, permissions, agreements, policy, and applicable law?
+
+SHOULD
+
+Does the human authority believe the action is appropriate?
+
+DID
+
+Was the action actually executed?
+
+PROVED
+
+What evidence establishes what happened?
+
+These states must never be silently collapsed.
+
+==================================================
+HUMAN GOVERNANCE
+==================================================
+
+Final human authority remains separate from every AI recommendation.
+
+Models may recommend:
+
+PROCEED
+
+PAUSE
+
+MODIFY
+
+REJECT
+
+INVESTIGATE
+
+REQUEST LEGAL REVIEW
+
+REQUEST SECURITY REVIEW
+
+REQUEST ACCOUNTING REVIEW
+
+But those recommendations remain recommendations.
+
+The human release record should identify:
+
+human approver
+
+decision
+
+timestamp
+
+experiment ID
+
+manifest hash
+
+payload hash
+
+warnings
+
+decision rationale where appropriate
+
+==================================================
+NO MODEL VETO FICTION
+==================================================
+
+No model should claim that it possesses independent legal or fiduciary authority merely because it produced a compliance opinion.
+
+The system should instead state:
+
+MODEL RECOMMENDATION
+
+HUMAN DECISION
+
+LEGAL COUNSEL DECISION WHERE APPLICABLE
+
+AUDITOR FINDING WHERE APPLICABLE
+
+SMART-CONTRACT RESULT
+
+CHAIN EVIDENCE
+
+Each is a different source of authority or evidence.
+
+==================================================
+AGENT TRUST MODEL
+==================================================
+
+Every agent begins with:
+
+ZERO IMPLIED AUTHORITY.
+
+Authority must be explicitly granted.
+
+Recommended agent permissions should follow:
+
+LEAST PRIVILEGE
+
+PURPOSE LIMITATION
+
+TIME LIMITATION
+
+ENVIRONMENT SEPARATION
+
+AUDITABILITY
+
+REVOCABILITY
+
+==================================================
+AGENT PERMISSION LEVELS
+==================================================
+
+LEVEL 0 — PUBLIC READER
+
+May read:
+
+public documentation
+
+public chain data
+
+published datasets
+
+public research outputs
+
+LEVEL 1 — RESEARCH READER
+
+May read:
+
+approved internal research records
+
+telemetry
+
+experiment status
+
+non-secret configuration
+
+LEVEL 2 — RESEARCH WRITER
+
+May create:
+
+draft manifests
+
+analysis
+
+AAR drafts
+
+documentation
+
+research jobs
+
+LEVEL 3 — TECHNICAL PREPARATION
+
+May:
+
+query RPC
+
+inspect contracts
+
+validate ABI compatibility
+
+build unsigned calldata
+
+simulate transactions
+
+generate hashes
+
+prepare deployment artifacts
+
+LEVEL 4 — SENSITIVE PREPARATION
+
+May access:
+
+restricted infrastructure metadata
+
+private pre-launch experiment configuration
+
+unsigned transaction proposals
+
+approved non-custodial credentials
+
+LEVEL 5 — HUMAN SIGNER
+
+Human-only role.
+
+May authorize:
+
+mainnet launch transactions
+
+fee claims
+
+treasury movements
+
+contract ownership changes
+
+other irreversible wallet actions
+
+LEVEL 6 — TREASURY GOVERNANCE
+
+Human-controlled role.
+
+Separate from ordinary launch operations.
+
+May approve:
+
+treasury receipts classification
+
+public-good allocations
+
+treasury transfers
+
+public-good disbursements
+
+==================================================
+PROHIBITED AGENT CAPABILITIES
+==================================================
+
+Default autonomous agents should not receive:
+
+seed phrases
+
+raw private keys
+
+hardware-wallet recovery information
+
+unrestricted treasury credentials
+
+exchange withdrawal authority
+
+contract ownership keys
+
+multisig threshold control
+
+unrestricted production database deletion rights
+
+unrestricted secret-store access
+
+unreviewed mainnet broadcasting authority
+
+==================================================
+WALLET SECURITY
+==================================================
+
+WALLET TYPES SHOULD BE SEPARATED.
+
+RESEARCH WALLET
+
+Used for non-custodial public observation or approved low-risk research interactions.
+
+LAUNCH SIGNER
+
+Human-controlled wallet used for approved launch transactions.
+
+CREATOR FEE WALLET
+
+Receives legitimate creator-related protocol funds where applicable.
+
+TREASURY WALLET
+
+Stores assets intended for the public-good experiment.
+
+OPERATING EXPENSE WALLET
+
+Separate wallet for ordinary project costs where needed.
+
+Do not combine all functions into a single hot wallet merely for convenience.
+
+==================================================
+TREASURY SECURITY
+==================================================
+
+Recommended treasury characteristics:
+
+• human-controlled
+• multisignature where practical
+• documented signer policy
+• documented approval threshold
+• no autonomous-agent signer
+• separate accounting
+• transaction-level provenance
+• recipient verification
+• purpose classification
+• periodic reconciliation
+
+An agent may prepare a treasury proposal.
+
+An agent may not independently approve its own proposal.
+
+==================================================
+SEPARATION OF DUTIES
+==================================================
+
+Where practical:
+
+PERSON / AGENT A
+
+prepares the transaction.
+
+PERSON / AGENT B
+
+reviews configuration.
+
+HUMAN AUTHORITY
+
+approves execution.
+
+TREASURY REVIEWER
+
+verifies receipt or disbursement.
+
+AUDITOR
+
+reviews evidence after the fact.
+
+The same human may hold multiple roles in a small experimental environment, but the record should still distinguish the functions.
+
+==================================================
+SECRET MANAGEMENT
+==================================================
+
+SECRETS INCLUDE:
+
+private keys
+
+seed phrases
+
+RPC API keys
+
+Discord bot tokens
+
+GitHub tokens
+
+database passwords
+
+cloud credentials
+
+webhook secrets
+
+service-account keys
+
+exchange API keys
+
+treasury credentials
+
+Secrets must not be:
+
+committed to GitHub
+
+posted in Discord
+
+included in screenshots
+
+included in datasets
+
+included in agent prompts
+
+included in public AARs
+
+==================================================
+ENVIRONMENT VARIABLES
+==================================================
+
+Applications should load secrets from environment-specific secret storage.
+
+Example conceptual variables:
+
+RPC_HTTP
+
+RPC_WS
+
+DATABASE_URL
+
+DISCORD_TOKEN
+
+GITHUB_TOKEN
+
+INDEXER_API_KEY
+
+TREASURY_READONLY_ADDRESS
+
+FACTORY_ADDRESS
+
+CHAIN_ID
+
+Do not commit real values.
+
+Use placeholders.
+
+==================================================
+GITHUB SECRET POLICY
+==================================================
+
+The public repository may include:
+
+.env.example
+
+It should never include:
+
+.env
+
+private.pem
+
+seed.txt
+
+wallet.json containing secret keys
+
+mnemonic.txt
+
+production credentials
+
+unredacted cloud-service configuration containing secrets
+
+==================================================
+SECRET LEAK RESPONSE
+==================================================
+
+If a secret is exposed:
+
+1. Assume compromise.
+
+2. Revoke or rotate immediately.
+
+3. Preserve incident evidence.
+
+4. Remove the secret from current files.
+
+5. Review repository history.
+
+6. Determine whether history rewriting is necessary.
+
+7. Identify all systems using the credential.
+
+8. Review activity since exposure.
+
+9. Document the incident.
+
+10. Update controls.
+
+Deleting the visible file alone is not sufficient.
+
+==================================================
+HUMAN SIGNATURE BOUNDARY
+==================================================
+
+The transaction pipeline must stop before signing.
+
+AGENT OUTPUT
+
+UNSIGNED TRANSACTION
+
+↓
+
+HUMAN REVIEW
+
+↓
+
+WALLET INTERFACE
+
+↓
+
+HUMAN SIGNATURE
+
+↓
+
+NETWORK BROADCAST
+
+↓
+
+TRANSACTION HASH
+
+↓
+
+ROB OBSERVATION
+
+The agent should not be handed the signed transaction unless its job specifically requires public broadcast monitoring.
+
+==================================================
+TRANSACTION REVIEW
+==================================================
+
+Before signing, the human should see:
+
+NETWORK
+
+CHAIN ID
+
+TARGET CONTRACT
+
+FUNCTION
+
+ARGUMENTS
+
+VALUE
+
+EXPECTED GAS
+
+PAIR ASSET
+
+TOKEN NAME
+
+TOKEN SYMBOL
+
+CREATOR RECIPIENT
+
+CREATOR TAX
+
+FACTORY
+
+WARNINGS
+
+MANIFEST HASH
+
+PAYLOAD HASH
+
+The goal is:
+
+HUMAN-READABLE INTENT
+
+matches
+
+MACHINE-EXECUTABLE PAYLOAD.
+
+==================================================
+PAYLOAD MISMATCH
+==================================================
+
+If:
+
+decoded transaction
+
+does not match
+
+registered manifest
+
+then:
+
+BLOCK.
+
+If:
+
+payload hash changes after approval
+
+then:
+
+RETURN TO HUMAN REVIEW.
+
+Approval is tied to a specific payload.
+
+==================================================
+CHAIN MISMATCH
+==================================================
+
+If configured chain ID does not match RPC chain ID:
+
+BLOCK.
+
+If wallet network does not match approved network:
+
+BLOCK.
+
+If factory contract bytecode is absent:
+
+BLOCK.
+
+If target contract differs from the approved factory:
+
+BLOCK unless explicitly reviewed.
+
+==================================================
+PAIR VALIDATION
+==================================================
+
+A pair or reference asset should be identified by:
+
+network
+
+contract address
+
+symbol
+
+decimals where applicable
+
+and
+
+verification source.
+
+Do not trust symbol alone.
+
+Symbols can be duplicated.
+
+==================================================
+TOKEN IDENTITY
+==================================================
+
+Canonical token identity should include:
+
+name
+
+symbol
+
+chain ID
+
+contract address
+
+experiment ID
+
+manifest hash
+
+A token name or ticker alone is insufficient.
+
+==================================================
+ABI / INTERFACE VERSIONING
+==================================================
+
+Every experiment should record:
+
+factory address
+
+contract version
+
+ABI version
+
+software adapter version
+
+commit SHA
+
+This allows future researchers to understand what interface assumptions existed at execution time.
+
+==================================================
+DEPENDENCY SECURITY
+==================================================
+
+The project may rely on:
+
+Node.js packages
+
+Python packages
+
+RPC providers
+
+Docker images
+
+GitHub Actions
+
+Discord libraries
+
+database drivers
+
+contract libraries
+
+Every production dependency should be version-pinned where practical.
+
+Avoid silently floating to incompatible major versions.
+
+==================================================
+SOFTWARE SUPPLY CHAIN
+==================================================
+
+Recommended controls:
+
+• lockfiles committed
+• dependency hashes preserved
+• automated vulnerability scans
+• minimal container images
+• non-root runtime where practical
+• reproducible builds where practical
+• signed releases where practical
+• version tags
+• release notes
+• immutable experiment references
+
+==================================================
+CI SECURITY
+==================================================
+
+Continuous integration should run at minimum:
+
+format checks
+
+lint
+
+unit tests
+
+schema validation
+
+secret scanning
+
+dependency vulnerability scan
+
+build validation
+
+research-data schema checks
+
+No CI job should require a live treasury private key.
+
+==================================================
+MAINNET CI POLICY
+==================================================
+
+GitHub Actions should not automatically launch tokens on mainnet after a pull request merge.
+
+CI may:
+
+build
+
+test
+
+simulate
+
+validate
+
+generate unsigned artifacts
+
+publish documentation
+
+package datasets
+
+Mainnet financial execution remains outside ordinary CI.
+
+==================================================
+API SECURITY
+==================================================
+
+Separate API classes.
+
+PUBLIC READ API
+
+May expose:
+
+public experiments
+
+published launches
+
+published telemetry
+
+public datasets
+
+RESTRICTED RESEARCH API
+
+May expose:
+
+unpublished experiments
+
+working analysis
+
+agent jobs
+
+internal status
+
+SENSITIVE PREPARATION API
+
+May generate:
+
+unsigned launch payloads
+
+simulation data
+
+preflight results
+
+The sensitive API should require authentication and authorization.
+
+==================================================
+NO PUBLIC BROADCAST ENDPOINT
+==================================================
+
+Do not expose an unrestricted endpoint such as:
+
+POST /launch-now
+
+that accepts arbitrary token parameters and immediately broadcasts a production transaction using a project-controlled private key.
+
+The approved architecture is:
+
+POST /launch-preflight
+
+POST /launch-payload
+
+HUMAN SIGNATURE
+
+PUBLIC NETWORK
+
+==================================================
+RATE LIMITING
+==================================================
+
+APIs should implement reasonable limits to protect:
+
+RPC capacity
+
+database resources
+
+agent infrastructure
+
+Discord services
+
+research integrity
+
+Repeated launch preparation should not become an accidental transaction-spam engine.
+
+==================================================
+INPUT VALIDATION
+==================================================
+
+Validate:
+
+addresses
+
+chain IDs
+
+token symbols
+
+token names
+
+decimals
+
+numeric bounds
+
+creator tax
+
+contract addresses
+
+URLs
+
+experiment IDs
+
+timestamps
+
+enum values
+
+Do not allow agents to pass arbitrary unchecked strings directly into sensitive contract calls.
+
+==================================================
+ADDRESS VALIDATION
+==================================================
+
+Every address should be normalized and validated.
+
+Where checksum formats are supported:
+
+use them.
+
+Do not silently truncate addresses.
+
+Do not infer missing characters.
+
+==================================================
+DATABASE SECURITY
+==================================================
+
+Research tables should use:
+
+least-privilege database users
+
+migration history
+
+regular backups
+
+append-oriented raw evidence
+
+immutable hashes where practical
+
+restricted deletion
+
+audit logs for material changes
+
+==================================================
+RAW EVIDENCE PROTECTION
+==================================================
+
+Raw evidence should be treated as append-oriented.
+
+Correction process:
+
+ORIGINAL RECORD
+
+remains preserved.
+
+CORRECTION RECORD
+
+references the original.
+
+Reason for correction is recorded.
+
+The system should not silently rewrite the original chain observation.
+
+==================================================
+DATA CLASSIFICATION
+==================================================
+
+PUBLIC
+
+Published documentation and public blockchain observations.
+
+INTERNAL
+
+Working research data.
+
+RESTRICTED
+
+Pre-launch configuration, private agent logs, internal security data.
+
+SECRET
+
+Credentials and private keys.
+
+TREASURY-SENSITIVE
+
+Custody details beyond public wallet addresses, signer procedures, and other material security information.
+
+==================================================
+PRIVACY
+==================================================
+
+Blockchain wallet addresses are public identifiers.
+
+That does not mean the project should attempt unnecessary deanonymization.
+
+Do not collect personal information simply because it might be technically obtainable.
+
+Research should remain focused on:
+
+PUBLIC BEHAVIOR
+
+rather than
+
+REAL-WORLD IDENTITY
+
+unless a separate legitimate research purpose requires otherwise.
+
+==================================================
+DISCORD SECURITY
+==================================================
+
+Discord roles should enforce:
+
+least privilege
+
+private launch-room access
+
+private agent-room access
+
+private release-gate access
+
+private incident access
+
+separate public education channels
+
+Bots should not receive Administrator unless strictly necessary.
+
+==================================================
+DISCORD BOT POLICY
+==================================================
+
+Discord bots may:
+
+publish ROB summaries
+
+report API status
+
+open experiment threads
+
+post telemetry
+
+generate research reminders
+
+route alerts
+
+They should not:
+
+hold wallet keys
+
+approve launches
+
+approve treasury spending
+
+sign transactions
+
+==================================================
+GITHUB GOVERNANCE
+==================================================
+
+Recommended default branch:
+
+main
+
+Protected workflow:
+
+feature / experiment branch
+
+↓
+
+pull request
+
+↓
+
+automated checks
+
+↓
+
+human review
+
+↓
+
+merge
+
+Major research-method changes should receive explicit version increments.
+
+==================================================
+BRANCH TYPES
+==================================================
+
+feature/*
+
+New software features.
+
+experiment/*
+
+Experiment-specific preparation.
+
+research/*
+
+Research-analysis work.
+
+security/*
+
+Security changes.
+
+hotfix/*
+
+Urgent technical corrections.
+
+docs/*
+
+Documentation.
+
+==================================================
+COMMIT PROVENANCE
+==================================================
+
+Important experiment commits should reference:
+
+experiment ID
+
+purpose
+
+affected component
+
+Example:
+
+P101-20260905-001 — freeze genesis experiment manifest
+
+==================================================
+RELEASE VERSIONING
+==================================================
+
+Recommended semantic versioning:
+
+MAJOR.MINOR.PATCH
+
+MAJOR
+
+Breaking research or API architecture change.
+
+MINOR
+
+Backward-compatible research or feature addition.
+
+PATCH
+
+Bug fix or documentation correction.
+
+Experimental dataset versions should be independently versioned.
+
+==================================================
+SECURITY REVIEW GATES
+==================================================
+
+Before initial production use:
+
+[ ] secrets removed
+
+[ ] environment separated
+
+[ ] wallet architecture reviewed
+
+[ ] mainnet signing separated
+
+[ ] treasury separated
+
+[ ] agent permissions documented
+
+[ ] RPC endpoints verified
+
+[ ] factory addresses verified
+
+[ ] ABIs versioned
+
+[ ] API authentication reviewed
+
+[ ] dependency scan clean or exceptions documented
+
+[ ] incident procedure published
+
+[ ] backup procedure tested
+
+[ ] payload decoding available
+
+[ ] human release gate tested
+
+==================================================
+402 REVIEW GATES
+==================================================
+
+Before public release of a new token experiment:
+
+[ ] research purpose stated
+
+[ ] token terms stated
+
+[ ] no guaranteed-return language
+
+[ ] no false partnership claims
+
+[ ] no false bot claims
+
+[ ] no hidden fee claims
+
+[ ] applicable geographic restrictions reviewed
+
+[ ] pair terminology correct
+
+[ ] creator-fee terminology correct
+
+[ ] public-good claims accurate
+
+[ ] charitable/tax claims avoided unless established
+
+[ ] human signer identified internally
+
+[ ] provenance manifest frozen
+
+[ ] material warnings preserved
+
+==================================================
+PAIR LANGUAGE
+==================================================
+
+Use:
+
+PAIRED WITH
+
+Do not automatically use:
+
+PEGGED TO
+
+unless an actual mechanism establishes and maintains a peg.
+
+A trading pair or reference asset is not inherently a price peg.
+
+==================================================
+AFFILIATION LANGUAGE
+==================================================
+
+Do not state that Robinhood, Pons, SpaceX, NVIDIA, Dell, Coinbase, or another company:
+
+sponsors
+
+endorses
+
+partners with
+
+operates
+
+or approves
+
+PONS $101
+
+unless there is actual documentary evidence.
+
+Use:
+
+independent research
+
+reference asset
+
+protocol under study
+
+technology used
+
+case study
+
+where accurate.
+
+==================================================
+ROBINHOOD / ROB DISTINCTION
+==================================================
+
+ROB means:
+
+RESEARCH OBSERVER FOR BOT-LIKE ACTIVITY.
+
+ROB may study Robinhood Chain.
+
+ROB is not represented as an official Robinhood employee, agent, product, or service.
+
+==================================================
+SECURITY INCIDENT LEVELS
+==================================================
+
+SEV-0 — OBSERVATION
+
+Non-impacting anomaly.
+
+SEV-1 — LOW
+
+Minor technical issue with no asset or evidence risk.
+
+SEV-2 — MODERATE
+
+Research availability or data-integrity concern.
+
+SEV-3 — HIGH
+
+Potential credential exposure, incorrect transaction preparation, or material evidence corruption.
+
+SEV-4 — CRITICAL
+
+Known private-key compromise, unauthorized asset movement, unauthorized mainnet execution, or major treasury compromise.
+
+==================================================
+INCIDENT RESPONSE
+==================================================
+
+1. IDENTIFY
+
+What happened?
+
+2. CONTAIN
+
+Stop further exposure.
+
+3. PRESERVE
+
+Retain logs and evidence.
+
+4. ROTATE
+
+Revoke compromised credentials.
+
+5. VERIFY
+
+Check chain activity and affected infrastructure.
+
+6. NOTIFY
+
+Route to appropriate humans.
+
+7. RECOVER
+
+Restore safe operations.
+
+8. REVIEW
+
+Create a postmortem.
+
+9. MODIFY
+
+Update controls.
+
+10. ARCHIVE
+
+Preserve the incident record.
+
+==================================================
+INCIDENT RECORD
+==================================================
+
+INCIDENT ID:
+
+SEVERITY:
+
+TIME DETECTED:
+
+TIME CONTAINED:
+
+EXPERIMENT:
+
+SYSTEM:
+
+DESCRIPTION:
+
+ASSETS AT RISK:
+
+CREDENTIALS AT RISK:
+
+EVIDENCE AT RISK:
+
+ON-CHAIN IMPACT:
+
+IMMEDIATE ACTION:
+
+HUMAN OWNER:
+
+ROOT CAUSE:
+
+CORRECTIVE ACTION:
+
+STATUS:
+
+POSTMORTEM:
+
+==================================================
+EMERGENCY STOP
+==================================================
+
+The system should support an operational:
+
+PAUSE
+
+A pause means:
+
+stop preparing new live experiments
+
+disable nonessential automation
+
+preserve observation services where safe
+
+review credentials
+
+review chain state
+
+await human release
+
+A pause should not erase evidence.
+
+==================================================
+COMPROMISED SIGNER
+==================================================
+
+If a launch signer is suspected compromised:
+
+STOP using the wallet.
+
+Review:
+
+pending transactions
+
+recent approvals
+
+contract permissions
+
+token approvals
+
+ownership roles
+
+fee destinations
+
+connected applications
+
+Then move future operational authority to a reviewed wallet architecture.
+
+==================================================
+TREASURY INCIDENT
+==================================================
+
+If treasury compromise is suspected:
+
+do not allow an agent to independently improvise asset transfers.
+
+Route immediately to the authorized human treasury governance process.
+
+Preserve:
+
+wallet state
+
+transactions
+
+approvals
+
+signer status
+
+contract permissions
+
+timestamps
+
+==================================================
+SMART-CONTRACT RISK
+==================================================
+
+PONS $101 may interface with third-party contracts.
+
+The repository does not guarantee those contracts are:
+
+bug-free
+
+audited
+
+safe
+
+immutable
+
+or
+
+economically stable.
+
+Before material use, preserve available:
+
+contract source
+
+deployment address
+
+audit references
+
+version
+
+documentation
+
+known risks
+
+==================================================
+EXTERNAL AUDIT EVIDENCE
+==================================================
+
+Where an external security review exists, preserve:
+
+reviewer
+
+date
+
+scope
+
+version reviewed
+
+report hash
+
+findings
+
+remediation status
+
+Do not say:
+
+AUDITED
+
+without identifying what was actually reviewed.
+
+==================================================
+LEGAL / ACCOUNTING SEPARATION
+==================================================
+
+PONS $101 software may calculate:
+
+fees
+
+balances
+
+receipts
+
+transfers
+
+provenance
+
+It does not itself determine:
+
+tax treatment
+
+security status
+
+charitable status
+
+accounting treatment
+
+legal classification
+
+fiduciary obligations
+
+Those require appropriate human professional review when applicable.
+
+==================================================
+PUBLIC-GOOD SECURITY
+==================================================
+
+Public-good intent does not reduce security requirements.
+
+It increases them.
+
+Every public-good disbursement should answer:
+
+WHO APPROVED IT?
+
+WHAT WAS THE PURPOSE?
+
+WHAT WALLET SENT IT?
+
+WHAT WALLET RECEIVED IT?
+
+WHAT ASSET?
+
+WHAT AMOUNT?
+
+WHAT TRANSACTION?
+
+WHAT DOCUMENTATION EXISTS?
+
+==================================================
+TABERNACLE FUND RULE
+==================================================
+
+No agent should claim:
+
+“money has gone to the Tabernacle”
+
+merely because creator fees were generated.
+
+The valid progression is:
+
+PROTOCOL FEE OBSERVED
+
+↓
+
+CREATOR ENTITLEMENT VERIFIED
+
+↓
+
+TREASURY RECEIPT VERIFIED
+
+↓
+
+HUMAN ALLOCATION APPROVED
+
+↓
+
+DISBURSEMENT EXECUTED
+
+↓
+
+RECEIPT / PURPOSE VERIFIED
+
+Only then may a public-good expenditure be reported as completed.
+
+==================================================
+AUDIT PACKAGE
+==================================================
+
+For each experiment, preserve:
+
+experiment ID
+
+manifest
+
+manifest hash
+
+software version
+
+commit SHA
+
+network
+
+chain ID
+
+factory
+
+pair
+
+fee configuration
+
+human release decision
+
+unsigned payload
+
+payload hash
+
+transaction hash
+
+launch event
+
+ROB observations
+
+classification logic
+
+creator entitlement
+
+treasury receipt
+
+AAR
+
+incident record if any
+
+dataset hash
+
+public-good records if any
+
+==================================================
+AUDIT QUESTIONS
+==================================================
+
+An auditor should be able to answer:
+
+Who initiated the experiment?
+
+What was the hypothesis?
+
+What parameters were frozen?
+
+What agents participated?
+
+What code version was used?
+
+What transaction was proposed?
+
+Who approved it?
+
+What transaction executed?
+
+What occurred on-chain?
+
+What fees were observed?
+
+What conclusions were machine-generated?
+
+What conclusions were human-generated?
+
+What money was actually received?
+
+What money was actually spent?
+
+What evidence supports each statement?
+
+==================================================
+CHANGE CONTROL
+==================================================
+
+Changes affecting:
+
+fees
+
+factory addresses
+
+human gates
+
+treasury destinations
+
+signing architecture
+
+agent permissions
+
+classification methodology
+
+research schemas
+
+must be versioned.
+
+Do not silently modify the methodology between experiments.
+
+==================================================
+OWNER TEST
+==================================================
+
+Every multi-agent or multi-model recommendation should include an OWNER TEST:
+
+WHO OWNS THE FINAL DECISION?
+
+For PONS $101:
+
+software ownership may belong to maintainers.
+
+research interpretation may belong to researchers.
+
+legal opinions belong to appropriate humans.
+
+treasury decisions belong to authorized human governors.
+
+wallet signature belongs to the human signer.
+
+No model owns the final irreversible decision.
+
+==================================================
+SECURITY DOCTRINE
+==================================================
+
+CONTROL THE CORE.
+
+DISTRIBUTE THE RAILS.
+
+AUGMENTATION WITHOUT ABDICATION.
+
+LEAST PRIVILEGE.
+
+VERIFY BEFORE SIGNING.
+
+HASH BEFORE EXECUTING.
+
+SEPARATE PREPARATION FROM AUTHORITY.
+
+SEPARATE ENTITLEMENT FROM RECEIPT.
+
+SEPARATE RECEIPT FROM DISBURSEMENT.
+
+CAN DOES NOT MEAN MAY.
+
+A PASSING PREFLIGHT IS NOT A COMMAND TO EXECUTE.
+
+AN AGENT RECOMMENDATION IS NOT HUMAN APPROVAL.
+
+A PUBLIC-GOOD MISSION DOES NOT REMOVE THE NEED FOR ACCOUNTING.
+
+==================================================
+FINAL CONTROL TOWER SECURITY CHECK
+==================================================
+
+PONS $101 SECURITY STATUS
+
+EXPERIMENT:
+
+CHAIN:
+
+FACTORY:
+
+PAIR:
+
+MANIFEST HASH:
+
+PAYLOAD HASH:
+
+SOFTWARE VERSION:
+
+AGENT PERMISSIONS:
+
+SECRETS STATUS:
+
+SIGNER STATUS:
+
+TREASURY STATUS:
+
+PREFLIGHT:
+
+402 REVIEW:
+
+SECURITY WARNINGS:
+
+LEGAL / ACCOUNTING REVIEW NEEDED:
+
+HUMAN RELEASE:
+
+INCIDENTS:
+
+NEXT REQUIRED HUMAN:
+
+NEXT ACTION:
+
+==================================================
+GENESIS SECURITY STATEMENT
+==================================================
+
+THE AGENT MAY BUILD.
+
+THE AGENT MAY CHECK.
+
+THE AGENT MAY SIMULATE.
+
+THE AGENT MAY OBSERVE.
+
+THE AGENT MAY RECOMMEND.
+
+THE HUMAN DECIDES.
+
+THE HUMAN SIGNS.
+
+THE CHAIN RECORDS.
+
+ROB MEASURES.
+
+402 PRESERVES THE RELEASE LOGIC.
+
+GITHUB PRESERVES THE EVIDENCE.
+
+THE CONTROL TOWER ROUTES THE NEXT RESPONSIBLE HUMAN.
+
+PONS $101
+
+SECURITY IS PART OF THE EXPERIMENT.
+
+CAN DOES NOT MEAN MAY.
+
+AUGMENTATION WITHOUT ABDICATION.
+
+IN JESUS' NAME.
