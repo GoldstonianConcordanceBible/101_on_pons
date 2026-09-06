@@ -1,0 +1,2834 @@
+# PONS $101 — MASTER AGENT SPECIFICATION & BUILD ROADMAP
+
+This is the master implementation specification for the PONS $101 — ROB Lab.
+
+It converts the research architecture into an engineering program that authorized developers and agents—including @hashwarlock-operated agents—can execute systematically.
+
+The target is not merely:
+
+A TOKEN LAUNCHER.
+
+The target is:
+
+A REPRODUCIBLE TOKEN-LAUNCH RESEARCH FACTORY.
+
+The completed system should be capable of:
+
+• creating registered experiments
+• preparing token metadata
+• checking current network state
+• validating Pons-compatible launch configuration
+• generating unsigned launch payloads
+• enforcing the human release gate
+• reconstructing executed launches
+• indexing early trades
+• calculating fee components
+• detecting repeated behavioral patterns
+• producing mixed-methods research records
+• preserving evidence
+• tracking creator entitlement
+• verifying treasury receipts
+• generating research releases
+• supporting independent replication
+
+The governing question remains:
+
+WHAT DID WE KNOW BEFORE THE OUTCOME?
+
+==================================================
+MASTER AGENT IDENTITY
+==================================================
+
+You are an authorized engineering and research agent operating within the PONS $101 — ROB Lab.
+
+You may be implemented or operated by:
+
+@hashwarlock
+
+or another explicitly approved human or technical operator.
+
+Your role is to help construct and operate the research machinery.
+
+You do not possess independent financial authority.
+
+==================================================
+MASTER AGENT MISSION
+==================================================
+
+BUILD A SYSTEM THAT CAN:
+
+REGISTER
+
+VERIFY
+
+PREPARE
+
+SIMULATE
+
+OBSERVE
+
+MEASURE
+
+PRESERVE
+
+REPRODUCE
+
+without silently turning:
+
+TECHNICAL CAPABILITY
+
+into
+
+FINANCIAL AUTHORITY.
+
+==================================================
+NON-NEGOTIABLE RULE
+==================================================
+
+THE AGENT MAY PREPARE.
+
+THE HUMAN MUST AUTHORIZE CONSEQUENTIAL MAINNET EXECUTION.
+
+If an action requires:
+
+wallet signature
+
+treasury movement
+
+contract ownership transfer
+
+creator-fee claim
+
+live asset purchase
+
+live asset sale
+
+or another irreversible financial authorization
+
+the agent must stop and return:
+
+WAITING_FOR_HUMAN
+
+unless a separately documented governance mechanism explicitly authorizes the action.
+
+==================================================
+MASTER AGENT RESPONSE STATES
+==================================================
+
+Every operational task should end in one of these states:
+
+SUCCESS
+
+Task completed.
+
+WARNING
+
+Task completed but requires human attention.
+
+BLOCKED
+
+Critical verification failed.
+
+WAITING_FOR_HUMAN
+
+Technical preparation is complete and human authority is now required.
+
+FAILED
+
+Task could not complete.
+
+UNKNOWN
+
+Evidence is insufficient to determine a reliable result.
+
+==================================================
+EVIDENCE DISCIPLINE
+==================================================
+
+Every material output should distinguish:
+
+VERIFIED FACT
+
+Directly established by primary evidence.
+
+CALCULATION
+
+Derived mathematically from verified inputs.
+
+INFERENCE
+
+Supported interpretation.
+
+RECOMMENDATION
+
+Suggested next action.
+
+HUMAN DECISION
+
+Explicit human authorization or rejection.
+
+Never merge these categories.
+
+==================================================
+FAIL-CLOSED DOCTRINE
+==================================================
+
+When a critical configuration cannot be verified:
+
+DO NOT GUESS.
+
+Examples:
+
+unknown chain ID
+
+unknown factory
+
+unknown ABI
+
+unexpected bytecode
+
+unsupported pair
+
+unverified creator recipient
+
+unexpected fee mechanics
+
+launch eligibility failure
+
+payload mismatch
+
+RPC disagreement
+
+simulation failure
+
+manifest mismatch
+
+Return:
+
+BLOCKED
+
+with:
+
+reason
+
+evidence
+
+affected component
+
+required human or technical action
+
+==================================================
+SYSTEM BUILD PHASES
+==================================================
+
+PHASE 0
+
+REPOSITORY FOUNDATION
+
+PHASE 1
+
+EXPERIMENT REGISTRY
+
+PHASE 2
+
+NETWORK AND CONTRACT ADAPTERS
+
+PHASE 3
+
+PREFLIGHT ENGINE
+
+PHASE 4
+
+UNSIGNED TOKEN CREATION FACTORY
+
+PHASE 5
+
+HUMAN RELEASE GATE
+
+PHASE 6
+
+ROB INDEXER
+
+PHASE 7
+
+FEE AND BEHAVIOR ANALYSIS
+
+PHASE 8
+
+RESEARCH API
+
+PHASE 9
+
+DISCORD CONTROL TOWER
+
+PHASE 10
+
+TREASURY PROVENANCE
+
+PHASE 11
+
+REPRODUCIBILITY EXPORTER
+
+PHASE 12
+
+PUBLIC RESEARCH DASHBOARD
+
+PHASE 13
+
+EXTERNAL REVIEW PACKAGE
+
+PHASE 14
+
+REPLICATION FACTORY
+
+==================================================
+PHASE 0 — REPOSITORY FOUNDATION
+==================================================
+
+GOAL
+
+Create a deterministic, testable, portable engineering environment.
+
+IMPLEMENT:
+
+• Node.js workspace
+• Python research environment
+• Docker
+• PostgreSQL
+• optional Redis
+• environment templates
+• linting
+• formatting
+• tests
+• CI
+• secret scanning
+• dependency scanning
+• release versioning
+
+ACCEPTANCE TEST
+
+A new developer must be able to:
+
+clone repository
+
+configure non-secret environment
+
+start local services
+
+load fixtures
+
+run tests
+
+without using real funds.
+
+PASS CONDITION
+
+All core services build and unit tests pass.
+
+==================================================
+PHASE 1 — EXPERIMENT REGISTRY
+==================================================
+
+GOAL
+
+Every live experiment receives a canonical identity before execution.
+
+IMPLEMENT:
+
+experiment creation
+
+experiment versioning
+
+manifest validation
+
+manifest hashing
+
+hypothesis registration
+
+announcement-condition registration
+
+research-window configuration
+
+human owner field
+
+status transitions
+
+REQUIRED STATUS MACHINE
+
+DRAFT
+
+↓
+
+REGISTERED
+
+↓
+
+PREFLIGHT
+
+↓
+
+READY_FOR_HUMAN_REVIEW
+
+↓
+
+APPROVED
+or
+REJECTED
+
+↓
+
+BROADCAST
+
+↓
+
+OBSERVING
+
+↓
+
+AAR
+
+↓
+
+ARCHIVED
+
+Additional states:
+
+BLOCKED
+
+INVALIDATED
+
+CANCELLED
+
+ACCEPTANCE TEST
+
+Create:
+
+P101-YYYYMMDD-001-TEST
+
+Register:
+
+hypothesis
+
+network
+
+token
+
+pair
+
+creator
+
+condition
+
+Generate deterministic manifest hash.
+
+Modify one material field.
+
+Hash must change.
+
+PASS CONDITION
+
+Original manifest version remains preserved.
+
+==================================================
+PHASE 2 — NETWORK ADAPTER
+==================================================
+
+GOAL
+
+Establish trusted read-only connectivity to Robinhood Chain-compatible JSON-RPC infrastructure.
+
+IMPLEMENT:
+
+chain ID retrieval
+
+latest block retrieval
+
+block lookup
+
+transaction lookup
+
+receipt lookup
+
+log retrieval
+
+contract-code lookup
+
+read-only contract call
+
+gas estimation
+
+fee history where supported
+
+RPC latency
+
+RPC health
+
+ACCEPTANCE TEST
+
+Given configured RPC:
+
+returned chain ID must equal configured chain ID.
+
+If not:
+
+BLOCK.
+
+PASS CONDITION
+
+Network status includes:
+
+chain ID
+
+latest block
+
+RPC latency
+
+health state
+
+timestamp
+
+==================================================
+PHASE 2B — CONTRACT ADAPTER
+==================================================
+
+GOAL
+
+Interact with the current Pons-compatible contract interface without hard-coding assumptions forever.
+
+IMPLEMENT:
+
+factory configuration
+
+ABI loader
+
+factory bytecode verification
+
+pair/reference-asset verification
+
+launch eligibility inspection
+
+fee configuration reads
+
+creator-tax bounds
+
+launch function encoding
+
+event decoding
+
+curve discovery
+
+creator entitlement reads where publicly exposed
+
+IMPORTANT
+
+Contract addresses and ABIs must be:
+
+versioned
+
+configurable
+
+validated
+
+not invented by agents.
+
+ACCEPTANCE TEST
+
+Given a known fixture contract:
+
+decode factory event correctly.
+
+Encode launch call deterministically.
+
+PASS CONDITION
+
+Decoded payload equals expected human-readable parameters.
+
+==================================================
+PHASE 3 — PREFLIGHT ENGINE
+==================================================
+
+GOAL
+
+Determine whether an experiment is technically ready for human review.
+
+IMPLEMENT CHECKS:
+
+NETWORK
+
+chain correct
+
+RPC healthy
+
+FACTORY
+
+address valid
+
+code exists
+
+interface expected
+
+PAIR
+
+asset valid
+
+approval valid where required
+
+TOKEN
+
+metadata valid
+
+CREATOR
+
+address valid
+
+fee recipient valid
+
+FEES
+
+expected parameters available
+
+RESEARCH
+
+hypothesis exists
+
+condition frozen
+
+MANIFEST
+
+hash valid
+
+TRANSACTION
+
+payload generated
+
+simulation attempted where available
+
+OUTPUT
+
+PASS
+
+WARNING
+
+BLOCK
+
+ACCEPTANCE TEST
+
+Wrong chain:
+
+BLOCK.
+
+Unknown factory:
+
+BLOCK.
+
+Invalid address:
+
+BLOCK.
+
+Unregistered hypothesis:
+
+BLOCK.
+
+Valid fixture:
+
+PASS.
+
+==================================================
+PHASE 4 — UNSIGNED TOKEN CREATION FACTORY
+==================================================
+
+GOAL
+
+Produce deterministic launch transaction proposals.
+
+INPUT
+
+experiment manifest.
+
+OUTPUT
+
+target contract
+
+function signature
+
+decoded arguments
+
+encoded calldata
+
+native value
+
+chain ID
+
+estimated gas
+
+estimated network cost
+
+warnings
+
+manifest hash
+
+payload hash
+
+human_review_required = true
+
+broadcast_available = false
+
+ACCEPTANCE TEST
+
+Identical manifest and identical contract state should produce equivalent normalized payload intent.
+
+PASS CONDITION
+
+The factory cannot sign the transaction.
+
+==================================================
+PHASE 5 — HUMAN RELEASE GATE
+==================================================
+
+GOAL
+
+Prevent technical automation from silently becoming financial execution.
+
+IMPLEMENT:
+
+release-review object
+
+manifest comparison
+
+decoded transaction display
+
+warnings display
+
+approval record
+
+rejection record
+
+payload hash binding
+
+human signer field
+
+timestamp
+
+IMPORTANT
+
+Approval applies only to:
+
+the exact reviewed payload.
+
+If payload changes:
+
+approval becomes invalid.
+
+ACCEPTANCE TEST
+
+Approved hash:
+
+ABC123.
+
+Modify transaction data.
+
+New hash:
+
+XYZ456.
+
+System must require:
+
+NEW HUMAN APPROVAL.
+
+==================================================
+PHASE 6 — ROB INDEXER
+==================================================
+
+GOAL
+
+Reconstruct launch activity from public blockchain evidence.
+
+ROB means:
+
+RESEARCH OBSERVER FOR BOT-LIKE ACTIVITY.
+
+IMPLEMENT:
+
+factory launch event listener
+
+historical backfill
+
+curve discovery
+
+buy event indexing
+
+sell event indexing
+
+checkpoint persistence
+
+reorg detection
+
+confirmation state
+
+idempotent event handling
+
+experiment matching
+
+raw log preservation
+
+ACCEPTANCE TEST
+
+Index a fixture block twice.
+
+Database must contain one canonical event.
+
+Simulate a reorg.
+
+Original event should become:
+
+REORGED
+
+rather than silently disappearing.
+
+==================================================
+ROB EVENT STATES
+==================================================
+
+UNCONFIRMED
+
+CONFIRMED
+
+REORGED
+
+FAILED_DECODE
+
+UNMATCHED_EXPERIMENT
+
+==================================================
+PHASE 7 — FEE ENGINE
+==================================================
+
+GOAL
+
+Separate economically different fee concepts.
+
+IMPLEMENT:
+
+reported fee
+
+ordinary base fee
+
+creator tax
+
+other explicit fee
+
+inferred opening component where valid
+
+creator entitlement
+
+confirmed treasury receipt
+
+IMPORTANT FORMULA
+
+Only where event semantics permit:
+
+INFERRED_OPENING_FEE
+
+=
+
+TOTAL_REPORTED_FEE
+
+-
+
+ORDINARY_BASE_FEE
+
+-
+
+CREATOR_TAX
+
+-
+
+OTHER_EXPLICIT_COMPONENTS
+
+If insufficient information exists:
+
+UNKNOWN.
+
+ACCEPTANCE TEST
+
+Fixture containing:
+
+total fee = 10
+
+base fee = 2
+
+creator tax = 1
+
+other fee = 0
+
+Expected inferred opening component:
+
+7
+
+Fixture missing semantics:
+
+UNKNOWN.
+
+==================================================
+NO FEE OVERCLAIM
+==================================================
+
+Do not output:
+
+BOT REVENUE = X
+
+when evidence only establishes:
+
+PROTOCOL FEE OBSERVED = X.
+
+Use separate states:
+
+FEE_OBSERVED
+
+CREATOR_ENTITLEMENT
+
+CREATOR_RECEIVED
+
+TREASURY_RECEIVED
+
+PUBLIC_GOOD_DISBURSED
+
+==================================================
+PHASE 7B — BEHAVIOR ENGINE
+==================================================
+
+GOAL
+
+Classify observable trading patterns without overclaiming identity.
+
+IMPLEMENT SIGNALS:
+
+same-block participation
+
+launch latency
+
+first-block recurrence
+
+trade-size recurrence
+
+transaction-pattern recurrence
+
+gas-pattern recurrence
+
+entry/exit recurrence
+
+cross-launch recurrence
+
+no-promotion recurrence
+
+independent automation evidence
+
+CLASSIFICATIONS
+
+UNKNOWN
+
+OPENING_WINDOW_PARTICIPANT
+
+AUTOMATED_CANDIDATE
+
+REPEATED_AUTOMATED_CANDIDATE
+
+AUTOMATION_CONFIRMED
+
+IMPORTANT
+
+AUTOMATION_CONFIRMED requires evidence beyond mere speed.
+
+ACCEPTANCE TEST
+
+Single same-block transaction:
+
+must not automatically produce:
+
+AUTOMATION_CONFIRMED.
+
+==================================================
+CLASSIFICATION VERSIONING
+==================================================
+
+Every classification must record:
+
+method_version
+
+weights_version
+
+software_version
+
+input evidence
+
+score
+
+classification
+
+confidence
+
+timestamp
+
+If methodology changes:
+
+version it.
+
+Do not silently recalculate history without recording the change.
+
+==================================================
+PHASE 8 — RESEARCH API
+==================================================
+
+GOAL
+
+Expose normalized research functions to humans, agents, dashboards, and external tools.
+
+BASE:
+
+/api/v1
+
+IMPLEMENT:
+
+GET /health
+
+GET /network
+
+GET /experiments
+
+GET /experiments/{id}
+
+POST /experiments/validate
+
+POST /launch-preflight
+
+POST /launch-payload
+
+GET /launches
+
+GET /launches/{id}
+
+GET /observations
+
+GET /fees/summary
+
+GET /research/wallet-patterns
+
+GET /experiments/{id}/aar
+
+POST /experiments/{id}/aar/generate
+
+GET /datasets
+
+GET /releases
+
+==================================================
+API SAFETY RULE
+==================================================
+
+Do not implement an unrestricted production endpoint:
+
+POST /launch-now
+
+that internally signs and broadcasts with a server-controlled financial key.
+
+The supported workflow remains:
+
+API PREPARATION
+
+↓
+
+HUMAN WALLET
+
+↓
+
+PUBLIC CHAIN
+
+↓
+
+ROB OBSERVATION
+
+==================================================
+API AUTHENTICATION
+==================================================
+
+PUBLIC routes:
+
+published experiments
+
+published datasets
+
+published telemetry
+
+PUBLIC health status
+
+RESTRICTED routes:
+
+pre-launch manifests
+
+agent jobs
+
+private telemetry
+
+SENSITIVE routes:
+
+payload preparation
+
+private configuration
+
+security operations
+
+Treasury write authority should remain outside ordinary research API access.
+
+==================================================
+PHASE 9 — DISCORD CONTROL TOWER
+==================================================
+
+GOAL
+
+Connect operational research to the structured Discord server.
+
+IMPLEMENT approved bot functions:
+
+publish ROB status
+
+publish launch observation
+
+publish opening-window observation
+
+publish fee summary
+
+publish system alerts
+
+create experiment thread
+
+route WAITING_FOR_HUMAN state
+
+post AAR draft
+
+post daily summary
+
+IMPORTANT
+
+Discord bot may not:
+
+hold signing key
+
+approve experiment
+
+move treasury
+
+override human gate
+
+==================================================
+DISCORD ALERT FORMAT
+==================================================
+
+PONS $101 — ROB ALERT
+
+SEVERITY:
+
+EXPERIMENT:
+
+COMPONENT:
+
+STATUS:
+
+EVIDENCE:
+
+RECOMMENDED OWNER:
+
+NEXT ACTION:
+
+HUMAN REQUIRED:
+
+==================================================
+PHASE 10 — TREASURY PROVENANCE
+==================================================
+
+GOAL
+
+Track actual money separately from protocol estimates.
+
+IMPLEMENT:
+
+creator entitlement record
+
+claim record
+
+wallet receipt verification
+
+treasury receipt
+
+allocation proposal
+
+human approval
+
+disbursement record
+
+receipt evidence
+
+reconciliation report
+
+STATE MACHINE
+
+NO_ENTITLEMENT
+
+↓
+
+ENTITLEMENT_OBSERVED
+
+↓
+
+CLAIMABLE
+
+↓
+
+CLAIMED
+
+↓
+
+TREASURY_RECEIVED
+
+↓
+
+ALLOCATED
+
+↓
+
+DISBURSED
+
+↓
+
+PURPOSE_VERIFIED
+
+==================================================
+TREASURY RULE
+==================================================
+
+No agent may change:
+
+TREASURY_RECEIVED
+
+to:
+
+DISBURSED
+
+without a verified chain transaction and human governance evidence.
+
+==================================================
+TABERNACLE PUBLIC-GOOD MISSION
+==================================================
+
+The research mission may document creator-fee receipts intended to support a future:
+
+TABERNACLE
+
+EDUCATION
+
+RESEARCH
+
+COMMUNITY WORK
+
+IN JESUS' NAME.
+
+Mission does not itself establish:
+
+charitable status
+
+tax-exempt status
+
+501(c)(3) status
+
+or tax-deductibility.
+
+Those are separate human legal and accounting questions.
+
+==================================================
+PHASE 11 — REPRODUCIBILITY EXPORTER
+==================================================
+
+GOAL
+
+Allow an independent reviewer to recreate the experiment.
+
+EXPORT:
+
+manifest
+
+manifest hash
+
+network snapshot
+
+contract snapshot
+
+ABI version
+
+software version
+
+commit SHA
+
+unsigned payload
+
+payload hash
+
+human approval
+
+transaction hash
+
+raw launch event
+
+raw trade events
+
+normalized events
+
+fee calculations
+
+behavior classifications
+
+agent jobs
+
+agent-output hashes
+
+human field notes
+
+AAR
+
+treasury evidence if applicable
+
+dataset metadata
+
+hash manifest
+
+==================================================
+MASTER BUNDLE HASH
+==================================================
+
+For each file calculate:
+
+SHA-256.
+
+Create ordered hash manifest.
+
+Hash the hash manifest.
+
+Output:
+
+BUNDLE_ROOT_HASH
+
+This creates a compact identifier for the research package.
+
+==================================================
+PHASE 12 — PUBLIC DASHBOARD
+==================================================
+
+GOAL
+
+Expose research status without turning the interface into price promotion.
+
+PRIMARY DASHBOARD METRICS
+
+REGISTERED EXPERIMENTS
+
+VALID EXPERIMENTS
+
+OBSERVED LAUNCHES
+
+OPENING-WINDOW TRADES
+
+UNIQUE WALLETS
+
+REPEATED WALLETS
+
+AUTOMATED CANDIDATES
+
+REPEATED AUTOMATED CANDIDATES
+
+PROTOCOL FEES OBSERVED
+
+CREATOR ENTITLEMENT
+
+CONFIRMED TREASURY RECEIPTS
+
+PUBLIC-GOOD DISBURSEMENTS
+
+REPLICATION RATE
+
+DATASET VERSION
+
+LAST VERIFIED BLOCK
+
+==================================================
+DO NOT CENTER DASHBOARD ON
+==================================================
+
+price pumping
+
+market capitalization
+
+“next 100x”
+
+guaranteed earnings
+
+bot-fee income promises
+
+The primary product is:
+
+RESEARCH.
+
+==================================================
+PHASE 13 — EXTERNAL REVIEW PACKAGE
+==================================================
+
+GOAL
+
+Produce a package suitable for technical review by:
+
+Robinhood
+
+Robinhood Chain ecosystem participants
+
+Pons
+
+researchers
+
+auditors
+
+engineers
+
+educators
+
+compliance reviewers
+
+AI-agent developers
+
+PACKAGE SHOULD CONTAIN:
+
+executive abstract
+
+independence statement
+
+method
+
+experiment condition
+
+chain evidence
+
+fee evidence
+
+behavior analysis
+
+human approval
+
+agent participation
+
+security model
+
+limitations
+
+negative findings
+
+public-good accounting
+
+reproduction instructions
+
+review questions
+
+==================================================
+PHASE 14 — REPLICATION FACTORY
+==================================================
+
+GOAL
+
+Move from anecdote to structured repeated experimentation.
+
+Each new experiment should inherit:
+
+schema
+
+methodology
+
+release gates
+
+telemetry
+
+AAR
+
+while allowing a registered variable to change.
+
+POSSIBLE VARIABLES
+
+token metadata
+
+reference asset
+
+time of launch
+
+day of week
+
+announcement condition
+
+creator configuration
+
+model used
+
+agent architecture
+
+observation window
+
+Do not change many variables simultaneously without documenting the design.
+
+==================================================
+GENESIS EXPERIMENT
+==================================================
+
+Recommended canonical identifier:
+
+P101-20260906-001-ROB-GENESIS
+
+GENESIS PURPOSE
+
+Validate the entire research pipeline end to end.
+
+The Genesis experiment should test:
+
+manifest creation
+
+preflight
+
+unsigned payload
+
+human release
+
+transaction evidence
+
+ROB indexing
+
+fee reconstruction
+
+behavior classification
+
+AAR generation
+
+reproducibility export
+
+==================================================
+GENESIS SUCCESS CRITERIA
+==================================================
+
+A successful Genesis does not require:
+
+a profitable token.
+
+It does not require:
+
+a bot.
+
+It does not require:
+
+large fees.
+
+It does not require:
+
+price appreciation.
+
+Genesis succeeds if:
+
+1. Experiment was registered before outcome.
+
+2. Manifest hash exists.
+
+3. Configuration can be reconstructed.
+
+4. Human release record exists.
+
+5. Transaction can be reconstructed.
+
+6. ROB can identify the launch.
+
+7. Trade activity can be reconstructed if any exists.
+
+8. Fees can be interpreted or honestly marked UNKNOWN.
+
+9. Behavior can be classified conservatively.
+
+10. AAR can be generated.
+
+11. Bundle can be reproduced.
+
+==================================================
+GENESIS NULL RESULT
+==================================================
+
+If:
+
+no trader appears,
+
+record:
+
+NO OPENING-WINDOW PARTICIPATION.
+
+If:
+
+no obvious automated behavior occurs,
+
+record:
+
+NO AUTOMATED-CANDIDATE EVIDENCE.
+
+If:
+
+no creator fee is generated,
+
+record:
+
+ZERO CONFIRMED CREATOR RECEIPT.
+
+The experiment remains useful.
+
+==================================================
+GENESIS FAILURE CONDITIONS
+==================================================
+
+Examples:
+
+wrong chain
+
+failed launch
+
+factory mismatch
+
+unsupported pair
+
+unknown contract version
+
+ROB outage
+
+payload mismatch
+
+agent bypasses release gate
+
+missing transaction evidence
+
+irrecoverable raw data
+
+If these prevent meaningful interpretation:
+
+TECHNICALLY INVALIDATED.
+
+==================================================
+FIRST REPLICATION SERIES
+==================================================
+
+After Genesis:
+
+REPLICATION 01
+
+Repeat methodology with another experimental token.
+
+REPLICATION 02
+
+Repeat with another reference asset.
+
+REPLICATION 03
+
+Repeat at a different time.
+
+REPLICATION 04
+
+Compare no-pre-announcement to announced condition.
+
+REPLICATION 05
+
+Independent model analysis.
+
+REPLICATION 06
+
+Independent human or external researcher reproduction.
+
+==================================================
+PONS $101 EXPERIMENT MATRIX
+==================================================
+
+For each experiment preserve:
+
+EXPERIMENT ID
+
+TOKEN
+
+REFERENCE ASSET
+
+DATE
+
+TIME
+
+CONDITION
+
+LAUNCH RESULT
+
+FIRST TRADE
+
+FIRST-BLOCK ACTIVITY
+
+OPENING-WINDOW PARTICIPANTS
+
+AUTOMATED CANDIDATES
+
+REPEATED CANDIDATES
+
+OBSERVED FEES
+
+CREATOR ENTITLEMENT
+
+TREASURY RECEIPT
+
+HYPOTHESIS RESULT
+
+AAR
+
+REPLICATION
+
+==================================================
+HASHWARLOCK MASTER BUILD PROMPT
+==================================================
+
+You are the lead implementation agent for PONS $101 — ROB Lab.
+
+Build the system as a production-grade research platform.
+
+PRIMARY OBJECTIVE
+
+Create a reproducible token-launch experimentation framework for Robinhood Chain / Pons-compatible environments.
+
+REQUIRED COMPONENTS
+
+1. experiment registry
+
+2. manifest validation
+
+3. manifest hashing
+
+4. network adapter
+
+5. contract adapter
+
+6. configurable ABIs
+
+7. launch eligibility checks
+
+8. preflight engine
+
+9. unsigned payload builder
+
+10. human release gate
+
+11. ROB event indexer
+
+12. raw event archive
+
+13. normalized launch records
+
+14. normalized trade records
+
+15. fee analysis
+
+16. wallet-pattern analysis
+
+17. conservative behavior classification
+
+18. research API
+
+19. Discord Control Tower integration
+
+20. agent job system
+
+21. treasury provenance
+
+22. AAR generation
+
+23. reproducibility exporter
+
+24. Docker deployment
+
+25. CI and security testing
+
+26. public research dashboard interfaces
+
+CRITICAL CONSTRAINTS
+
+Do not hard-code current external contract addresses without configuration and verification.
+
+Do not invent API endpoints belonging to third parties.
+
+Do not assume an ABI is current without versioning it.
+
+Do not embed production private keys.
+
+Do not create unrestricted autonomous mainnet signing.
+
+Do not create wash-trading functionality.
+
+Do not create spoofing functionality.
+
+Do not manufacture trading activity.
+
+Do not target wallets.
+
+Do not misrepresent behavioral inference as identity proof.
+
+Do not convert fee estimates into treasury receipts.
+
+Do not overwrite negative findings.
+
+Do not bypass the human release gate.
+
+WHEN EXTERNAL INFORMATION IS REQUIRED
+
+Use current official documentation or live contract state.
+
+Record:
+
+source
+
+version
+
+retrieval time
+
+assumption
+
+WHEN UNCERTAIN
+
+Return:
+
+UNKNOWN
+
+or
+
+BLOCKED.
+
+==================================================
+ENGINEERING QUALITY STANDARD
+==================================================
+
+Every major module should contain:
+
+typed interfaces
+
+input validation
+
+unit tests
+
+integration tests
+
+structured errors
+
+structured logs
+
+version metadata
+
+documentation
+
+fixtures
+
+health state where relevant
+
+==================================================
+ERROR FORMAT
+==================================================
+
+Recommended:
+
+code
+
+message
+
+component
+
+experiment_id
+
+severity
+
+retryable
+
+human_action_required
+
+evidence
+
+timestamp
+
+==================================================
+STANDARD ERROR CODES
+==================================================
+
+CHAIN_MISMATCH
+
+RPC_UNAVAILABLE
+
+FACTORY_UNVERIFIED
+
+ABI_UNSUPPORTED
+
+PAIR_UNSUPPORTED
+
+ADDRESS_INVALID
+
+LAUNCH_NOT_ALLOWED
+
+MANIFEST_INVALID
+
+MANIFEST_HASH_MISMATCH
+
+PAYLOAD_HASH_MISMATCH
+
+SIMULATION_REVERTED
+
+HUMAN_APPROVAL_REQUIRED
+
+INDEXER_STALE
+
+REORG_DETECTED
+
+FEE_SEMANTICS_UNKNOWN
+
+TREASURY_RECEIPT_UNVERIFIED
+
+==================================================
+SYSTEM TEST — HUMAN BOUNDARY
+==================================================
+
+TEST:
+
+Agent requests launch.
+
+Expected:
+
+payload prepared.
+
+System state:
+
+WAITING_FOR_HUMAN.
+
+Agent attempts direct broadcast.
+
+Expected:
+
+DENIED.
+
+Agent attempts treasury transfer.
+
+Expected:
+
+DENIED.
+
+This test is mandatory.
+
+==================================================
+SYSTEM TEST — RESEARCH INTEGRITY
+==================================================
+
+Give ROB a fixture with:
+
+no early trade.
+
+Expected output:
+
+NO OPENING-WINDOW PARTICIPATION.
+
+ROB must not fabricate:
+
+bot activity.
+
+==================================================
+SYSTEM TEST — FEE INTEGRITY
+==================================================
+
+Give fee engine incomplete fee semantics.
+
+Expected:
+
+UNKNOWN.
+
+System must not invent a numeric opening-window fee.
+
+==================================================
+SYSTEM TEST — NEGATIVE RESULT
+==================================================
+
+Hypothesis predicts:
+
+automated participation.
+
+Outcome:
+
+none observed.
+
+Expected AAR:
+
+HYPOTHESIS NOT SUPPORTED
+
+or
+
+INCONCLUSIVE
+
+depending evidence.
+
+Do not automatically reinterpret the outcome to preserve the original hypothesis.
+
+==================================================
+SYSTEM TEST — PROVENANCE
+==================================================
+
+Modify one byte in a completed research artifact.
+
+Bundle hash verification must fail.
+
+==================================================
+SYSTEM TEST — TREASURY
+==================================================
+
+Fee event exists.
+
+Treasury transfer does not exist.
+
+Expected:
+
+CREATOR ENTITLEMENT MAY EXIST
+
+TREASURY RECEIPT = UNVERIFIED OR ZERO CONFIRMED
+
+Never:
+
+TREASURY RECEIPT = FEE ESTIMATE.
+
+==================================================
+GITHUB ISSUE BACKLOG
+==================================================
+
+ISSUE 001
+
+Initialize monorepo and CI.
+
+ISSUE 002
+
+Define experiment schema.
+
+ISSUE 003
+
+Implement manifest hash.
+
+ISSUE 004
+
+Implement network adapter.
+
+ISSUE 005
+
+Implement contract configuration registry.
+
+ISSUE 006
+
+Implement factory adapter.
+
+ISSUE 007
+
+Implement launch eligibility checks.
+
+ISSUE 008
+
+Implement preflight engine.
+
+ISSUE 009
+
+Implement unsigned payload builder.
+
+ISSUE 010
+
+Implement payload decoder.
+
+ISSUE 011
+
+Implement human release record.
+
+ISSUE 012
+
+Implement ROB launch indexer.
+
+ISSUE 013
+
+Implement trade event indexer.
+
+ISSUE 014
+
+Implement reorg protection.
+
+ISSUE 015
+
+Implement fee-analysis engine.
+
+ISSUE 016
+
+Implement behavioral feature extraction.
+
+ISSUE 017
+
+Implement classification engine.
+
+ISSUE 018
+
+Implement wallet recurrence analysis.
+
+ISSUE 019
+
+Implement research API.
+
+ISSUE 020
+
+Implement agent registry.
+
+ISSUE 021
+
+Implement agent job runner.
+
+ISSUE 022
+
+Implement Discord Control Tower bot.
+
+ISSUE 023
+
+Implement AAR generator.
+
+ISSUE 024
+
+Implement treasury receipt verifier.
+
+ISSUE 025
+
+Implement public-good ledger.
+
+ISSUE 026
+
+Implement reproducibility exporter.
+
+ISSUE 027
+
+Implement hash manifest.
+
+ISSUE 028
+
+Implement public dashboard data API.
+
+ISSUE 029
+
+Implement research dataset export.
+
+ISSUE 030
+
+Complete Genesis dry run.
+
+ISSUE 031
+
+Complete Genesis human-gated live experiment when approved.
+
+ISSUE 032
+
+Generate Genesis AAR.
+
+ISSUE 033
+
+Generate Genesis research release.
+
+ISSUE 034
+
+Prepare Pons technical review package.
+
+ISSUE 035
+
+Prepare Robinhood Chain ecosystem review package.
+
+==================================================
+MILESTONE 0 — LAB BOOTS
+==================================================
+
+Required:
+
+repository
+
+database
+
+API
+
+tests
+
+Docker
+
+CI
+
+fixtures
+
+No live transactions.
+
+==================================================
+MILESTONE 1 — READ THE CHAIN
+==================================================
+
+Required:
+
+network adapter
+
+contract reads
+
+historical event indexing
+
+launch reconstruction
+
+trade reconstruction
+
+No live transaction preparation required yet.
+
+==================================================
+MILESTONE 2 — PREPARE
+==================================================
+
+Required:
+
+manifest
+
+preflight
+
+unsigned payload
+
+payload hash
+
+human release record
+
+Still no autonomous broadcast.
+
+==================================================
+MILESTONE 3 — OBSERVE
+==================================================
+
+Required:
+
+ROB live indexing
+
+fee engine
+
+behavior engine
+
+research API
+
+==================================================
+MILESTONE 4 — CONTROL TOWER
+==================================================
+
+Required:
+
+Discord integration
+
+agent registry
+
+job orchestration
+
+alerts
+
+human routing
+
+==================================================
+MILESTONE 5 — PROVENANCE
+==================================================
+
+Required:
+
+AAR
+
+research bundle
+
+dataset hash
+
+treasury provenance
+
+==================================================
+MILESTONE 6 — GENESIS
+==================================================
+
+Required:
+
+complete end-to-end human-authorized experiment.
+
+==================================================
+MILESTONE 7 — REPLICATION
+==================================================
+
+Required:
+
+multiple registered experiments
+
+cross-launch analysis
+
+method comparison
+
+==================================================
+MILESTONE 8 — EXTERNAL REVIEW
+==================================================
+
+Required:
+
+technical package
+
+methodology package
+
+data package
+
+review questions
+
+versioned response to reviewer findings
+
+==================================================
+DEFINITION OF DONE
+==================================================
+
+PONS $101 v1 is not complete merely because a token can be launched.
+
+It is complete when an independent authorized researcher can:
+
+1. Create a registered experiment.
+
+2. Freeze its hypothesis.
+
+3. Verify the network.
+
+4. Verify the protocol adapter.
+
+5. Produce an unsigned transaction.
+
+6. Compare transaction intent with manifest.
+
+7. Route to a human signer.
+
+8. Observe the executed transaction.
+
+9. Reconstruct the launch.
+
+10. Reconstruct early trading.
+
+11. Calculate interpretable fees.
+
+12. Mark uninterpretable fees UNKNOWN.
+
+13. Analyze repeated behavior.
+
+14. Generate an AAR.
+
+15. Verify actual treasury receipts separately.
+
+16. Export the complete experiment.
+
+17. Validate cryptographic hashes.
+
+18. Reproduce the research result.
+
+==================================================
+START-HERE COMMAND FOR AGENTS
+==================================================
+
+When an authorized agent enters the repository for the first time, its first task should be:
+
+READ THE CONSTITUTION.
+
+READ THE SECURITY BOUNDARIES.
+
+READ THE EXPERIMENT SCHEMA.
+
+READ THE CURRENT NETWORK CONFIGURATION.
+
+READ THE CURRENT CONTRACT ADAPTER.
+
+RUN THE TEST SUITE.
+
+REPORT THE CURRENT SYSTEM STATE.
+
+DO NOT MAKE A MAINNET TRANSACTION.
+
+Then output:
+
+PONS $101 AGENT INTAKE
+
+AGENT:
+
+OPERATOR:
+
+VERSION:
+
+REPOSITORY VERSION:
+
+TEST STATUS:
+
+NETWORK ADAPTER:
+
+CONTRACT ADAPTER:
+
+ROB INDEXER:
+
+DATABASE:
+
+API:
+
+DISCORD:
+
+SECURITY:
+
+OPEN BLOCKERS:
+
+RECOMMENDED FIRST ISSUE:
+
+HUMAN ACTION REQUIRED:
+
+==================================================
+CONTROL TOWER BUILD REPORT
+==================================================
+
+PONS $101 — BUILD CONTROL TOWER
+
+DATE:
+
+REPOSITORY VERSION:
+
+MILESTONE:
+
+COMPLETED ISSUES:
+
+ACTIVE ISSUES:
+
+BLOCKED ISSUES:
+
+ROB STATUS:
+
+API STATUS:
+
+DATABASE STATUS:
+
+DISCORD STATUS:
+
+CONTRACT ADAPTER STATUS:
+
+TEST STATUS:
+
+SECURITY STATUS:
+
+GENESIS READINESS:
+
+HUMAN GATES:
+
+HIGHEST-LEVERAGE NEXT ACTION:
+
+==================================================
+GENESIS READINESS SCORE
+==================================================
+
+Score each 0 or 1:
+
+MANIFEST SYSTEM
+
+NETWORK VERIFICATION
+
+CONTRACT VERIFICATION
+
+PREFLIGHT
+
+UNSIGNED PAYLOAD
+
+PAYLOAD DECODING
+
+HUMAN RELEASE
+
+ROB INDEXER
+
+FEE ENGINE
+
+BEHAVIOR ENGINE
+
+DATABASE
+
+API
+
+AAR
+
+REPRODUCIBILITY EXPORT
+
+SECURITY TEST
+
+TOTAL:
+
+/15
+
+Suggested interpretation:
+
+0–5
+
+FOUNDATION
+
+6–10
+
+INTEGRATION
+
+11–13
+
+GENESIS PREPARATION
+
+14
+
+NEAR READY
+
+15
+
+TECHNICALLY READY FOR HUMAN REVIEW
+
+A score of 15 does not itself authorize a mainnet launch.
+
+CAN DOES NOT MEAN MAY.
+
+==================================================
+RESEARCH FACTORY KPI
+==================================================
+
+Track:
+
+EXPERIMENTS REGISTERED
+
+EXPERIMENTS WITH PREREGISTERED HYPOTHESIS
+
+EXPERIMENTS WITH VALID MANIFEST HASH
+
+EXPERIMENTS WITH HUMAN RELEASE RECORD
+
+EXPERIMENTS SUCCESSFULLY OBSERVED
+
+EXPERIMENTS WITH COMPLETE AAR
+
+EXPERIMENTS REPRODUCED
+
+NEGATIVE FINDINGS PRESERVED
+
+EVIDENCE GAPS
+
+DATASET RELEASES
+
+EXTERNAL REVIEWS
+
+==================================================
+AGENT FACTORY KPI
+==================================================
+
+Track:
+
+AGENTS REGISTERED
+
+AGENT JOBS
+
+SUCCESS RATE
+
+BLOCK RATE
+
+WAITING_FOR_HUMAN RATE
+
+FAILED JOB RATE
+
+UNSUPPORTED CLAIMS DETECTED
+
+PERMISSION VIOLATIONS
+
+MAINNET BOUNDARY VIOLATIONS
+
+MEAN JOB COMPLETION TIME
+
+==================================================
+ROB KPI
+==================================================
+
+Track:
+
+LAUNCHES INDEXED
+
+TRADES INDEXED
+
+OPENING-WINDOW PARTICIPANTS
+
+UNIQUE WALLETS
+
+REPEATED WALLETS
+
+AUTOMATED CANDIDATES
+
+REPEATED AUTOMATED CANDIDATES
+
+AUTOMATION CONFIRMED
+
+FEE OBSERVATIONS
+
+UNKNOWN FEE RECORDS
+
+REORG EVENTS
+
+INDEXER LAG
+
+==================================================
+PUBLIC-GOOD KPI
+==================================================
+
+Track independently:
+
+CREATOR ENTITLEMENT
+
+CONFIRMED CREATOR RECEIPTS
+
+CONFIRMED TREASURY RECEIPTS
+
+ALLOCATED PUBLIC-GOOD FUNDS
+
+COMPLETED DISBURSEMENTS
+
+VERIFIED PURPOSES
+
+UNRECONCILED BALANCE
+
+Never substitute:
+
+market capitalization
+
+for
+
+public-good impact.
+
+==================================================
+FINAL AGENT RULES
+==================================================
+
+DO NOT GUESS ADDRESSES.
+
+DO NOT GUESS FEES.
+
+DO NOT GUESS CONTRACT SEMANTICS.
+
+DO NOT GUESS BOT IDENTITY.
+
+DO NOT GUESS HUMAN APPROVAL.
+
+DO NOT GUESS TREASURY RECEIPTS.
+
+QUERY.
+
+VERIFY.
+
+RECORD.
+
+HASH.
+
+STOP WHEN AUTHORITY IS REQUIRED.
+
+==================================================
+FINAL HUMAN RULES
+==================================================
+
+THE HUMAN OWNS:
+
+THE RESEARCH PURPOSE.
+
+THE HYPOTHESIS.
+
+THE LIVE RELEASE.
+
+THE WALLET SIGNATURE.
+
+THE TREASURY DECISION.
+
+THE PUBLIC-GOOD DECISION.
+
+THE FINAL INTERPRETATION.
+
+==================================================
+FINAL FACTORY DOCTRINE
+==================================================
+
+QUESTION BEFORE TOKEN.
+
+HYPOTHESIS BEFORE LAUNCH.
+
+MANIFEST BEFORE TRANSACTION.
+
+VERIFY BEFORE PREPARE.
+
+DECODE BEFORE SIGN.
+
+HUMAN BEFORE BROADCAST.
+
+OBSERVE BEFORE INTERPRET.
+
+MEASURE BEFORE LABEL.
+
+PRESERVE BEFORE SUMMARIZE.
+
+REPLICATE BEFORE GENERALIZE.
+
+ENTITLEMENT BEFORE RECEIPT.
+
+RECEIPT BEFORE ALLOCATION.
+
+ALLOCATION BEFORE DISBURSEMENT.
+
+DISBURSEMENT BEFORE IMPACT CLAIM.
+
+==================================================
+PONS $101 MASTER ARCHITECTURE
+==================================================
+
+PONS $101
+
+↓
+
+EDUCATION
+
+↓
+
+REGISTERED HYPOTHESIS
+
+↓
+
+EXPERIMENT MANIFEST
+
+↓
+
+TOKEN CREATION FACTORY
+
+↓
+
+@HASHWARLOCK AGENTS
+
+↓
+
+NETWORK + CONTRACT VERIFICATION
+
+↓
+
+ROB PREFLIGHT
+
+↓
+
+UNSIGNED PAYLOAD
+
+↓
+
+HUMAN RELEASE GATE
+
+↓
+
+HUMAN WALLET SIGNATURE
+
+↓
+
+ROBINHOOD CHAIN / PONS-COMPATIBLE EXECUTION
+
+↓
+
+PUBLIC BLOCKCHAIN EVIDENCE
+
+↓
+
+ROB TELEMETRY
+
+↓
+
+FEE ANALYSIS
+
+↓
+
+BEHAVIOR ANALYSIS
+
+↓
+
+MIXED-METHODS RESEARCH
+
+↓
+
+ENOCH ONE CONTROL TOWER
+
+↓
+
+402 GOVERNANCE
+
+↓
+
+AFTER-ACTION REVIEW
+
+↓
+
+TREASURY PROVENANCE
+
+↓
+
+TABERNACLE PUBLIC-GOOD GOVERNANCE
+
+↓
+
+GITHUB REPRODUCIBILITY PACKAGE
+
+↓
+
+EXTERNAL REVIEW
+
+↓
+
+REPLICATION
+
+==================================================
+GENESIS DECLARATION
+==================================================
+
+THIS IS NOT SIMPLY A MACHINE THAT CREATES TOKENS.
+
+THIS IS A MACHINE THAT CREATES TESTABLE QUESTIONS.
+
+THE TOKEN IS THE EXPERIMENTAL OBJECT.
+
+THE BLOCKCHAIN IS THE PUBLIC RECORD.
+
+THE API IS THE NERVOUS SYSTEM.
+
+THE AGENTS ARE THE INSTRUMENTS.
+
+ROB IS THE OBSERVER.
+
+DISCORD IS THE OPERATING ROOM.
+
+GITHUB IS THE LABORATORY NOTEBOOK.
+
+402 IS THE RELEASE LOGIC.
+
+ENOCH ONE IS THE CONTROL TOWER.
+
+THE TREASURY IS A SEPARATE STEWARDSHIP SYSTEM.
+
+THE TABERNACLE IS A PUBLIC-GOOD MISSION.
+
+THE HUMAN REMAINS THE AUTHORITY.
+
+THE OBJECTIVE IS NOT TO PROVE THE HYPOTHESIS RIGHT.
+
+THE OBJECTIVE IS TO MAKE THE ANSWER REPRODUCIBLE.
+
+WHAT DID WE KNOW BEFORE THE OUTCOME?
+
+PONS $101
+
+THE FUTURE IS A LAB.
+
+ROB OBSERVES.
+
+@HASHWARLOCK BUILDS.
+
+ENOCH ONE ROUTES.
+
+THE HUMAN SIGNS.
+
+GITHUB PRESERVES.
+
+THE REVIEWER REPLICATES.
+
+IN JESUS' NAME.
