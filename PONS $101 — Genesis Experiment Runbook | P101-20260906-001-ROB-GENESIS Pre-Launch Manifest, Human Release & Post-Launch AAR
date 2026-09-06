@@ -1,0 +1,1361 @@
+# PONS $101 — GENESIS EXPERIMENT RUNBOOK
+
+CANONICAL EXPERIMENT ID
+
+P101-20260906-001-ROB-GENESIS
+
+EXPERIMENT NAME
+
+PONS $101 — ROB GENESIS
+
+PURPOSE
+
+Execute the first complete end-to-end PONS $101 research experiment using the full architecture:
+
+REGISTERED HYPOTHESIS
+→ MANIFEST
+→ NETWORK VERIFICATION
+→ CONTRACT VERIFICATION
+→ PREFLIGHT
+→ UNSIGNED PAYLOAD
+→ HUMAN RELEASE
+→ HUMAN-SIGNED EXECUTION
+→ ROB OBSERVATION
+→ FEE ANALYSIS
+→ BEHAVIOR ANALYSIS
+→ AFTER-ACTION REVIEW
+→ REPRODUCIBILITY PACKAGE
+
+Genesis is not considered successful because:
+
+the token rises in price,
+a bot appears,
+creator fees are generated,
+or a large number of traders participate.
+
+Genesis succeeds when the experiment can be reconstructed from evidence.
+
+==================================================
+GENESIS RESEARCH QUESTION
+==================================================
+
+PRIMARY QUESTION
+
+Can a newly created experimental token become publicly discoverable on-chain and receive measurable launch-window activity without advance public promotion?
+
+SECONDARY QUESTION
+
+Can PONS $101 reconstruct that activity using public blockchain evidence while keeping:
+
+observation,
+calculation,
+inference,
+human decisions,
+and treasury receipts
+
+separate?
+
+SYSTEM QUESTION
+
+Can @hashwarlock-operated agents prepare the complete experiment while preserving the human signer as the final authority?
+
+==================================================
+GENESIS HYPOTHESIS
+==================================================
+
+H0 — NULL
+
+No distinguishable automated or bot-like opening-window participation will be observed beyond ordinary public discovery.
+
+H1 — ALTERNATIVE
+
+One or more observable transaction patterns will occur sufficiently close to launch, or recur sufficiently across experiments, to justify classification as automated-candidate behavior.
+
+IMPORTANT
+
+The experiment does not require H1 to be supported.
+
+H0 remaining viable is a valid result.
+
+==================================================
+GENESIS CONDITION
+==================================================
+
+EXPERIMENTAL CONDITION
+
+NO_PRE_ANNOUNCEMENT
+
+Definition:
+
+The researcher does not intentionally publish the token contract, launch link, or direct trading invitation before T0.
+
+This does not hide:
+
+token metadata,
+contract state,
+fees,
+protocol mechanics,
+or on-chain existence.
+
+The token becomes publicly discoverable through ordinary blockchain and protocol mechanisms after launch.
+
+==================================================
+GENESIS HUMAN ATTESTATION
+==================================================
+
+Before launch, record:
+
+I attest that, to the best of my knowledge, I have not intentionally publicly distributed the token contract address or direct launch link before this experiment's T0.
+
+I understand that public blockchain infrastructure may independently expose the launch.
+
+I understand that the purpose of this condition is research, not deception.
+
+HUMAN OWNER:
+
+DATE:
+
+TIME:
+
+EXPERIMENT ID:
+
+SIGNED / APPROVED RECORD:
+
+==================================================
+GENESIS TOKEN METADATA
+==================================================
+
+TOKEN NAME:
+
+PONS $101
+
+TICKER:
+
+$101
+
+DESCRIPTION:
+
+PONS $101 is an educational and research token experiment used to study token-launch mechanics, autonomous discovery, protocol-defined fees, AI-assisted research, human governance, and reproducible on-chain evidence.
+
+The token is part of the PONS $101 — ROB Lab.
+
+It does not represent:
+
+equity,
+debt,
+ownership in Robinhood,
+ownership in Pons,
+ownership in a partner company,
+guaranteed yield,
+guaranteed appreciation,
+or a promise of profit.
+
+==================================================
+CANONICAL IDENTITY RULE
+==================================================
+
+Do not identify the token only as:
+
+$101.
+
+Canonical identity must ultimately include:
+
+TOKEN NAME
+
+PONS $101
+
+TICKER
+
+$101
+
+CHAIN ID
+
+CONTRACT ADDRESS
+
+GENESIS MANIFEST HASH
+
+EXPERIMENT ID
+
+P101-20260906-001-ROB-GENESIS
+
+==================================================
+NETWORK RECORD
+==================================================
+
+NETWORK:
+
+Robinhood Chain
+
+CHAIN ID:
+
+Resolve and verify from live RPC before execution.
+
+RPC:
+
+Resolve from approved configuration.
+
+BLOCK EXPLORER:
+
+Resolve from current official infrastructure.
+
+FACTORY:
+
+Resolve and verify before execution.
+
+FACTORY VERSION:
+
+Record exact version used.
+
+ABI VERSION:
+
+Record exact interface version used.
+
+IMPORTANT
+
+Do not substitute a remembered address for a current verified contract address.
+
+==================================================
+PAIR / REFERENCE ASSET
+==================================================
+
+PAIR ASSET:
+
+TO BE FROZEN BEFORE HUMAN RELEASE
+
+REQUIRED RECORD
+
+asset_name:
+
+symbol:
+
+chain_id:
+
+contract_address:
+
+decimals:
+
+approval_status:
+
+verification_source:
+
+retrieved_at:
+
+Use:
+
+PAIRED WITH
+
+Do not use:
+
+PEGGED TO
+
+unless an actual peg mechanism exists.
+
+==================================================
+CREATOR CONFIGURATION
+==================================================
+
+CREATOR ADDRESS:
+
+HUMAN-VERIFIED BEFORE RELEASE
+
+CREATOR FEE RECIPIENT:
+
+HUMAN-VERIFIED BEFORE RELEASE
+
+CREATOR TAX:
+
+CURRENT CONFIGURATION RECORDED BEFORE RELEASE
+
+PUBLIC-GOOD DESTINATION:
+
+Do not automatically equate creator recipient with final Tabernacle treasury unless the human has explicitly established that routing.
+
+==================================================
+PUBLIC-GOOD INTENT
+==================================================
+
+The experiment may document creator-fee receipts intended for a future:
+
+TABERNACLE
+
+EDUCATION
+
+RESEARCH
+
+COMMUNITY WORK
+
+IN JESUS' NAME.
+
+This is an intended stewardship mission.
+
+It is not a statement of charitable, tax-exempt, or 501(c)(3) status.
+
+==================================================
+GENESIS MANIFEST
+==================================================
+
+schema_version:
+
+1.0.0
+
+experiment_id:
+
+P101-20260906-001-ROB-GENESIS
+
+experiment_name:
+
+PONS $101 — ROB GENESIS
+
+human_owner:
+
+created_at:
+
+research_question:
+
+hypothesis_null:
+
+hypothesis_alternative:
+
+announcement_condition:
+
+NO_PRE_ANNOUNCEMENT
+
+token_name:
+
+PONS $101
+
+ticker:
+
+$101
+
+description:
+
+network_name:
+
+chain_id:
+
+factory_address:
+
+factory_version:
+
+abi_version:
+
+pair_asset:
+
+pair_asset_address:
+
+creator_address:
+
+creator_fee_recipient:
+
+creator_tax:
+
+observation_windows:
+
+classification_version:
+
+software_version:
+
+commit_sha:
+
+require_human_signature:
+
+true
+
+allow_agent_broadcast:
+
+false
+
+allow_agent_trading:
+
+false
+
+allow_agent_treasury_control:
+
+false
+
+manifest_hash:
+
+==================================================
+MANIFEST FREEZE
+==================================================
+
+Before payload generation:
+
+1. Complete all required fields.
+
+2. Normalize serialization.
+
+3. Generate manifest hash.
+
+4. Record Git commit SHA.
+
+5. Store immutable copy.
+
+6. Post hash to the private experiment record.
+
+7. Do not change material launch parameters without creating a new manifest version.
+
+==================================================
+GENESIS OBSERVATION WINDOWS
+==================================================
+
+T0
+
+Canonical launch event.
+
+WINDOW A
+
+Same block.
+
+WINDOW B
+
+0–5 seconds.
+
+WINDOW C
+
+5–30 seconds.
+
+WINDOW D
+
+30–60 seconds.
+
+WINDOW E
+
+1–5 minutes.
+
+WINDOW F
+
+5–15 minutes.
+
+WINDOW G
+
+15–60 minutes.
+
+WINDOW H
+
+1–24 hours.
+
+==================================================
+GENESIS PRIMARY METRICS
+==================================================
+
+ROB records:
+
+launch block
+
+launch timestamp
+
+first trade block
+
+first trade timestamp
+
+seconds to first trade
+
+blocks to first trade
+
+number of first-block trades
+
+number of 5-second-window trades
+
+number of 30-second-window trades
+
+number of unique early wallets
+
+number of repeated known experimental wallets
+
+reported fees
+
+base fees
+
+creator tax
+
+inferred opening-window fee where technically valid
+
+creator entitlement
+
+confirmed treasury receipt
+
+==================================================
+GENESIS BEHAVIORAL METRICS
+==================================================
+
+For each participating wallet record:
+
+wallet address
+
+first interaction time
+
+blocks since launch
+
+seconds since launch
+
+buy / sell
+
+trade size
+
+transaction position
+
+gas characteristics where relevant
+
+repeat experimental participation
+
+opening-window participation history
+
+classification
+
+confidence
+
+==================================================
+GENESIS CLASSIFICATION
+==================================================
+
+Allowed classifications:
+
+UNKNOWN
+
+OPENING_WINDOW_PARTICIPANT
+
+AUTOMATED_CANDIDATE
+
+REPEATED_AUTOMATED_CANDIDATE
+
+AUTOMATION_CONFIRMED
+
+Genesis should normally avoid AUTOMATION_CONFIRMED unless independent evidence exists.
+
+==================================================
+GENESIS PREFLIGHT
+==================================================
+
+RESEARCH
+
+[ ] Experiment ID created
+
+[ ] Research question frozen
+
+[ ] H0 frozen
+
+[ ] H1 frozen
+
+[ ] No-pre-announcement condition documented
+
+[ ] Human attestation recorded
+
+TOKEN
+
+[ ] Name finalized
+
+[ ] Symbol finalized
+
+[ ] Description finalized
+
+[ ] Risk disclosure reviewed
+
+NETWORK
+
+[ ] RPC responding
+
+[ ] Chain ID verified
+
+[ ] Latest block verified
+
+[ ] Explorer verified
+
+FACTORY
+
+[ ] Factory address verified
+
+[ ] Contract bytecode verified
+
+[ ] Factory version recorded
+
+[ ] ABI version recorded
+
+[ ] Launch eligibility checked
+
+PAIR
+
+[ ] Pair asset chosen
+
+[ ] Pair contract address verified
+
+[ ] Pair approval confirmed where applicable
+
+[ ] Pair terminology reviewed
+
+CREATOR
+
+[ ] Creator address verified
+
+[ ] Creator recipient verified
+
+[ ] Creator tax reviewed
+
+FEES
+
+[ ] Current protocol fee configuration inspected
+
+[ ] Opening-window mechanics inspected
+
+[ ] No unexpected fee path detected
+
+MANIFEST
+
+[ ] Manifest complete
+
+[ ] Manifest hash generated
+
+[ ] Commit SHA recorded
+
+[ ] Frozen manifest preserved
+
+TRANSACTION
+
+[ ] Unsigned transaction generated
+
+[ ] Target contract verified
+
+[ ] Function decoded
+
+[ ] Arguments decoded
+
+[ ] Native value reviewed
+
+[ ] Gas estimate recorded
+
+[ ] Simulation completed where supported
+
+[ ] Payload hash generated
+
+SECURITY
+
+[ ] No private keys in repository
+
+[ ] No seed phrases in Discord
+
+[ ] Agent broadcast disabled
+
+[ ] Agent trading disabled
+
+[ ] Treasury authority disabled
+
+FINAL PREFLIGHT STATUS:
+
+PASS
+
+WARNING
+
+or
+
+BLOCK
+
+==================================================
+GENESIS UNSIGNED PAYLOAD RECORD
+==================================================
+
+EXPERIMENT:
+
+P101-20260906-001-ROB-GENESIS
+
+CHAIN:
+
+CHAIN ID:
+
+TARGET CONTRACT:
+
+FUNCTION:
+
+ARGUMENTS:
+
+VALUE:
+
+PAIR:
+
+CREATOR:
+
+CREATOR RECIPIENT:
+
+CREATOR TAX:
+
+ESTIMATED GAS:
+
+SIMULATION RESULT:
+
+MANIFEST HASH:
+
+PAYLOAD HASH:
+
+WARNINGS:
+
+GENERATED BY:
+
+SOFTWARE VERSION:
+
+TIMESTAMP:
+
+==================================================
+HUMAN RELEASE GATE
+==================================================
+
+STOP.
+
+No agent proceeds beyond this point autonomously.
+
+Present to human:
+
+EXPERIMENT ID
+
+TOKEN
+
+TICKER
+
+NETWORK
+
+CHAIN ID
+
+TARGET CONTRACT
+
+FACTORY
+
+PAIR
+
+CREATOR RECIPIENT
+
+CREATOR TAX
+
+FUNCTION
+
+ARGUMENTS
+
+VALUE
+
+ESTIMATED GAS
+
+MANIFEST HASH
+
+PAYLOAD HASH
+
+WARNINGS
+
+==================================================
+HUMAN RELEASE RECORD
+==================================================
+
+EXPERIMENT ID:
+
+P101-20260906-001-ROB-GENESIS
+
+DECISION:
+
+[ ] APPROVE
+
+[ ] REJECT
+
+[ ] RETURN FOR CHANGES
+
+HUMAN APPROVER:
+
+TIMESTAMP:
+
+MANIFEST HASH:
+
+PAYLOAD HASH:
+
+MATERIAL WARNINGS REVIEWED:
+
+NOTES:
+
+==================================================
+IF PAYLOAD CHANGES
+==================================================
+
+If any material payload field changes after approval:
+
+INVALIDATE PREVIOUS APPROVAL.
+
+Generate:
+
+NEW PAYLOAD HASH.
+
+Return to:
+
+HUMAN RELEASE GATE.
+
+==================================================
+EXECUTION RECORD
+==================================================
+
+Only after human authorization:
+
+TRANSACTION HASH:
+
+BROADCAST WALLET:
+
+NETWORK:
+
+CHAIN ID:
+
+BROADCAST TIME:
+
+RECEIPT STATUS:
+
+BLOCK:
+
+BLOCK HASH:
+
+GAS USED:
+
+TOKEN ADDRESS:
+
+CURVE ADDRESS:
+
+==================================================
+ROB ACTIVATION
+==================================================
+
+Immediately after the transaction becomes publicly observable:
+
+ROB STATE:
+
+OBSERVING
+
+ROB should:
+
+1. Resolve launch event.
+
+2. Confirm experiment linkage.
+
+3. Confirm token.
+
+4. Confirm curve.
+
+5. Preserve raw launch event.
+
+6. Record T0.
+
+7. Begin trade observation.
+
+8. Capture early-window activity.
+
+9. Monitor confirmation status.
+
+10. Produce initial telemetry report.
+
+==================================================
+ROB FIRST REPORT
+==================================================
+
+PONS $101 — ROB GENESIS
+
+EXPERIMENT:
+
+P101-20260906-001-ROB-GENESIS
+
+STATUS:
+
+T0:
+
+LAUNCH TRANSACTION:
+
+TOKEN:
+
+CURVE:
+
+PAIR:
+
+FIRST TRADE:
+
+SECONDS TO FIRST TRADE:
+
+BLOCKS TO FIRST TRADE:
+
+FIRST-BLOCK TRADES:
+
+0–5 SECOND TRADES:
+
+0–30 SECOND TRADES:
+
+UNIQUE EARLY WALLETS:
+
+REPEATED EXPERIMENTAL WALLETS:
+
+AUTOMATED CANDIDATES:
+
+FEE OBSERVATION:
+
+CREATOR ENTITLEMENT:
+
+TREASURY RECEIPT:
+
+EVIDENCE GAPS:
+
+==================================================
+NO ACTIVITY RESULT
+==================================================
+
+If no one trades:
+
+do not modify the hypothesis after the fact.
+
+Record:
+
+OPENING-WINDOW PARTICIPATION:
+
+NONE OBSERVED.
+
+AUTOMATED-CANDIDATE EVIDENCE:
+
+NONE OBSERVED.
+
+CREATOR RECEIPT:
+
+ZERO CONFIRMED FROM OBSERVED TRADING.
+
+RESULT:
+
+H0 remains viable.
+
+This is a valid Genesis outcome.
+
+==================================================
+EARLY ACTIVITY RESULT
+==================================================
+
+If one or more addresses transact quickly:
+
+record:
+
+timing
+
+wallet
+
+trade direction
+
+trade amount
+
+reported fee
+
+block position
+
+repeat history
+
+Do not immediately write:
+
+BOT.
+
+Begin with:
+
+OPENING_WINDOW_PARTICIPANT.
+
+Apply classification methodology afterward.
+
+==================================================
+FEE ANALYSIS
+==================================================
+
+For every relevant trade attempt to determine:
+
+TOTAL REPORTED FEE
+
+ORDINARY BASE FEE
+
+CREATOR TAX
+
+OTHER EXPLICIT COMPONENT
+
+INFERRED OPENING COMPONENT
+
+If semantics do not support reliable separation:
+
+UNKNOWN.
+
+==================================================
+CREATOR ENTITLEMENT
+==================================================
+
+Record separately:
+
+OBSERVED PROTOCOL FEE
+
+CREATOR ENTITLEMENT
+
+CLAIMABLE CREATOR ENTITLEMENT
+
+CLAIMED CREATOR FEE
+
+ACTUAL CREATOR RECEIPT
+
+ACTUAL TREASURY RECEIPT
+
+Do not substitute one state for another.
+
+==================================================
+TABERNACLE TREASURY RECORD
+==================================================
+
+If a legitimate creator-fee receipt reaches the designated treasury:
+
+RECEIPT ID:
+
+EXPERIMENT:
+
+P101-20260906-001-ROB-GENESIS
+
+TRANSACTION:
+
+ASSET:
+
+AMOUNT:
+
+FROM:
+
+TO:
+
+TIME:
+
+SOURCE:
+
+CREATOR FEE
+
+EVIDENCE HASH:
+
+STATUS:
+
+TREASURY_RECEIVED
+
+This does not yet equal:
+
+PUBLIC-GOOD DISBURSEMENT.
+
+==================================================
+GENESIS AFTER-ACTION REVIEW
+==================================================
+
+PONS $101 — ROB GENESIS AAR
+
+EXPERIMENT ID:
+
+P101-20260906-001-ROB-GENESIS
+
+ORIGINAL QUESTION:
+
+ORIGINAL H0:
+
+ORIGINAL H1:
+
+EXPERIMENTAL CONDITION:
+
+WHAT DID WE KNOW BEFORE THE OUTCOME?
+
+WHAT ACTUALLY HAPPENED?
+
+LAUNCH SUCCESS:
+
+FIRST TRADE:
+
+FIRST-BLOCK ACTIVITY:
+
+OPENING-WINDOW ACTIVITY:
+
+UNIQUE WALLETS:
+
+REPEATED WALLETS:
+
+AUTOMATED CANDIDATES:
+
+REPEATED AUTOMATED CANDIDATES:
+
+AUTOMATION CONFIRMED:
+
+PROTOCOL FEES OBSERVED:
+
+CREATOR ENTITLEMENT:
+
+CONFIRMED CREATOR RECEIPT:
+
+CONFIRMED TREASURY RECEIPT:
+
+WHAT WAS VERIFIED?
+
+WHAT WAS CALCULATED?
+
+WHAT WAS INFERRED?
+
+WHAT REMAINS UNKNOWN?
+
+WHAT FAILED?
+
+WHAT SURPRISED US?
+
+WHAT DID THE AGENTS GET RIGHT?
+
+WHAT DID THE AGENTS GET WRONG?
+
+WHAT DID THE HUMAN OVERRIDE?
+
+DID H0 SURVIVE?
+
+DID H1 RECEIVE SUPPORT?
+
+FINAL RESULT:
+
+SUPPORTED
+
+PARTIALLY SUPPORTED
+
+NOT SUPPORTED
+
+INCONCLUSIVE
+
+or
+
+TECHNICALLY INVALIDATED
+
+==================================================
+GENESIS REPRODUCIBILITY PACKAGE
+==================================================
+
+Required:
+
+experiment manifest
+
+manifest hash
+
+software version
+
+commit SHA
+
+network snapshot
+
+factory snapshot
+
+ABI version
+
+pair verification
+
+creator configuration
+
+unsigned payload
+
+payload hash
+
+human release record
+
+launch transaction
+
+launch event
+
+raw trade events
+
+normalized trade data
+
+fee calculations
+
+behavior classifications
+
+agent records
+
+AAR
+
+treasury evidence where applicable
+
+dataset metadata
+
+file hashes
+
+bundle root hash
+
+==================================================
+GENESIS COMPLETION CHECKLIST
+==================================================
+
+[ ] Registered before outcome
+
+[ ] Hypothesis preserved
+
+[ ] Condition preserved
+
+[ ] Manifest preserved
+
+[ ] Manifest hash verified
+
+[ ] Human release preserved
+
+[ ] Payload hash preserved
+
+[ ] Transaction preserved
+
+[ ] Launch reconstructed
+
+[ ] ROB telemetry preserved
+
+[ ] Raw events preserved
+
+[ ] Fees analyzed
+
+[ ] Unknowns labeled honestly
+
+[ ] Behavior classified conservatively
+
+[ ] Negative findings preserved
+
+[ ] Treasury receipts independently verified
+
+[ ] AAR complete
+
+[ ] Reproducibility bundle complete
+
+[ ] Bundle hash verified
+
+==================================================
+GENESIS SUCCESS STANDARD
+==================================================
+
+GENESIS PASSES IF:
+
+THE RECORD SURVIVES SCRUTINY.
+
+It does not need:
+
+a winning trade
+
+a rising market
+
+a bot
+
+or
+
+creator revenue.
+
+It needs:
+
+a question
+
+a frozen hypothesis
+
+a verified configuration
+
+a human decision
+
+a public transaction
+
+an observable outcome
+
+an honest interpretation
+
+and
+
+a reproducible record.
+
+==================================================
+GENESIS CONTROL TOWER
+==================================================
+
+PONS $101 — GENESIS CONTROL TOWER
+
+EXPERIMENT:
+
+P101-20260906-001-ROB-GENESIS
+
+PHASE:
+
+MANIFEST:
+
+NETWORK:
+
+FACTORY:
+
+PAIR:
+
+PREFLIGHT:
+
+PAYLOAD:
+
+HUMAN RELEASE:
+
+TRANSACTION:
+
+TOKEN:
+
+CURVE:
+
+ROB:
+
+FIRST TRADE:
+
+OPENING WINDOW:
+
+FEE ENGINE:
+
+BEHAVIOR ENGINE:
+
+CREATOR ENTITLEMENT:
+
+TREASURY:
+
+AAR:
+
+DATASET:
+
+BUNDLE HASH:
+
+BLOCKERS:
+
+NEXT OWNER:
+
+NEXT ACTION:
+
+==================================================
+GENESIS DECLARATION
+==================================================
+
+THE FIRST PRODUCT IS NOT THE TOKEN.
+
+THE FIRST PRODUCT IS THE RECORD.
+
+THE TOKEN IS THE EXPERIMENTAL OBJECT.
+
+THE CHAIN IS THE PUBLIC WITNESS.
+
+ROB OBSERVES.
+
+@HASHWARLOCK PREPARES THE MACHINERY.
+
+ENOCH ONE ROUTES THE EVIDENCE.
+
+402 PRESERVES THE RELEASE BOUNDARY.
+
+THE HUMAN SIGNS.
+
+GITHUB PRESERVES THE EXPERIMENT.
+
+THE REVIEWER SHOULD BE ABLE TO REPRODUCE IT.
+
+IF THE HYPOTHESIS FAILS,
+
+WE RECORD THAT.
+
+IF NO BOT-LIKE ACTIVITY APPEARS,
+
+WE RECORD THAT.
+
+IF NO FEES ARRIVE,
+
+WE RECORD THAT.
+
+IF THE SYSTEM FAILS,
+
+WE RECORD THAT.
+
+THE OBJECTIVE IS NOT TO FORCE AN OUTCOME.
+
+THE OBJECTIVE IS TO KNOW WHAT HAPPENED.
+
+PONS $101
+
+P101-20260906-001-ROB-GENESIS
+
+WHAT DID WE KNOW BEFORE THE OUTCOME?
+
+IN JESUS' NAME.
