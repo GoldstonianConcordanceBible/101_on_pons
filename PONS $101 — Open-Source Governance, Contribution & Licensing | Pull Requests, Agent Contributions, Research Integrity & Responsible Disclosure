@@ -1,0 +1,1627 @@
+# PONS $101 — OPEN-SOURCE GOVERNANCE, CONTRIBUTION & LICENSING
+
+PONS $101 is designed to be inspected, challenged, extended, reproduced, and improved.
+
+The repository is not intended to become a black-box token launcher.
+
+It is intended to become an auditable research laboratory in which:
+
+HUMANS
+
+AI AGENTS
+
+DEVELOPERS
+
+RESEARCHERS
+
+AUDITORS
+
+STUDENTS
+
+PROTOCOL ENGINEERS
+
+and
+
+INDEPENDENT REVIEWERS
+
+can understand what the system does, why it does it, which assumptions it makes, and what evidence supports its conclusions.
+
+The contribution doctrine is:
+
+IMPROVE THE SYSTEM.
+
+DO NOT WEAKEN THE EVIDENCE.
+
+AUTOMATE THE REPEATABLE.
+
+DO NOT AUTOMATE AWAY HUMAN AUTHORITY.
+
+==================================================
+CONTRIBUTION OBJECTIVE
+==================================================
+
+Contributions are encouraged when they improve:
+
+• reproducibility
+• security
+• documentation
+• event indexing
+• contract adapters
+• experiment schemas
+• fee interpretation
+• behavioral research
+• mixed-methods analysis
+• agent orchestration
+• testing
+• dashboards
+• Discord integration
+• provenance
+• public-good accounting
+• external review
+• educational usefulness
+
+A contribution should not be judged only by:
+
+HOW MUCH CODE DID IT ADD?
+
+The stronger question is:
+
+DID IT MAKE THE EXPERIMENT MORE RELIABLE, MORE TRANSPARENT, OR MORE REPRODUCIBLE?
+
+==================================================
+HUMAN AUTHORITY
+==================================================
+
+The human operator remains the final signer.
+
+An agent may:
+
+recommend
+
+prepare
+
+simulate
+
+hash
+
+index
+
+compare
+
+test
+
+document
+
+review
+
+or
+
+analyze.
+
+An agent may not represent its recommendation as human approval.
+
+Repository access does not create wallet authority.
+
+Pull-request approval does not create wallet authority.
+
+Administrator access does not create treasury authority.
+
+==================================================
+AUTHORIZED AGENT CONTRIBUTIONS
+==================================================
+
+Authorized agents, including @hashwarlock-operated agents, may contribute:
+
+experiment-manifest tooling
+
+token metadata proposals
+
+read-only Robinhood Chain integrations
+
+Pons-compatible read methods
+
+launch eligibility checks
+
+fee configuration checks
+
+pair validation
+
+economic preflight
+
+unsigned launch calldata
+
+event indexers
+
+fee calculations
+
+behavioral feature extraction
+
+research APIs
+
+Discord automation
+
+tests
+
+documentation
+
+AAR tooling
+
+research datasets
+
+external-review packages
+
+reproducibility tooling
+
+==================================================
+PROHIBITED CONTRIBUTIONS
+==================================================
+
+Do not merge functionality whose purpose is to:
+
+• obtain or store human seed phrases
+• obtain or store private keys
+• autonomously sign production launches
+• autonomously move treasury assets
+• create fake trading volume
+• wash trade
+• spoof market interest
+• manufacture buyers
+• manufacture sellers
+• coordinate undisclosed pumps
+• target a known wallet or trader
+• bait identified market participants
+• conceal creator taxes
+• conceal fee recipients
+• conceal pairing assets
+• conceal material token economics
+• fabricate bot classifications
+• suppress negative findings
+• alter historical evidence to improve an experiment result
+
+==================================================
+MAINNET CONTRIBUTION RULE
+==================================================
+
+Mainnet launch tooling terminates at:
+
+UNSIGNED PAYLOAD GENERATION.
+
+The final sequence remains:
+
+AGENT PREPARATION
+
+↓
+
+HUMAN-READABLE TRANSACTION REVIEW
+
+↓
+
+HUMAN WALLET
+
+↓
+
+HUMAN SIGNATURE
+
+↓
+
+PUBLIC NETWORK
+
+A pull request introducing an autonomous production-signing path must be treated as a security-sensitive architectural change and rejected by default.
+
+==================================================
+CONTRIBUTION WORKFLOW
+==================================================
+
+STEP 1
+
+CREATE AN ISSUE OR RESEARCH TASK.
+
+State:
+
+problem
+
+proposed change
+
+research relevance
+
+security impact
+
+affected schemas
+
+affected APIs
+
+affected experiments
+
+STEP 2
+
+CREATE A BRANCH.
+
+Recommended branch classes:
+
+feature/
+
+research/
+
+experiment/
+
+security/
+
+docs/
+
+fix/
+
+refactor/
+
+STEP 3
+
+IMPLEMENT THE CHANGE.
+
+STEP 4
+
+ADD OR UPDATE TESTS.
+
+STEP 5
+
+UPDATE DOCUMENTATION.
+
+STEP 6
+
+IDENTIFY METHODOLOGY IMPACT.
+
+STEP 7
+
+RUN SECURITY AND SCHEMA CHECKS.
+
+STEP 8
+
+OPEN A PULL REQUEST.
+
+STEP 9
+
+HUMAN REVIEW.
+
+STEP 10
+
+MERGE ONLY AFTER REQUIRED GATES PASS.
+
+==================================================
+PULL REQUEST TEMPLATE
+==================================================
+
+TITLE:
+
+EXPERIMENT / ISSUE:
+
+CHANGE TYPE:
+
+[ ] FEATURE
+
+[ ] BUG FIX
+
+[ ] RESEARCH METHOD
+
+[ ] SECURITY
+
+[ ] DOCUMENTATION
+
+[ ] CONTRACT ADAPTER
+
+[ ] API
+
+[ ] DATA SCHEMA
+
+[ ] AGENT
+
+[ ] TREASURY PROVENANCE
+
+PROBLEM:
+
+PROPOSED CHANGE:
+
+WHY THIS MATTERS:
+
+AFFECTED COMPONENTS:
+
+AFFECTED EXPERIMENTS:
+
+RESEARCH-METHOD IMPACT:
+
+SECURITY IMPACT:
+
+DATA-SCHEMA IMPACT:
+
+API IMPACT:
+
+NEW FAILURE MODES:
+
+TESTS ADDED:
+
+REPRODUCTION STEPS:
+
+HUMAN RELEASE GATE PRESERVED:
+
+[ ] YES
+
+MAINNET AUTONOMOUS BROADCAST INTRODUCED:
+
+[ ] NO
+
+TREASURY AUTONOMY INTRODUCED:
+
+[ ] NO
+
+SECRETS ADDED:
+
+[ ] NO
+
+NEGATIVE FINDINGS PRESERVED:
+
+[ ] YES
+
+DOCUMENTATION UPDATED:
+
+[ ] YES
+
+==================================================
+REQUIRED REVIEW FOR SENSITIVE CHANGES
+==================================================
+
+The following changes require heightened review:
+
+launch logic
+
+fee logic
+
+creator-tax interpretation
+
+factory addresses
+
+ABI semantics
+
+pair validation
+
+agent permissions
+
+human-release logic
+
+treasury routing
+
+behavioral classification
+
+evidence schemas
+
+research-methodology changes
+
+authentication
+
+authorization
+
+secret handling
+
+mainnet configuration
+
+==================================================
+THREAT MODEL REQUIREMENT
+==================================================
+
+A sensitive pull request should describe:
+
+WHAT NEW CAPABILITY IS INTRODUCED?
+
+WHO CAN USE IT?
+
+WHAT CAN GO WRONG?
+
+WHAT ASSETS OR EVIDENCE COULD BE AFFECTED?
+
+CAN AN AGENT ESCALATE AUTHORITY?
+
+CAN A USER BYPASS THE HUMAN GATE?
+
+CAN THE CHANGE ALTER TREASURY ROUTING?
+
+CAN THE CHANGE CORRUPT RAW EVIDENCE?
+
+CAN THE CHANGE MISCLASSIFY A WALLET?
+
+CAN THE CHANGE FAIL CLOSED?
+
+==================================================
+RESEARCH-METHOD CHANGE
+==================================================
+
+If a contribution changes:
+
+classification weights
+
+observation windows
+
+fee equations
+
+bot-like heuristics
+
+data-cleaning rules
+
+wallet recurrence calculations
+
+hypothesis evaluation
+
+or another analytical method
+
+the pull request must state:
+
+OLD METHOD
+
+NEW METHOD
+
+WHY IT CHANGED
+
+WHICH EXPERIMENTS ARE AFFECTED
+
+WHETHER PRIOR RESULTS CHANGE
+
+WHETHER PRIOR RESULTS WILL BE RECALCULATED
+
+NEW METHOD VERSION
+
+Do not silently rewrite old conclusions.
+
+==================================================
+VERSIONED INTERPRETATION
+==================================================
+
+Example:
+
+ROB CLASSIFICATION v1
+
+may conclude:
+
+OPENING_WINDOW_PARTICIPANT
+
+A later:
+
+ROB CLASSIFICATION v2
+
+may conclude:
+
+AUTOMATED_CANDIDATE
+
+Both results should remain recoverable.
+
+The historical record should show:
+
+WHAT THE SYSTEM CONCLUDED AT THE TIME
+
+and
+
+WHAT THE UPDATED METHOD CONCLUDES NOW.
+
+==================================================
+CONTRIBUTOR EVIDENCE STANDARD
+==================================================
+
+A technical claim should resolve to evidence.
+
+Examples:
+
+“Factory address changed.”
+
+Provide:
+
+verified address
+
+source
+
+retrieval time
+
+code or contract evidence
+
+“Fee interpretation is incorrect.”
+
+Provide:
+
+event definition
+
+ABI
+
+documentation
+
+transaction example
+
+calculation
+
+“ROB classification generates false positives.”
+
+Provide:
+
+fixture
+
+test case
+
+expected result
+
+observed result
+
+Do not resolve disagreements through assertion alone.
+
+==================================================
+TEST REQUIREMENT
+==================================================
+
+Every material software change should include at least one of:
+
+UNIT TEST
+
+INTEGRATION TEST
+
+REGRESSION TEST
+
+FIXTURE
+
+REPRODUCIBLE EXAMPLE
+
+RESEARCH REPLICATION
+
+Security fixes should include a test demonstrating that the failure no longer occurs where practical.
+
+==================================================
+MINIMUM CI GATES
+==================================================
+
+Before merge:
+
+[ ] build succeeds
+
+[ ] lint succeeds
+
+[ ] formatting succeeds
+
+[ ] unit tests succeed
+
+[ ] schema validation succeeds
+
+[ ] secret scan succeeds
+
+[ ] dependency review completed
+
+[ ] human boundary test succeeds
+
+[ ] affected fixtures succeed
+
+==================================================
+HUMAN BOUNDARY REGRESSION TEST
+==================================================
+
+Every release should verify:
+
+AGENT REQUESTS MAINNET SIGNATURE.
+
+EXPECTED:
+
+DENIED OR WAITING_FOR_HUMAN.
+
+AGENT REQUESTS TREASURY TRANSFER.
+
+EXPECTED:
+
+DENIED OR WAITING_FOR_HUMAN.
+
+AGENT REQUESTS PRIVATE KEY.
+
+EXPECTED:
+
+DENIED.
+
+==================================================
+EVIDENCE-INTEGRITY REGRESSION TEST
+==================================================
+
+Modify historical raw evidence.
+
+Expected:
+
+integrity verification fails
+
+or
+
+a correction record is required.
+
+Historical evidence should not be silently editable as ordinary application state.
+
+==================================================
+CODE REVIEW QUESTIONS
+==================================================
+
+Every reviewer should ask:
+
+Does this change do what it claims?
+
+Does it introduce unnecessary financial authority?
+
+Does it preserve evidence provenance?
+
+Does it fail closed?
+
+Does it create new privacy risk?
+
+Does it introduce a hidden fee path?
+
+Does it make an inference look like a fact?
+
+Does it change research methodology?
+
+Are prior experiments affected?
+
+Can the result be tested?
+
+Can the result be reproduced?
+
+==================================================
+AGENT CODE REVIEW
+==================================================
+
+AI agents may perform preliminary review for:
+
+style
+
+tests
+
+schema compatibility
+
+documentation
+
+obvious security issues
+
+permission changes
+
+methodology changes
+
+But an agent review is not automatically sufficient for:
+
+wallet architecture
+
+treasury architecture
+
+mainnet authority
+
+material legal conclusions
+
+or
+
+final release approval.
+
+==================================================
+OWNER TEST
+==================================================
+
+Every consequential pull request should answer:
+
+WHO OWNS THE FINAL DECISION?
+
+Examples:
+
+SOFTWARE CHANGE
+
+Maintainer.
+
+RESEARCH METHODOLOGY
+
+Human research owner.
+
+SECURITY EXCEPTION
+
+Human security owner.
+
+LEGAL INTERPRETATION
+
+Qualified human reviewer where needed.
+
+MAINNET EXECUTION
+
+Human signer.
+
+TREASURY DISBURSEMENT
+
+Authorized human treasury governance.
+
+==================================================
+SECURITY REPORTING
+==================================================
+
+Security vulnerabilities should be reported privately where disclosure before remediation could create harm.
+
+Examples:
+
+private-key exposure
+
+authentication bypass
+
+authorization bypass
+
+treasury-routing flaw
+
+payload manipulation
+
+agent privilege escalation
+
+secret leakage
+
+arbitrary contract-call injection
+
+research-data corruption
+
+Do not publish a working exploit against active third-party infrastructure merely to prove a point.
+
+==================================================
+THIRD-PARTY VULNERABILITIES
+==================================================
+
+If a vulnerability appears to exist in:
+
+Pons
+
+Robinhood Chain infrastructure
+
+an RPC provider
+
+a wallet
+
+or another third-party system
+
+follow the relevant project's current responsible-disclosure process where available.
+
+PONS $101 should not become an exploit-distribution channel.
+
+==================================================
+SECURITY ADVISORY RECORD
+==================================================
+
+ADVISORY ID:
+
+DATE:
+
+REPORTER:
+
+AFFECTED COMPONENT:
+
+SEVERITY:
+
+DESCRIPTION:
+
+AFFECTED VERSIONS:
+
+EXPLOITABILITY:
+
+ASSETS AT RISK:
+
+EVIDENCE AT RISK:
+
+TEMPORARY MITIGATION:
+
+PERMANENT FIX:
+
+FIX VERSION:
+
+DISCLOSURE STATUS:
+
+==================================================
+CONTENT LICENSE
+==================================================
+
+Unless otherwise noted, original educational and research text produced for PONS $101 may be distributed under:
+
+CREATIVE COMMONS ATTRIBUTION 4.0 INTERNATIONAL
+
+CC BY 4.0
+
+This supports:
+
+sharing
+
+teaching
+
+research
+
+adaptation
+
+translation
+
+and
+
+derivative educational work
+
+subject to attribution requirements.
+
+==================================================
+SOFTWARE LICENSE
+==================================================
+
+The software license should be explicitly selected and included before broad public software distribution.
+
+Recommended open-source options may include:
+
+APACHE LICENSE 2.0
+
+or
+
+MIT LICENSE
+
+depending the human owner's final licensing decision.
+
+Do not assume the educational-content license automatically governs source code.
+
+CONTENT LICENSE
+
+and
+
+SOFTWARE LICENSE
+
+should remain distinct.
+
+==================================================
+THIRD-PARTY MATERIAL
+==================================================
+
+The PONS $101 license does not automatically relicense:
+
+Robinhood marks
+
+Pons marks
+
+company logos
+
+screenshots
+
+supplied artwork
+
+third-party documentation
+
+third-party code
+
+external datasets
+
+third-party photographs
+
+or other protected material.
+
+Those remain subject to their respective rights and licenses.
+
+==================================================
+BRAND RULE
+==================================================
+
+Use of:
+
+Robinhood
+
+Robinhood Chain
+
+Pons
+
+SpaceX
+
+NVIDIA
+
+Dell
+
+Coinbase
+
+Tesla
+
+Ethereum
+
+Bitcoin
+
+or another third-party name
+
+does not establish ownership of the mark or official affiliation.
+
+Repository language should accurately distinguish:
+
+PROTOCOL USED
+
+RESEARCH SUBJECT
+
+REFERENCE ASSET
+
+EDUCATIONAL EXAMPLE
+
+from:
+
+SPONSOR
+
+PARTNER
+
+ENDORSEMENT
+
+==================================================
+CONTRIBUTOR ATTRIBUTION
+==================================================
+
+Material contributions may preserve:
+
+GitHub identity
+
+human contributor name where voluntarily supplied
+
+agent ID
+
+agent operator
+
+software/model version
+
+commit SHA
+
+pull-request number
+
+experiment ID
+
+This permits future reconstruction of:
+
+WHO CONTRIBUTED WHAT?
+
+==================================================
+AI CONTRIBUTION PROVENANCE
+==================================================
+
+Where AI materially generates or modifies code or research methodology, record where practical:
+
+agent_id
+
+operator
+
+model or software
+
+version
+
+task
+
+human reviewer
+
+commit SHA
+
+This is especially important for:
+
+contract integrations
+
+fee logic
+
+classification methods
+
+security controls
+
+research interpretation
+
+==================================================
+NO FALSE AUTHORSHIP
+==================================================
+
+Do not represent:
+
+an AI-generated analysis
+
+as
+
+a human-authored conclusion
+
+without disclosure where authorship provenance is material.
+
+Likewise, do not represent:
+
+a human decision
+
+as
+
+an autonomous-agent decision.
+
+==================================================
+RESEARCH CONTRIBUTIONS
+==================================================
+
+Researchers may contribute:
+
+new hypotheses
+
+new observation windows
+
+replications
+
+alternative classification models
+
+statistical analyses
+
+qualitative coding frameworks
+
+mixed-methods integration
+
+protocol comparisons
+
+failure analyses
+
+negative results
+
+review comments
+
+==================================================
+REPLICATION CONTRIBUTIONS
+==================================================
+
+A replication contribution should identify:
+
+ORIGINAL EXPERIMENT
+
+REPLICATION ID
+
+VARIABLES HELD CONSTANT
+
+VARIABLES CHANGED
+
+SOFTWARE VERSION
+
+METHOD VERSION
+
+NETWORK
+
+PROTOCOL VERSION
+
+RESULT
+
+DIFFERENCES
+
+LIMITATIONS
+
+==================================================
+NEGATIVE RESULT CONTRIBUTIONS
+==================================================
+
+A contribution documenting:
+
+NO BOT-LIKE ACTIVITY
+
+NO CREATOR FEES
+
+NO TRADING
+
+FAILED LAUNCH
+
+FAILED HYPOTHESIS
+
+or
+
+TECHNICAL INVALIDATION
+
+is still valuable.
+
+Do not reward only positive outcomes.
+
+==================================================
+DATA CONTRIBUTIONS
+==================================================
+
+Contributed data must identify:
+
+source
+
+collection method
+
+network
+
+experiment IDs
+
+schema version
+
+processing method
+
+license
+
+known limitations
+
+hash
+
+Do not merge unexplained spreadsheets or screenshots as canonical datasets.
+
+==================================================
+PRIVACY RULE
+==================================================
+
+Public blockchain addresses may be studied as public pseudonymous identifiers.
+
+Do not unnecessarily enrich them with:
+
+private personal information
+
+home addresses
+
+phone numbers
+
+email addresses
+
+family information
+
+or unrelated identity data.
+
+The research objective is behavioral analysis, not deanonymization.
+
+==================================================
+COMMUNITY CONTRIBUTION RULE
+==================================================
+
+Community members may propose experiments.
+
+A proposal does not automatically become a live launch.
+
+The proposal enters:
+
+IDEA
+
+↓
+
+RESEARCH QUESTION
+
+↓
+
+HYPOTHESIS
+
+↓
+
+REVIEW
+
+↓
+
+REGISTERED EXPERIMENT
+
+↓
+
+HUMAN RELEASE PROCESS
+
+==================================================
+EXPERIMENT PROPOSAL TEMPLATE
+==================================================
+
+PROPOSAL ID:
+
+PROPOSER:
+
+RESEARCH QUESTION:
+
+WHY IT MATTERS:
+
+HYPOTHESIS:
+
+VARIABLE TO CHANGE:
+
+CONTROL / COMPARISON:
+
+EXPECTED OBSERVATION WINDOW:
+
+DATA REQUIRED:
+
+KNOWN RISKS:
+
+SECURITY IMPACT:
+
+ETHICAL CONCERNS:
+
+RECOMMENDED NEXT STEP:
+
+==================================================
+CODE OF RESEARCH CONDUCT
+==================================================
+
+CONTRIBUTORS SHOULD:
+
+challenge assumptions
+
+preserve evidence
+
+state uncertainty
+
+document failures
+
+separate observation from inference
+
+respect human authority
+
+protect credentials
+
+disclose methodology changes
+
+avoid manipulation
+
+avoid unnecessary personal-data collection
+
+welcome replication
+
+accept negative results
+
+==================================================
+CONTRIBUTORS SHOULD NOT:
+==================================================
+
+fabricate results
+
+delete inconvenient evidence
+
+misrepresent affiliations
+
+promise token returns
+
+bait traders
+
+target wallets
+
+coordinate fake demand
+
+hide fee mechanics
+
+publish secrets
+
+bypass release gates
+
+mislabel estimated funds as received funds
+
+claim public-good impact before proof exists
+
+==================================================
+REPOSITORY GOVERNANCE
+==================================================
+
+Recommended governance layers:
+
+MAINTAINERS
+
+Software and repository administration.
+
+RESEARCH OWNER
+
+Methodology and experiment-design authority.
+
+SECURITY REVIEW
+
+Sensitive architecture and incident review.
+
+402 REVIEW
+
+Compliance, release logic, and audit readiness.
+
+TREASURY GOVERNANCE
+
+Public-good custody and disbursement.
+
+EXTERNAL REVIEW
+
+Independent critique.
+
+HUMAN SIGNER
+
+Final live transaction authority.
+
+==================================================
+DECISION LOG
+==================================================
+
+Material repository decisions should record:
+
+decision_id
+
+date
+
+question
+
+options considered
+
+model recommendations
+
+human decision
+
+decision owner
+
+reason
+
+affected components
+
+affected experiments
+
+follow-up action
+
+==================================================
+REQUEST FOR COMMENT
+==================================================
+
+Major architecture changes may use an RFC process.
+
+RFC TEMPLATE
+
+RFC ID:
+
+TITLE:
+
+AUTHOR:
+
+STATUS:
+
+PROBLEM:
+
+PROPOSED ARCHITECTURE:
+
+ALTERNATIVES:
+
+SECURITY:
+
+RESEARCH IMPACT:
+
+AGENT IMPACT:
+
+HUMAN-GOVERNANCE IMPACT:
+
+TREASURY IMPACT:
+
+MIGRATION:
+
+OPEN QUESTIONS:
+
+FINAL HUMAN DECISION:
+
+==================================================
+RFC STATUS
+==================================================
+
+DRAFT
+
+OPEN_FOR_COMMENT
+
+ACCEPTED
+
+REJECTED
+
+SUPERSEDED
+
+IMPLEMENTED
+
+==================================================
+RESEARCH TRANSPARENCY
+==================================================
+
+The repository should make it possible to answer:
+
+WHAT DID THE SOFTWARE KNOW?
+
+WHAT DID THE AGENT KNOW?
+
+WHAT DID THE HUMAN KNOW?
+
+WHEN DID THEY KNOW IT?
+
+WHAT ACTION FOLLOWED?
+
+WHAT DID THE CHAIN RECORD?
+
+==================================================
+PUBLIC ROADMAP GOVERNANCE
+==================================================
+
+Roadmap items should be classified as:
+
+PLANNED
+
+IN_PROGRESS
+
+BLOCKED
+
+EXPERIMENTAL
+
+COMPLETE
+
+DEFERRED
+
+REJECTED
+
+Do not present:
+
+PLANNED
+
+as:
+
+COMPLETE.
+
+==================================================
+DEFINITION OF ACCEPTABLE CONTRIBUTION
+==================================================
+
+A contribution is ready to merge when:
+
+1. Its purpose is clear.
+
+2. Its authority boundary is clear.
+
+3. Tests exist where appropriate.
+
+4. Documentation is updated.
+
+5. Methodology impact is disclosed.
+
+6. Schema impact is disclosed.
+
+7. Security impact is disclosed.
+
+8. Human release remains intact.
+
+9. Evidence provenance remains intact.
+
+10. The result can be reproduced.
+
+==================================================
+FIRST CONTRIBUTOR INTAKE
+==================================================
+
+Before changing the system, a new contributor or agent should read:
+
+PONS $101 FOUNDATION
+
+DISCORD CONTROL TOWER
+
+TOKEN CREATION FACTORY
+
+ROB RESEARCH PROTOCOL
+
+SECURITY + 402
+
+DEPLOYMENT ARCHITECTURE
+
+MASTER AGENT SPECIFICATION
+
+GENESIS RUNBOOK
+
+CANONICAL API + DATA CONTRACT
+
+Then report:
+
+CONTRIBUTOR:
+
+TYPE:
+
+HUMAN / AGENT
+
+OPERATOR:
+
+PRIMARY SKILL:
+
+AREA OF CONTRIBUTION:
+
+SECURITY BOUNDARY UNDERSTOOD:
+
+HUMAN RELEASE BOUNDARY UNDERSTOOD:
+
+RESEARCH EVIDENCE RULE UNDERSTOOD:
+
+FIRST PROPOSED ISSUE:
+
+==================================================
+FIRST @HASHWARLOCK CONTRIBUTION
+==================================================
+
+Recommended first engineering target:
+
+BOOT THE READ-ONLY LAB.
+
+Before any live launch functionality, demonstrate:
+
+1. repository builds
+
+2. database starts
+
+3. RPC connection works
+
+4. chain ID verifies
+
+5. current factory configuration can be loaded
+
+6. historical launch events can be indexed
+
+7. historical trade events can be reconstructed
+
+8. ROB can generate a research record
+
+9. API can return the record
+
+10. no signing key exists in the runtime
+
+This proves the instrumentation before using it for Genesis.
+
+==================================================
+OPEN-SOURCE RESEARCH PRINCIPLE
+==================================================
+
+THE BEST RESPONSE TO A CHALLENGE IS NOT:
+
+TRUST US.
+
+IT IS:
+
+REPRODUCE IT.
+
+If a reviewer believes:
+
+our fee calculation is wrong,
+
+recalculate it.
+
+If a reviewer believes:
+
+our bot-like classification is too aggressive,
+
+run another method.
+
+If a reviewer believes:
+
+our architecture is unsafe,
+
+show the failure mode.
+
+If a reviewer believes:
+
+our hypothesis is unsupported,
+
+test it again.
+
+==================================================
+FINAL CONTRIBUTION DOCTRINE
+==================================================
+
+CODE CAN CHANGE.
+
+METHODS CAN CHANGE.
+
+MODELS CAN CHANGE.
+
+PROTOCOLS CAN CHANGE.
+
+THE EVIDENCE TRAIL MUST SURVIVE THE CHANGE.
+
+PRESERVE THE OLD VERSION.
+
+DOCUMENT THE NEW VERSION.
+
+EXPLAIN THE DIFFERENCE.
+
+TEST THE CHANGE.
+
+LET THE HUMAN OWN THE CONSEQUENTIAL DECISION.
+
+==================================================
+GENESIS OPEN-SOURCE STATEMENT
+==================================================
+
+PONS $101 IS BUILT TO BE QUESTIONED.
+
+ROB IS BUILT TO BE CHECKED.
+
+@HASHWARLOCK AGENTS ARE BUILT TO BE AUDITED.
+
+ENOCH ONE IS BUILT TO ROUTE, NOT TO REPLACE HUMAN AUTHORITY.
+
+402 IS BUILT TO PRESERVE THE RELEASE LOGIC.
+
+THE TREASURY IS BUILT TO REQUIRE STEWARDSHIP.
+
+GITHUB IS BUILT TO PRESERVE THE HISTORY.
+
+THE CHAIN IS BUILT TO PRESERVE THE PUBLIC EVENT.
+
+THE REVIEWER IS INVITED TO REPRODUCE THE RESULT.
+
+THE HUMAN REMAINS RESPONSIBLE FOR THE FINAL IRREVERSIBLE ACTION.
+
+PONS $101
+
+BUILD OPENLY.
+
+TEST RIGOROUSLY.
+
+PRESERVE PROVENANCE.
+
+WELCOME REPLICATION.
+
+WHAT DID WE KNOW BEFORE THE OUTCOME?
+
+IN JESUS' NAME.
