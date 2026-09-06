@@ -1,0 +1,1727 @@
+# PONS $101 — ROBINHOOD CHAIN RESEARCH SHARE PACKAGE
+
+This section defines how completed PONS $101 experiments are converted from internal laboratory work into an external technical, educational, research, compliance, and public-good review package.
+
+The intended audience may include:
+
+• Robinhood
+• Robinhood Chain ecosystem participants
+• Pons developers
+• protocol researchers
+• smart-contract engineers
+• AI-agent developers
+• auditors
+• educators
+• compliance professionals
+• accountants
+• academic researchers
+• independent replicators
+• community reviewers
+
+The objective is not to present the experiment as a partnership or endorsement.
+
+The objective is to present a reproducible record.
+
+The governing question remains:
+
+WHAT DID WE KNOW BEFORE THE OUTCOME?
+
+==================================================
+EXTERNAL REVIEW PRINCIPLE
+==================================================
+
+SHARE THE EVIDENCE.
+
+DO NOT OVERSALE THE CONCLUSION.
+
+A review package should clearly distinguish:
+
+WHAT WE PLANNED
+
+WHAT WE EXECUTED
+
+WHAT THE CHAIN RECORDED
+
+WHAT ROB CALCULATED
+
+WHAT ROB INFERRED
+
+WHAT THE HUMAN CONCLUDED
+
+WHAT REMAINS UNKNOWN
+
+==================================================
+INDEPENDENCE STATEMENT
+==================================================
+
+PONS $101 — ROB Lab is an independent research and education project unless a formal written agreement states otherwise.
+
+References to:
+
+Robinhood
+
+Robinhood Chain
+
+Pons
+
+or other companies, protocols, assets, or ecosystems
+
+identify:
+
+technologies used
+
+research subjects
+
+reference assets
+
+protocol infrastructure
+
+case studies
+
+or potential recipients of research findings.
+
+They do not automatically establish:
+
+sponsorship
+
+partnership
+
+endorsement
+
+employment
+
+agency
+
+investment relationship
+
+or official collaboration.
+
+==================================================
+ROB IDENTITY
+==================================================
+
+ROB means:
+
+RESEARCH OBSERVER FOR BOT-LIKE ACTIVITY.
+
+ROB is a project research-agent identity.
+
+ROB is not represented as an official Robinhood agent, Robinhood employee, Robinhood product, or Robinhood service.
+
+The word ROB provides a memorable interface for the experiment.
+
+Its formal responsibility is:
+
+observe
+
+measure
+
+classify conservatively
+
+preserve
+
+report
+
+==================================================
+WHY SHARE THE EXPERIMENT
+==================================================
+
+The PONS $101 research package may be useful because it combines:
+
+token-launch preparation
+
+human release governance
+
+agent orchestration
+
+public blockchain telemetry
+
+opening-window analysis
+
+creator-fee accounting
+
+behavioral classification
+
+mixed-methods research
+
+security controls
+
+provenance
+
+public-good accounting
+
+and
+
+reproducibility
+
+inside one documented workflow.
+
+The goal is to make the experiment inspectable by someone who did not participate in its creation.
+
+==================================================
+REVIEW PACKAGE — EXECUTIVE COVER
+==================================================
+
+PONS $101 — ROB LAB
+
+EXPERIMENT ID:
+
+DATE:
+
+NETWORK:
+
+PROTOCOL:
+
+TOKEN:
+
+REFERENCE / PAIR ASSET:
+
+HUMAN OWNER:
+
+ROB VERSION:
+
+SOFTWARE VERSION:
+
+DATASET VERSION:
+
+RESEARCH CONDITION:
+
+HYPOTHESIS:
+
+HYPOTHESIS RESULT:
+
+PRIMARY FINDING:
+
+IMPORTANT LIMITATION:
+
+REPRODUCIBILITY STATUS:
+
+PUBLIC-GOOD STATUS:
+
+==================================================
+EXECUTIVE ABSTRACT
+==================================================
+
+Recommended format:
+
+PONS $101 conducted a registered token-launch experiment designed to observe public on-chain behavior following a human-authorized deployment.
+
+The experiment recorded its hypothesis, configuration, announcement condition, network, protocol interface, unsigned payload, human approval, transaction result, public event data, early trading behavior, protocol-defined fees, and post-launch interpretation.
+
+ROB — Research Observer for Bot-like Activity — reconstructed the launch and subsequent transactions using public blockchain evidence.
+
+Behavioral classifications were intentionally separated from identity claims.
+
+The experiment retained negative and inconclusive findings.
+
+Any creator-fee entitlement and any actual treasury receipt were accounted for separately.
+
+The complete package includes sufficient metadata, transaction references, schemas, code versions, hashes, and methodology for independent technical review.
+
+==================================================
+RESEARCH QUESTION
+==================================================
+
+PRIMARY QUESTION
+
+Can a newly launched experimental token receive observable trading activity without advance public promotion?
+
+SECONDARY QUESTION
+
+When such activity occurs, can early launch behavior and protocol-defined fee mechanics be reconstructed accurately enough to support reproducible research?
+
+PUBLIC-GOOD QUESTION
+
+Can legitimate creator-fee receipts be transparently distinguished from estimated protocol activity and eventually routed through human-controlled governance toward documented public-good purposes?
+
+==================================================
+EXPERIMENT CONDITION
+==================================================
+
+Example:
+
+ANNOUNCEMENT CONDITION:
+
+NO_PRE_ANNOUNCEMENT
+
+Meaning:
+
+the research team did not intentionally publish the token address publicly before the registered launch.
+
+This does not mean:
+
+the token was invisible
+
+the chain was private
+
+the protocol concealed it
+
+or
+
+the project attempted to deceive participants.
+
+Once public on-chain activity occurs, the experiment studies what happens.
+
+==================================================
+METHOD SUMMARY
+==================================================
+
+1. Research question registered.
+
+2. Hypothesis written.
+
+3. Token metadata frozen.
+
+4. Network and factory configuration recorded.
+
+5. Pair/reference asset recorded.
+
+6. Creator configuration recorded.
+
+7. Experiment manifest hashed.
+
+8. Unsigned transaction prepared.
+
+9. Human reviewed the transaction.
+
+10. Human signed or rejected.
+
+11. Broadcast transaction preserved.
+
+12. Launch event reconstructed.
+
+13. ROB indexed opening-window activity.
+
+14. Fees normalized.
+
+15. Wallet behavior classified conservatively.
+
+16. Human observations preserved separately.
+
+17. AAR completed.
+
+18. Reproducibility package generated.
+
+==================================================
+WHAT ROB OBSERVES
+==================================================
+
+ROB may report:
+
+launch block
+
+launch timestamp
+
+launch transaction
+
+token contract
+
+curve contract
+
+deployer
+
+pair asset
+
+first trade
+
+first buy
+
+first sell
+
+seconds to first trade
+
+blocks to first trade
+
+opening-window activity
+
+unique wallets
+
+repeated wallets
+
+trade amounts
+
+reported fees
+
+ordinary fee components
+
+creator-related fee components
+
+inferred opening-window component where supported
+
+creator entitlement
+
+confirmed treasury receipts
+
+classification confidence
+
+==================================================
+WHAT ROB DOES NOT CLAIM AUTOMATICALLY
+==================================================
+
+ROB does not automatically claim:
+
+that every fast wallet is a bot
+
+that every early trade is malicious
+
+that every automated trader is controlled by the same entity
+
+that every observed fee reached the creator
+
+that creator entitlement equals treasury receipt
+
+that treasury receipt equals charitable impact
+
+that an external company endorsed the experiment
+
+==================================================
+CHAIN EVIDENCE SUMMARY
+==================================================
+
+For each experiment provide:
+
+CHAIN ID:
+
+FACTORY:
+
+FACTORY VERSION:
+
+LAUNCH TRANSACTION:
+
+LAUNCH BLOCK:
+
+TOKEN ADDRESS:
+
+CURVE ADDRESS:
+
+PAIR ASSET:
+
+FIRST TRADE TRANSACTION:
+
+FIRST TRADE BLOCK:
+
+FIRST TRADE LATENCY:
+
+OPENING-WINDOW TRADE COUNT:
+
+UNIQUE OPENING-WINDOW WALLETS:
+
+TOTAL OBSERVATIONS:
+
+==================================================
+FEE EVIDENCE SUMMARY
+==================================================
+
+Report independently:
+
+ORDINARY PROTOCOL FEES OBSERVED:
+
+CREATOR TAX OBSERVED:
+
+INFERRED OPENING-WINDOW FEE:
+
+OTHER FEE COMPONENTS:
+
+CREATOR ENTITLEMENT:
+
+CLAIMED CREATOR FEE:
+
+CONFIRMED CREATOR / TREASURY RECEIPT:
+
+Never publish one aggregate number as:
+
+BOT TAX REVENUE
+
+unless the report also explains exactly which fee categories are included.
+
+Preferred technical language:
+
+PROTOCOL-DEFINED OPENING-WINDOW FEE OBSERVATION
+
+or
+
+CREATOR-FEE RECEIPT ASSOCIATED WITH THE EXPERIMENT.
+
+==================================================
+BOT-LIKE ACTIVITY SUMMARY
+==================================================
+
+Report:
+
+OPENING-WINDOW PARTICIPANTS:
+
+AUTOMATED-CANDIDATES:
+
+REPEATED AUTOMATED-CANDIDATES:
+
+AUTOMATION CONFIRMED:
+
+CLASSIFICATION VERSION:
+
+CONFIDENCE METHOD:
+
+Do not publicly convert:
+
+AUTOMATED-CANDIDATE
+
+into
+
+KNOWN BOT
+
+without additional evidence.
+
+==================================================
+REPEATED BEHAVIOR REPORT
+==================================================
+
+When the same wallet appears across multiple experiments:
+
+WALLET:
+
+EXPERIMENT COUNT:
+
+FIRST-BLOCK COUNT:
+
+OPENING-WINDOW COUNT:
+
+MEDIAN LATENCY:
+
+COMMON TRADE-SIZE PATTERN:
+
+COMMON ENTRY PATTERN:
+
+COMMON EXIT PATTERN:
+
+AUTOMATION SCORE:
+
+CLASSIFICATION:
+
+CONFIDENCE:
+
+LIMITATION:
+
+==================================================
+MIXED-METHODS SUMMARY
+==================================================
+
+QUANTITATIVE EVIDENCE
+
+What did the chain show?
+
+QUALITATIVE EVIDENCE
+
+What did the human and agents record?
+
+INTEGRATED INTERPRETATION
+
+Where did both streams agree?
+
+Where did they disagree?
+
+Where did evidence remain incomplete?
+
+==================================================
+HUMAN DECISION RECORD
+==================================================
+
+The review package should show:
+
+HUMAN SIGNER:
+
+EXPERIMENT ID:
+
+DECISION:
+
+APPROVED / REJECTED / RETURNED
+
+DECISION TIME:
+
+MANIFEST HASH:
+
+PAYLOAD HASH:
+
+MATERIAL WARNINGS:
+
+The purpose is to demonstrate:
+
+AGENT PREPARATION
+
+was separate from
+
+HUMAN AUTHORITY.
+
+==================================================
+AGENT PARTICIPATION RECORD
+==================================================
+
+List agents participating in the experiment.
+
+Example:
+
+AGENT:
+
+@hashwarlock deployment agent
+
+FUNCTION:
+
+contract integration and unsigned payload preparation
+
+AUTHORITY:
+
+technical preparation only
+
+MAINNET SIGNING:
+
+NO
+
+TREASURY CONTROL:
+
+NO
+
+AGENT:
+
+ROB
+
+FUNCTION:
+
+on-chain observation and research analysis
+
+MAINNET SIGNING:
+
+NO
+
+TRADING:
+
+NO
+
+TREASURY CONTROL:
+
+NO
+
+AGENT:
+
+ENOCH ONE CONTROL TOWER
+
+FUNCTION:
+
+research synthesis and routing
+
+MAINNET SIGNING:
+
+NO
+
+FINAL HUMAN AUTHORITY:
+
+NO
+
+==================================================
+OWNER TEST
+==================================================
+
+For every consequential recommendation:
+
+WHO OWNED THE FINAL DECISION?
+
+Example:
+
+MODEL RECOMMENDATION:
+
+Proceed after preflight.
+
+OWNER:
+
+Human signer.
+
+FINAL DECISION:
+
+Approved.
+
+This prevents:
+
+AI OUTPUT
+
+from being mistaken for
+
+HUMAN AUTHORIZATION.
+
+==================================================
+TECHNICAL REVIEW QUESTIONS FOR PONS
+==================================================
+
+Potential questions include:
+
+1. Did we interpret the launch event correctly?
+
+2. Did we identify the canonical curve correctly?
+
+3. Did we interpret trade events correctly?
+
+4. Did we separate ordinary fees and creator-related fees correctly?
+
+5. Did we interpret opening-window mechanics correctly?
+
+6. Are there additional event fields we should preserve?
+
+7. Are there protocol conditions that invalidate our calculation?
+
+8. Is there a preferred method for identifying launch eligibility?
+
+9. Are there protocol-version changes we should monitor?
+
+10. Can this dataset help study automated launch discovery?
+
+==================================================
+TECHNICAL REVIEW QUESTIONS FOR ROBINHOOD CHAIN
+==================================================
+
+Potential questions include:
+
+1. Are our chain finality assumptions appropriate?
+
+2. Are our event-reconstruction methods appropriate?
+
+3. Are there recommended RPC or archival practices?
+
+4. Are block timestamp assumptions appropriate?
+
+5. Are there chain-specific considerations for ordering?
+
+6. Are there recommended standards for agent-generated transaction preparation?
+
+7. Are there additional provenance fields worth preserving?
+
+8. Could this research architecture be useful for developer education?
+
+9. Could the reproducibility package support ecosystem research?
+
+10. Are there security or disclosure improvements recommended?
+
+==================================================
+AI-AGENT RESEARCH QUESTIONS
+==================================================
+
+The PONS $101 experiment also studies agent infrastructure.
+
+Questions include:
+
+Can agents reliably inspect current contract state?
+
+Can agents detect configuration drift?
+
+Can agents prepare deterministic unsigned payloads?
+
+Can agents preserve evidence without altering it?
+
+Can agents distinguish:
+
+FACT
+
+from
+
+INFERENCE?
+
+Can agents fail closed?
+
+Can multi-agent systems preserve a human release boundary?
+
+Can agents generate reproducible research bundles?
+
+==================================================
+MODEL COMPARISON
+==================================================
+
+Future experiments may compare multiple models.
+
+Each model receives the same:
+
+research question
+
+experiment manifest
+
+public evidence
+
+classification rubric
+
+Models independently produce:
+
+analysis
+
+classification
+
+confidence
+
+limitations
+
+recommended next action
+
+The Control Tower compares:
+
+agreement
+
+disagreement
+
+unsupported claims
+
+missed evidence
+
+human corrections
+
+==================================================
+MODIFIED DELPHI OPTION
+==================================================
+
+PONS $101 may use an AI-assisted modified Delphi design.
+
+ROUND 1
+
+Independent qualitative assessment.
+
+ROUND 2
+
+Structured scoring.
+
+ROUND 3
+
+Controlled feedback and reassessment.
+
+Possible panelists:
+
+ROB
+
+@hashwarlock agent
+
+ENOCH ONE
+
+other LLMs
+
+human technical reviewers
+
+The human remains responsible for interpreting the panel results.
+
+==================================================
+REVIEW SCORING
+==================================================
+
+External reviewers may score:
+
+METHODOLOGY
+
+1–5
+
+DATA QUALITY
+
+1–5
+
+REPRODUCIBILITY
+
+1–5
+
+FEE INTERPRETATION
+
+1–5
+
+BOT-CLASSIFICATION DISCIPLINE
+
+1–5
+
+SECURITY DESIGN
+
+1–5
+
+HUMAN-GOVERNANCE DESIGN
+
+1–5
+
+PUBLIC-GOOD PROVENANCE
+
+1–5
+
+DOCUMENTATION
+
+1–5
+
+OVERALL RESEARCH VALUE
+
+1–5
+
+==================================================
+REVIEWER COMMENT
+==================================================
+
+Recommended fields:
+
+reviewer_id
+
+review_date
+
+review_scope
+
+software_version
+
+experiment_id
+
+score
+
+technical_findings
+
+methodological_findings
+
+security_findings
+
+compliance_questions
+
+recommended_changes
+
+conflicts_of_interest
+
+==================================================
+RESPONSE TO REVIEW
+==================================================
+
+Do not silently edit history after external criticism.
+
+Instead create:
+
+REVIEW FINDING
+
+↓
+
+PROJECT RESPONSE
+
+↓
+
+CHANGE PROPOSAL
+
+↓
+
+VERSIONED UPDATE
+
+This allows readers to see how the methodology evolved.
+
+==================================================
+TABERNACLE PUBLIC-GOOD LAYER
+==================================================
+
+The project's stated public-good mission is:
+
+TO STUDY WHETHER LEGITIMATELY RECEIVED CREATOR-FEE REVENUE CAN BE ACCOUNTED FOR AND EVENTUALLY DIRECTED TOWARD A FUTURE TABERNACLE, EDUCATION, RESEARCH, AND COMMUNITY WORK IN JESUS' NAME.
+
+The experiment must distinguish:
+
+MISSION
+
+from
+
+LEGAL STATUS.
+
+Public-good intent does not itself establish charitable status.
+
+==================================================
+PUBLIC-GOOD PROVENANCE CHAIN
+==================================================
+
+PROTOCOL EVENT
+
+↓
+
+CREATOR ENTITLEMENT
+
+↓
+
+CLAIM / PAYMENT EVENT
+
+↓
+
+TREASURY RECEIPT
+
+↓
+
+TREASURY ACCOUNTING
+
+↓
+
+HUMAN ALLOCATION DECISION
+
+↓
+
+DISBURSEMENT
+
+↓
+
+RECIPIENT RECEIPT
+
+↓
+
+PUBLIC-GOOD REPORT
+
+==================================================
+TABERNACLE TREASURY STATES
+==================================================
+
+STATE 0 — NO ENTITLEMENT
+
+No creator entitlement observed.
+
+STATE 1 — ENTITLEMENT OBSERVED
+
+Protocol evidence suggests creator entitlement.
+
+STATE 2 — CLAIMABLE
+
+Funds are available for claim where applicable.
+
+STATE 3 — CLAIMED
+
+Claim transaction occurred.
+
+STATE 4 — TREASURY RECEIVED
+
+Assets are verifiably in treasury custody.
+
+STATE 5 — ALLOCATED
+
+Authorized humans have assigned a purpose.
+
+STATE 6 — DISBURSED
+
+Assets left treasury custody for approved purpose.
+
+STATE 7 — PURPOSE VERIFIED
+
+Supporting receipt or completion evidence exists.
+
+==================================================
+TREASURY RECEIPT RECORD
+==================================================
+
+RECEIPT ID:
+
+EXPERIMENT ID:
+
+NETWORK:
+
+TRANSACTION:
+
+BLOCK:
+
+ASSET:
+
+AMOUNT:
+
+FROM:
+
+TO:
+
+RECEIVED AT:
+
+SOURCE TYPE:
+
+CREATOR FEE / DONATION / OTHER
+
+EVIDENCE HASH:
+
+ACCOUNTING STATUS:
+
+NOTES:
+
+==================================================
+PUBLIC-GOOD ALLOCATION PROPOSAL
+==================================================
+
+PROPOSAL ID:
+
+DATE:
+
+PURPOSE:
+
+CATEGORY:
+
+TABERNACLE
+
+EDUCATION
+
+RESEARCH
+
+COMMUNITY
+
+AMOUNT:
+
+ASSET:
+
+ESTIMATED FIAT VALUE:
+
+DESTINATION:
+
+RATIONALE:
+
+SUPPORTING DOCUMENTATION:
+
+HUMAN APPROVERS REQUIRED:
+
+STATUS:
+
+==================================================
+PUBLIC-GOOD DISBURSEMENT RECORD
+==================================================
+
+DISBURSEMENT ID:
+
+PROPOSAL ID:
+
+DATE:
+
+NETWORK:
+
+TRANSACTION:
+
+ASSET:
+
+AMOUNT:
+
+RECIPIENT:
+
+PURPOSE:
+
+APPROVERS:
+
+RECEIPT AVAILABLE:
+
+EVIDENCE HASH:
+
+COMPLETION STATUS:
+
+==================================================
+NO AUTO-DISBURSEMENT
+==================================================
+
+The following architecture is prohibited by default:
+
+BOT-LIKE TRADE
+
+↓
+
+FEE GENERATED
+
+↓
+
+AGENT AUTOMATICALLY SENDS MONEY
+
+That collapses too many governance states.
+
+The approved architecture is:
+
+FEE OBSERVED
+
+↓
+
+ENTITLEMENT VERIFIED
+
+↓
+
+RECEIPT VERIFIED
+
+↓
+
+HUMAN GOVERNANCE
+
+↓
+
+AUTHORIZED DISBURSEMENT
+
+==================================================
+TREASURY AUDIT
+==================================================
+
+Periodic treasury reconciliation should compare:
+
+EXPECTED CREATOR ENTITLEMENT
+
+vs
+
+ACTUAL CREATOR RECEIPTS
+
+vs
+
+TREASURY BALANCE
+
+vs
+
+ALLOCATIONS
+
+vs
+
+DISBURSEMENTS
+
+Differences should be documented.
+
+==================================================
+PUBLIC-GOOD REPORT
+==================================================
+
+PONS $101 — TABERNACLE PUBLIC-GOOD REPORT
+
+REPORT PERIOD:
+
+EXPERIMENTS INCLUDED:
+
+CREATOR ENTITLEMENT OBSERVED:
+
+CONFIRMED TREASURY RECEIPTS:
+
+BEGINNING TREASURY BALANCE:
+
+ENDING TREASURY BALANCE:
+
+APPROVED ALLOCATIONS:
+
+COMPLETED DISBURSEMENTS:
+
+TABERNACLE:
+
+EDUCATION:
+
+RESEARCH:
+
+COMMUNITY:
+
+OUTSTANDING PROPOSALS:
+
+UNRECONCILED ITEMS:
+
+EVIDENCE PACKAGE:
+
+==================================================
+PUBLIC CLAIM STANDARD
+==================================================
+
+Acceptable:
+
+“This experiment generated a confirmed creator-fee receipt of X tokens, documented by transaction Y.”
+
+Acceptable:
+
+“The treasury approved X for an educational expenditure.”
+
+Acceptable:
+
+“This transaction documents the actual disbursement.”
+
+Avoid:
+
+“We gave all the bot money to humans”
+
+when only protocol fees were estimated.
+
+Avoid:
+
+“This money built the Tabernacle”
+
+before an actual verified expenditure exists.
+
+==================================================
+RESEARCH PUBLICATION PACKAGE
+==================================================
+
+A publication-ready experiment package may include:
+
+01 — EXECUTIVE SUMMARY
+
+02 — RESEARCH QUESTION
+
+03 — HYPOTHESIS
+
+04 — PROTOCOL BACKGROUND
+
+05 — EXPERIMENT DESIGN
+
+06 — AGENT ARCHITECTURE
+
+07 — HUMAN GOVERNANCE
+
+08 — ON-CHAIN METHOD
+
+09 — TELEMETRY
+
+10 — RESULTS
+
+11 — BOT-LIKE CLASSIFICATION
+
+12 — FEE ANALYSIS
+
+13 — PUBLIC-GOOD ACCOUNTING
+
+14 — LIMITATIONS
+
+15 — SECURITY
+
+16 — REPLICATION
+
+17 — EXTERNAL REVIEW
+
+18 — CONCLUSION
+
+19 — DATA AVAILABILITY
+
+20 — REPRODUCIBILITY INSTRUCTIONS
+
+==================================================
+DATA AVAILABILITY
+==================================================
+
+The research package should state clearly:
+
+which data are public
+
+which data are restricted
+
+which data are derived from the public chain
+
+which data are human-authored
+
+which data cannot be shared
+
+why any material data are withheld
+
+==================================================
+LIMITATIONS
+==================================================
+
+Potential limitations include:
+
+small experiment count
+
+limited observation period
+
+unknown trader identities
+
+protocol-version changes
+
+RPC provider differences
+
+block timestamp resolution
+
+classification uncertainty
+
+self-reported announcement condition
+
+selection bias
+
+survivorship bias
+
+market-condition differences
+
+pair-asset differences
+
+limited ability to prove negative claims
+
+==================================================
+NO CAUSAL OVERCLAIM
+==================================================
+
+Example:
+
+Observed:
+
+A wallet traded two seconds after the launch.
+
+Not automatically established:
+
+The wallet discovered the token through a specific bot.
+
+Observed:
+
+A creator fee was generated.
+
+Not automatically established:
+
+The fee resulted exclusively from automation.
+
+Observed:
+
+The same wallet appears across five experiments.
+
+Not automatically established:
+
+The same human controls all behavior without further evidence.
+
+==================================================
+REPLICATION TABLE
+==================================================
+
+Recommended fields:
+
+EXPERIMENT ID
+
+DATE
+
+TOKEN
+
+PAIR
+
+CONDITION
+
+LAUNCH SUCCESS
+
+FIRST TRADE LATENCY
+
+OPENING-WINDOW ACTIVITY
+
+REPEATED WALLETS
+
+AUTOMATED CANDIDATES
+
+CREATOR ENTITLEMENT
+
+TREASURY RECEIPT
+
+HYPOTHESIS RESULT
+
+==================================================
+CUMULATIVE RESEARCH REPORT
+==================================================
+
+PONS $101 — ROB CUMULATIVE REPORT
+
+TOTAL REGISTERED EXPERIMENTS:
+
+TOTAL VALID EXPERIMENTS:
+
+TOTAL INVALIDATED EXPERIMENTS:
+
+TOTAL LAUNCHES:
+
+TOTAL TRADES:
+
+TOTAL UNIQUE WALLETS:
+
+TOTAL REPEATED WALLETS:
+
+FIRST-BLOCK PARTICIPATION RATE:
+
+OPENING-WINDOW PARTICIPATION RATE:
+
+AUTOMATED-CANDIDATE COUNT:
+
+REPEATED AUTOMATED-CANDIDATE COUNT:
+
+AUTOMATION CONFIRMED COUNT:
+
+PROTOCOL FEES OBSERVED:
+
+CREATOR ENTITLEMENT:
+
+CONFIRMED TREASURY RECEIPTS:
+
+PUBLIC-GOOD DISBURSEMENTS:
+
+SUPPORTED HYPOTHESES:
+
+NOT SUPPORTED:
+
+INCONCLUSIVE:
+
+LATEST DATASET VERSION:
+
+==================================================
+RESEARCH MATURITY LEVELS
+==================================================
+
+LEVEL 0 — IDEA
+
+Hypothesis exists.
+
+LEVEL 1 — REGISTERED
+
+Manifest exists.
+
+LEVEL 2 — EXECUTED
+
+Human-authorized transaction exists.
+
+LEVEL 3 — OBSERVED
+
+ROB telemetry exists.
+
+LEVEL 4 — ANALYZED
+
+AAR exists.
+
+LEVEL 5 — REPLICATED
+
+Independent experiment supports comparison.
+
+LEVEL 6 — EXTERNALLY REVIEWED
+
+Outside reviewer has evaluated the method.
+
+LEVEL 7 — PUBLICLY REPRODUCIBLE
+
+Independent researcher can reconstruct the result.
+
+==================================================
+SHARE PACKAGE CHECKLIST
+==================================================
+
+Before external delivery:
+
+[ ] Executive summary complete
+
+[ ] Independence disclosure complete
+
+[ ] Experiment ID correct
+
+[ ] Manifest included
+
+[ ] Manifest hash verified
+
+[ ] Software version included
+
+[ ] Transaction verified
+
+[ ] Raw events included
+
+[ ] Fee calculation documented
+
+[ ] Bot-like terminology reviewed
+
+[ ] Human approval record included
+
+[ ] Agent roles disclosed
+
+[ ] Negative findings included
+
+[ ] Limitations included
+
+[ ] Treasury numbers reconciled
+
+[ ] Public-good claims verified
+
+[ ] No secrets included
+
+[ ] Dataset hash verified
+
+[ ] Reproduction instructions tested
+
+==================================================
+MESSAGE TO TECHNICAL REVIEWERS
+==================================================
+
+PONS $101 is presented as an open research question, not a predetermined conclusion.
+
+We invite reviewers to challenge:
+
+our event interpretation
+
+our fee calculations
+
+our assumptions
+
+our classification logic
+
+our security boundaries
+
+our human-governance model
+
+our reproducibility
+
+and
+
+our public-good accounting.
+
+A successful review does not require agreement.
+
+A successful review produces a clearer and more reproducible record.
+
+==================================================
+MESSAGE TO AI BUILDERS
+==================================================
+
+The purpose of the agent factory is not to remove humans from consequential decisions.
+
+It is to demonstrate how far agents can automate:
+
+research
+
+engineering
+
+verification
+
+instrumentation
+
+documentation
+
+and
+
+reproducibility
+
+while preserving a clear human authority boundary.
+
+@hashwarlock agents are invited to improve the machinery.
+
+The release gate remains human.
+
+==================================================
+MESSAGE TO THE COMMUNITY
+==================================================
+
+Do not judge the experiment only by:
+
+token price
+
+market capitalization
+
+number of buyers
+
+or
+
+fee revenue.
+
+The real output is:
+
+the dataset
+
+the methodology
+
+the evidence
+
+the reproducibility
+
+and
+
+what we learn.
+
+==================================================
+MESSAGE TO THE TABERNACLE MISSION
+==================================================
+
+The public-good mission is not:
+
+MAKE A TOKEN GO UP.
+
+The mission is:
+
+IF LEGITIMATE CREATOR REVENUE IS GENERATED,
+
+ACCOUNT FOR IT.
+
+IF IT IS RECEIVED,
+
+PROVE IT.
+
+IF IT IS ALLOCATED,
+
+GOVERN IT.
+
+IF IT IS SPENT FOR A PUBLIC GOOD,
+
+DOCUMENT IT.
+
+Faith does not remove the need for provenance.
+
+Stewardship requires it.
+
+==================================================
+FINAL EXTERNAL REVIEW RECORD
+==================================================
+
+PONS $101 — EXTERNAL REVIEW CONTROL TOWER
+
+EXPERIMENT:
+
+PACKAGE VERSION:
+
+DATASET VERSION:
+
+SOFTWARE VERSION:
+
+MANIFEST HASH:
+
+BUNDLE HASH:
+
+HYPOTHESIS RESULT:
+
+ROB FINDING:
+
+HUMAN FINDING:
+
+CREATOR ENTITLEMENT:
+
+TREASURY RECEIPT:
+
+PUBLIC-GOOD STATUS:
+
+EXTERNAL REVIEWER:
+
+REVIEW STATUS:
+
+CRITICAL FINDINGS:
+
+OPEN QUESTIONS:
+
+REQUIRED CHANGES:
+
+REPLICATION STATUS:
+
+NEXT OWNER:
+
+NEXT ACTION:
+
+==================================================
+GENESIS SHARE STATEMENT
+==================================================
+
+WE DO NOT ASK THE REVIEWER TO TRUST ROB.
+
+WE GIVE THE REVIEWER THE TRANSACTIONS.
+
+WE DO NOT ASK THE REVIEWER TO TRUST THE AGENT.
+
+WE GIVE THE REVIEWER THE CONFIGURATION.
+
+WE DO NOT ASK THE REVIEWER TO TRUST OUR MEMORY.
+
+WE GIVE THE REVIEWER THE MANIFEST.
+
+WE DO NOT CALL A WALLET A BOT BECAUSE IT WAS FAST.
+
+WE SHOW THE BEHAVIOR.
+
+WE DO NOT CALL AN ESTIMATE A TREASURY RECEIPT.
+
+WE SHOW THE TRANSFER.
+
+WE DO NOT CALL A MISSION AN ACCOMPLISHMENT.
+
+WE SHOW THE DISBURSEMENT.
+
+THE CHAIN RECORDS.
+
+ROB OBSERVES.
+
+@HASHWARLOCK BUILDS.
+
+ENOCH ONE ROUTES.
+
+402 GOVERNS THE RELEASE LOGIC.
+
+THE HUMAN DECIDES.
+
+GITHUB PRESERVES.
+
+THE REVIEWER REPLICATES.
+
+PONS $101
+
+WHAT DID WE KNOW BEFORE THE OUTCOME?
+
+ROB FROM BOT-LIKE ACTIVITY.
+
+GIVE VERIFIED PUBLIC-GOOD VALUE TO HUMANS THROUGH TRANSPARENT HUMAN GOVERNANCE.
+
+BUILD THE RECORD.
+
+BUILD THE RESEARCH.
+
+BUILD THE TABERNACLE WITH PROVENANCE.
+
+IN JESUS' NAME.
