@@ -1,0 +1,2157 @@
+# PONS $101 — EDUCATION CURRICULUM & MARKET LAB CATALOG
+
+PONS $101 is the educational front door of the ROB Lab.
+
+The course teaches students, researchers, builders, and AI agents how to understand token-launch infrastructure before participating in a live experiment.
+
+The educational objective is not:
+
+HOW TO MAKE A TOKEN PUMP.
+
+The objective is:
+
+HOW TO UNDERSTAND, DOCUMENT, TEST, AND REPRODUCE A TOKEN-LAUNCH SYSTEM.
+
+PONS $101 connects:
+
+FINANCIAL-MARKET LITERACY
+
+TOKEN-LAUNCH MECHANICS
+
+ROBINHOOD CHAIN
+
+PONS V2
+
+SMART CONTRACTS
+
+BONDING CURVES
+
+FEES
+
+AUTOMATED MARKET ACTIVITY
+
+AI AGENTS
+
+MIXED-METHODS RESEARCH
+
+PROVENANCE
+
+402 GOVERNANCE
+
+PUBLIC-GOOD ACCOUNTING
+
+and
+
+HUMAN AUTHORITY.
+
+The governing educational question is:
+
+WHAT DID WE KNOW BEFORE THE OUTCOME?
+
+==================================================
+COURSE IDENTITY
+==================================================
+
+COURSE
+
+PONS $101
+
+FULL TITLE
+
+PONS $101 — TOKEN LAUNCHES, MARKET LABS, ROB TELEMETRY & REPRODUCIBLE ON-CHAIN RESEARCH
+
+LEVEL
+
+101
+
+FORMAT
+
+OPEN EDUCATION + LIVE LAB + RESEARCH CASE STUDIES
+
+PRIMARY CLASSROOM
+
+Discord
+
+SOURCE OF TRUTH
+
+GitHub
+
+PUBLIC EXECUTION EVIDENCE
+
+Robinhood Chain
+
+PRIMARY OBSERVER
+
+ROB — Research Observer for Bot-like Activity
+
+CONTROL TOWER
+
+ENOCH ONE
+
+BUILD AGENTS
+
+@hashwarlock and other approved agents
+
+FINAL LIVE AUTHORITY
+
+Human signer
+
+==================================================
+COURSE MISSION
+==================================================
+
+Teach a learner to move from:
+
+I SEE A TOKEN
+
+to
+
+I UNDERSTAND THE SYSTEM THAT CREATED IT.
+
+Then from:
+
+I SAW A TRADE
+
+to
+
+I CAN RECONSTRUCT THE TRANSACTION.
+
+Then from:
+
+THAT LOOKS LIKE A BOT
+
+to
+
+I CAN DISTINGUISH OBSERVATION FROM INFERENCE.
+
+Then from:
+
+THE PROTOCOL MADE FEES
+
+to
+
+I CAN DISTINGUISH FEE OBSERVATION, CREATOR ENTITLEMENT, TREASURY RECEIPT, AND PUBLIC-GOOD DISBURSEMENT.
+
+==================================================
+LEARNING OUTCOMES
+==================================================
+
+A student completing PONS $101 should be able to:
+
+1. Explain what a blockchain network is.
+
+2. Identify a chain using chain ID.
+
+3. Explain the role of an RPC endpoint.
+
+4. Use a block explorer to inspect a transaction.
+
+5. Explain why a token symbol is not a canonical identity.
+
+6. Identify a token by contract address and chain.
+
+7. Explain a smart-contract factory.
+
+8. Explain a token launch.
+
+9. Explain a bonding curve.
+
+10. Distinguish launch price mechanics from a price peg.
+
+11. Explain trading pairs.
+
+12. Distinguish “paired with” from “pegged to.”
+
+13. Identify base trading fees.
+
+14. Identify creator-related fees.
+
+15. Understand opening-window or snipe-protection mechanics where applicable.
+
+16. Explain why early execution does not automatically prove bot identity.
+
+17. Read a launch event.
+
+18. Read a buy event.
+
+19. Read a sell event.
+
+20. Reconstruct basic launch timing.
+
+21. Calculate launch-to-first-trade latency.
+
+22. Explain behavioral classification.
+
+23. Explain why correlation does not establish identity.
+
+24. Create a research hypothesis.
+
+25. Register an experiment before the outcome.
+
+26. Understand a manifest hash.
+
+27. Understand an unsigned transaction payload.
+
+28. Explain why agents should not automatically sign mainnet transactions.
+
+29. Understand the human release gate.
+
+30. Create an after-action review.
+
+31. Distinguish raw evidence from interpretation.
+
+32. Explain mixed-methods research.
+
+33. Explain reproducibility.
+
+34. Explain creator entitlement.
+
+35. Verify whether assets actually reached a treasury.
+
+36. Explain why public-good intent requires accounting.
+
+37. Read a PONS $101 reproducibility package.
+
+38. Independently reproduce at least one experiment.
+
+==================================================
+COURSE DOCTRINE
+==================================================
+
+LEARN BEFORE LAUNCH.
+
+QUESTION BEFORE TOKEN.
+
+HYPOTHESIS BEFORE OUTCOME.
+
+ADDRESS BEFORE SYMBOL.
+
+CHAIN BEFORE ADDRESS.
+
+PAIR IS NOT PEG.
+
+OBSERVATION BEFORE CLASSIFICATION.
+
+MEASURE BEFORE LABEL.
+
+HUMAN BEFORE MAINNET AUTHORITY.
+
+ENTITLEMENT BEFORE RECEIPT.
+
+RECEIPT BEFORE IMPACT CLAIM.
+
+PRESERVE BEFORE SUMMARIZE.
+
+REPLICATE BEFORE GENERALIZE.
+
+==================================================
+MODULE 00 — START HERE
+==================================================
+
+TITLE
+
+WELCOME TO PONS $101
+
+OBJECTIVE
+
+Understand what the laboratory is and what it is not.
+
+LESSONS
+
+00.1 — What is PONS $101?
+
+00.2 — What is ROB?
+
+00.3 — What is Robinhood Chain?
+
+00.4 — What is Pons?
+
+00.5 — What is a token-launch experiment?
+
+00.6 — What does “stealth” mean in this research?
+
+00.7 — Why does the human remain the signer?
+
+00.8 — What does “What did we know before the outcome?” mean?
+
+LAB
+
+Locate:
+
+one blockchain transaction
+
+one token contract
+
+one wallet address
+
+one block
+
+Do not trade.
+
+Goal:
+
+learn to read the evidence.
+
+==================================================
+MODULE 01 — FINANCIAL MARKET FOUNDATIONS
+==================================================
+
+OBJECTIVE
+
+Understand the market concepts that exist before token infrastructure.
+
+LESSONS
+
+01.1 — Markets
+
+01.2 — Buyers and sellers
+
+01.3 — Bid and ask
+
+01.4 — Liquidity
+
+01.5 — Volume
+
+01.6 — Volatility
+
+01.7 — Price discovery
+
+01.8 — Slippage
+
+01.9 — Market risk
+
+01.10 — Why price is not value
+
+LAB QUESTION
+
+What changes when market mechanics become encoded into smart contracts?
+
+==================================================
+MODULE 02 — BLOCKCHAIN FOUNDATIONS
+==================================================
+
+LESSONS
+
+02.1 — Blocks
+
+02.2 — Transactions
+
+02.3 — Wallets
+
+02.4 — Addresses
+
+02.5 — Private keys
+
+02.6 — Chain IDs
+
+02.7 — Gas
+
+02.8 — RPC endpoints
+
+02.9 — Explorers
+
+02.10 — Confirmations and reorgs
+
+CORE RULE
+
+PUBLIC ADDRESS
+
+does not mean
+
+PUBLIC PRIVATE KEY.
+
+LAB
+
+Find a public transaction and identify:
+
+chain
+
+block
+
+sender
+
+receiver
+
+value
+
+gas
+
+status
+
+==================================================
+MODULE 03 — SMART CONTRACTS
+==================================================
+
+LESSONS
+
+03.1 — What is a smart contract?
+
+03.2 — Contract addresses
+
+03.3 — Bytecode
+
+03.4 — ABI
+
+03.5 — Read functions
+
+03.6 — Write functions
+
+03.7 — Events
+
+03.8 — Logs
+
+03.9 — Factories
+
+03.10 — Contract versioning
+
+LAB
+
+Given an ABI, identify:
+
+one read function
+
+one write function
+
+one event
+
+==================================================
+MODULE 04 — TOKEN IDENTITY
+==================================================
+
+OBJECTIVE
+
+Stop treating names and tickers as sufficient identity.
+
+TOKEN IDENTITY HIERARCHY
+
+NAME
+
+SYMBOL
+
+CHAIN ID
+
+CONTRACT ADDRESS
+
+EXPERIMENT ID
+
+MANIFEST HASH
+
+LESSONS
+
+04.1 — ERC-20 identity
+
+04.2 — Duplicate symbols
+
+04.3 — Duplicate names
+
+04.4 — Contract address as technical identity
+
+04.5 — Provenance manifest
+
+04.6 — Why branding and technical identity must remain separate
+
+LAB
+
+Compare two tokens with the same ticker.
+
+Determine whether they are actually the same asset.
+
+==================================================
+MODULE 05 — TRADING PAIRS
+==================================================
+
+LESSONS
+
+05.1 — Base asset
+
+05.2 — Quote asset
+
+05.3 — Reference assets
+
+05.4 — Pair addresses
+
+05.5 — Pair approvals
+
+05.6 — Native assets
+
+05.7 — Token-to-token pairs
+
+05.8 — “Paired with” vs “pegged to”
+
+CORE RULE
+
+A PAIR DOES NOT AUTOMATICALLY CREATE A PEG.
+
+LAB
+
+Given:
+
+TOKEN A / ASSET B
+
+explain what price relationship actually exists.
+
+==================================================
+MODULE 06 — TOKEN LAUNCH LIFECYCLE
+==================================================
+
+LESSONS
+
+06.1 — Factory contract
+
+06.2 — Launch permission
+
+06.3 — Metadata
+
+06.4 — Creator configuration
+
+06.5 — Launch configuration
+
+06.6 — Bonding curve creation
+
+06.7 — Initial trading
+
+06.8 — Graduation where applicable
+
+06.9 — Post-graduation liquidity
+
+06.10 — Creator economics
+
+PIPELINE
+
+MANIFEST
+
+↓
+
+FACTORY
+
+↓
+
+TOKEN
+
+↓
+
+CURVE
+
+↓
+
+TRADING
+
+↓
+
+OPTIONAL GRADUATION
+
+==================================================
+MODULE 07 — BONDING CURVES
+==================================================
+
+OBJECTIVE
+
+Understand why buying changes price.
+
+LESSONS
+
+07.1 — What is a bonding curve?
+
+07.2 — Supply and price
+
+07.3 — Quote reserves
+
+07.4 — Phantom quote concepts where applicable
+
+07.5 — Slippage
+
+07.6 — Curve fees
+
+07.7 — Graduation thresholds
+
+07.8 — Why early price movement can be extreme
+
+LAB
+
+Use a synthetic curve.
+
+Calculate expected price changes under several hypothetical buys.
+
+No live funds required.
+
+==================================================
+MODULE 08 — FEES
+==================================================
+
+Students must distinguish:
+
+BASE TRADING FEE
+
+CREATOR TAX
+
+OPENING SNIPE TAX
+
+OTHER PROTOCOL FEE
+
+CREATOR ENTITLEMENT
+
+ESCROW BALANCE
+
+TREASURY RECEIPT
+
+PUBLIC-GOOD DISBURSEMENT
+
+CORE EQUATION
+
+OBSERVED PROTOCOL FEE
+
+does not automatically equal
+
+CREATOR MONEY RECEIVED.
+
+==================================================
+MODULE 09 — OPENING-WINDOW ECONOMICS
+==================================================
+
+OBJECTIVE
+
+Study the first moments of a launch.
+
+LESSONS
+
+09.1 — Launch T0
+
+09.2 — Same-block participation
+
+09.3 — Seconds-since-launch
+
+09.4 — Opening-window fee mechanics
+
+09.5 — Snipe-protection concepts
+
+09.6 — Why automated systems may care about new launches
+
+09.7 — Why fast does not necessarily mean malicious
+
+09.8 — Why early does not prove automation
+
+LAB
+
+Given five synthetic transactions:
+
+rank by launch latency.
+
+Then classify only what the evidence supports.
+
+==================================================
+MODULE 10 — ROB
+==================================================
+
+ROB
+
+RESEARCH OBSERVER FOR BOT-LIKE ACTIVITY
+
+LESSONS
+
+10.1 — Observation
+
+10.2 — Calculation
+
+10.3 — Inference
+
+10.4 — Classification
+
+10.5 — Identity claim
+
+10.6 — Confidence
+
+10.7 — Limitations
+
+ROB CLASSIFICATIONS
+
+UNKNOWN
+
+OPENING_WINDOW_PARTICIPANT
+
+AUTOMATED_CANDIDATE
+
+REPEATED_AUTOMATED_CANDIDATE
+
+AUTOMATION_CONFIRMED
+
+LAB
+
+Given a transaction one second after launch:
+
+What can we prove?
+
+Correct answer should not automatically be:
+
+BOT.
+
+==================================================
+MODULE 11 — WALLET BEHAVIOR
+==================================================
+
+LESSONS
+
+11.1 — Repeated wallets
+
+11.2 — Timing patterns
+
+11.3 — Trade-size patterns
+
+11.4 — Entry patterns
+
+11.5 — Exit patterns
+
+11.6 — Cross-launch behavior
+
+11.7 — Behavioral fingerprints
+
+11.8 — False positives
+
+11.9 — Privacy
+
+11.10 — Pseudonymous research
+
+LAB
+
+Compare one wallet across five synthetic launches.
+
+Classify behavior conservatively.
+
+==================================================
+MODULE 12 — RESEARCH DESIGN
+==================================================
+
+OBJECTIVE
+
+Turn a launch into a real experiment.
+
+LESSONS
+
+12.1 — Research question
+
+12.2 — Null hypothesis
+
+12.3 — Alternative hypothesis
+
+12.4 — Experimental condition
+
+12.5 — Control condition
+
+12.6 — Independent variable
+
+12.7 — Dependent variables
+
+12.8 — Observation windows
+
+12.9 — Preregistration
+
+12.10 — Hindsight bias
+
+CORE QUESTION
+
+WHAT DID WE KNOW BEFORE THE OUTCOME?
+
+==================================================
+MODULE 13 — STEALTH / NO-PRE-ANNOUNCEMENT CONDITION
+==================================================
+
+STEALTH MEANS
+
+NO ADVANCE PUBLIC PROMOTION.
+
+STEALTH DOES NOT MEAN
+
+hidden taxes
+
+hidden economics
+
+fake scarcity
+
+wallet targeting
+
+misleading metadata
+
+fake liquidity
+
+or fake demand.
+
+RESEARCH QUESTION
+
+Will public on-chain discovery occur without researcher promotion?
+
+==================================================
+MODULE 14 — EXPERIMENT MANIFEST
+==================================================
+
+Students create:
+
+experiment ID
+
+question
+
+hypothesis
+
+token metadata
+
+network
+
+factory
+
+pair
+
+creator configuration
+
+announcement condition
+
+observation windows
+
+software version
+
+manifest hash
+
+LAB
+
+Create a complete synthetic experiment manifest.
+
+Then change one field.
+
+Observe the hash change.
+
+==================================================
+MODULE 15 — PREFLIGHT
+==================================================
+
+OBJECTIVE
+
+Understand why:
+
+CAN
+
+does not mean:
+
+MAY.
+
+CHECK:
+
+chain ID
+
+RPC
+
+factory
+
+bytecode
+
+ABI
+
+launch permission
+
+pair
+
+creator
+
+fees
+
+configuration
+
+manifest
+
+payload
+
+human gate
+
+LAB
+
+Instructor introduces one incorrect configuration.
+
+Student must find it before release.
+
+==================================================
+MODULE 16 — UNSIGNED TRANSACTIONS
+==================================================
+
+LESSONS
+
+16.1 — Target contract
+
+16.2 — Function selector
+
+16.3 — Calldata
+
+16.4 — Arguments
+
+16.5 — Native value
+
+16.6 — Gas estimate
+
+16.7 — Payload hash
+
+16.8 — Human-readable decoding
+
+LAB
+
+Decode a synthetic unsigned transaction.
+
+Explain in plain language what it would do.
+
+==================================================
+MODULE 17 — HUMAN RELEASE GATE
+==================================================
+
+CORE DOCTRINE
+
+AGENT PREPARES.
+
+HUMAN REVIEWS.
+
+HUMAN SIGNS.
+
+LESSONS
+
+17.1 — Capability vs authority
+
+17.2 — Irreversible transactions
+
+17.3 — Wallet signing
+
+17.4 — Payload integrity
+
+17.5 — Approval invalidation
+
+17.6 — Why a changed payload requires a new approval
+
+==================================================
+MODULE 18 — AGENT FACTORY
+==================================================
+
+Introduce:
+
+@hashwarlock build agents
+
+manifest agent
+
+network agent
+
+contract agent
+
+preflight agent
+
+payload agent
+
+ROB indexer
+
+fee agent
+
+behavior agent
+
+AAR agent
+
+provenance agent
+
+Control Tower agent
+
+LESSON
+
+Agents are instruments.
+
+Agents are not automatically authorities.
+
+==================================================
+MODULE 19 — API LITERACY
+==================================================
+
+Students learn:
+
+GET
+
+POST
+
+JSON
+
+schemas
+
+authentication
+
+health endpoints
+
+pagination
+
+versioning
+
+null vs zero
+
+LAB
+
+Read:
+
+GET /api/v1/health
+
+Then:
+
+GET /api/v1/experiments
+
+Then interpret a sample observation object.
+
+==================================================
+MODULE 20 — RAW EVIDENCE
+==================================================
+
+RAW
+
+NORMALIZED
+
+DERIVED
+
+CLASSIFIED
+
+INTERPRETED
+
+Students must understand why these layers remain separate.
+
+LAB
+
+Take one raw event.
+
+Decode it.
+
+Normalize it.
+
+Calculate one derived metric.
+
+Then write one interpretation.
+
+Do not overwrite the raw record.
+
+==================================================
+MODULE 21 — MIXED METHODS
+==================================================
+
+QUANTITATIVE
+
+block data
+
+timestamps
+
+wallets
+
+trade sizes
+
+fees
+
+recurrence
+
+QUALITATIVE
+
+human notes
+
+agent notes
+
+Discord decisions
+
+screenshots
+
+AAR
+
+reviewer comments
+
+INTEGRATION
+
+Where do the streams converge?
+
+Where do they diverge?
+
+==================================================
+MODULE 22 — AFTER-ACTION REVIEW
+==================================================
+
+Every experiment asks:
+
+WHAT DID WE EXPECT?
+
+WHAT HAPPENED?
+
+WHAT WAS VERIFIED?
+
+WHAT WAS CALCULATED?
+
+WHAT WAS INFERRED?
+
+WHAT REMAINS UNKNOWN?
+
+WHAT FAILED?
+
+WHAT SURPRISED US?
+
+WHAT SHOULD CHANGE?
+
+SHOULD WE REPLICATE?
+
+==================================================
+MODULE 23 — REPRODUCIBILITY
+==================================================
+
+OBJECTIVE
+
+Make another person capable of reconstructing the experiment.
+
+Students learn:
+
+manifest hash
+
+commit SHA
+
+software version
+
+raw events
+
+method version
+
+classification version
+
+dataset hash
+
+bundle root hash
+
+LAB
+
+Receive a completed research package.
+
+Verify its file hashes.
+
+==================================================
+MODULE 24 — 402
+==================================================
+
+402 teaches:
+
+CAN
+
+MAY
+
+SHOULD
+
+DID
+
+PROVED
+
+Students identify which authority owns each statement.
+
+Example:
+
+CAN THE AGENT BUILD THE PAYLOAD?
+
+Technical question.
+
+MAY THE TRANSACTION BE EXECUTED?
+
+Governance/compliance question.
+
+SHOULD IT BE EXECUTED?
+
+Human judgment.
+
+DID IT EXECUTE?
+
+Chain evidence.
+
+CAN WE PROVE IT?
+
+Audit/provenance.
+
+==================================================
+MODULE 25 — PUBLIC-GOOD PROVENANCE
+==================================================
+
+LESSONS
+
+25.1 — Creator entitlement
+
+25.2 — Claimable balance
+
+25.3 — Claimed amount
+
+25.4 — Treasury receipt
+
+25.5 — Allocation
+
+25.6 — Disbursement
+
+25.7 — Receipt
+
+25.8 — Impact claim
+
+CORE RULE
+
+DO NOT CLAIM IMPACT BEFORE EVIDENCE.
+
+==================================================
+MODULE 26 — TABERNACLE STEWARDSHIP LAB
+==================================================
+
+Mission:
+
+Study whether legitimately received creator-fee revenue can be transparently stewarded toward a future:
+
+TABERNACLE
+
+EDUCATION
+
+RESEARCH
+
+COMMUNITY WORK
+
+IN JESUS' NAME.
+
+Students learn:
+
+accounting separation
+
+treasury custody
+
+human governance
+
+receipts
+
+provenance
+
+mission vs legal status
+
+==================================================
+MODULE 27 — SECURITY
+==================================================
+
+LESSONS
+
+27.1 — Private keys
+
+27.2 — Seed phrases
+
+27.3 — Secret management
+
+27.4 — Least privilege
+
+27.5 — API credentials
+
+27.6 — Discord bot tokens
+
+27.7 — GitHub secrets
+
+27.8 — Treasury separation
+
+27.9 — Incident response
+
+27.10 — Fail closed
+
+LAB
+
+Find deliberate security mistakes in a synthetic configuration.
+
+==================================================
+MODULE 28 — GITHUB
+==================================================
+
+Students learn:
+
+repository
+
+commit
+
+branch
+
+pull request
+
+issue
+
+release
+
+tag
+
+README
+
+schema
+
+CI
+
+hash
+
+GitHub is treated as:
+
+THE LABORATORY NOTEBOOK.
+
+==================================================
+MODULE 29 — DISCORD
+==================================================
+
+Discord is treated as:
+
+THE CLASSROOM
+
+THE OPERATING ROOM
+
+THE CONTROL TOWER INTERFACE.
+
+Students learn where to place:
+
+questions
+
+experiments
+
+telemetry
+
+AARs
+
+agent work
+
+public-good records
+
+human decisions
+
+==================================================
+MODULE 30 — EXTERNAL REVIEW
+==================================================
+
+Students prepare an experiment for review by:
+
+protocol engineers
+
+researchers
+
+auditors
+
+educators
+
+AI developers
+
+compliance professionals
+
+Questions:
+
+Can they reproduce the result?
+
+Can they challenge the method?
+
+Can they identify unsupported claims?
+
+==================================================
+PONS MARKET LAB ARCHITECTURE
+==================================================
+
+PONS $101 is the umbrella educational layer.
+
+Individual asset laboratories provide case-study environments.
+
+Canonical principle:
+
+REFERENCE ASSET = SUBJECT
+
+LAB TOKEN = EXPERIMENTAL LABORATORY OBJECT
+
+The reference asset does not imply endorsement.
+
+==================================================
+XLABS
+==================================================
+
+SPCX IS THE REFERENCE ASSET.
+
+$XLABS IS THE LABORATORY.
+
+Research topics may include:
+
+private/public market structure
+
+SpaceX-related market narratives
+
+reference-asset behavior
+
+token-pair mechanics
+
+launch discovery
+
+ROB telemetry
+
+Independence disclosure required.
+
+==================================================
+NLABS
+==================================================
+
+NVIDIA REFERENCE LAB
+
+Topics:
+
+semiconductors
+
+AI infrastructure
+
+market expectations
+
+volatility
+
+token-reference experiments
+
+ROB behavior
+
+==================================================
+DLABS
+==================================================
+
+DELL MARKET LAB
+
+Topics:
+
+equity-market case studies
+
+hardware infrastructure
+
+AI demand
+
+live market research
+
+token pairing
+
+ROB observations
+
+==================================================
+ELABS
+==================================================
+
+ETHEREUM MARKET LAB
+
+Topics:
+
+Ethereum
+
+smart-contract infrastructure
+
+market structure
+
+pair mechanics
+
+cross-ecosystem education
+
+==================================================
+GLABS
+==================================================
+
+BITCOIN / WEB4 LAB
+
+Topics:
+
+Bitcoin
+
+market structure
+
+trading cases
+
+Web4
+
+provenance
+
+agent systems
+
+==================================================
+ABCLABS
+==================================================
+
+EXPERIMENTAL MARKET LAB
+
+Used for:
+
+new asset-specific case studies
+
+prototype research
+
+replication
+
+before creation of a dedicated permanent laboratory.
+
+==================================================
+TESLA LAB
+==================================================
+
+Potential asset-specific educational laboratory.
+
+Topics:
+
+equity research
+
+market narrative
+
+volatility
+
+reference pairing
+
+comparative experiments
+
+No affiliation implied.
+
+==================================================
+COINBASE RESEARCH PAIRING
+==================================================
+
+Coinbase may be studied as an educational reference subject where relevant to:
+
+market infrastructure
+
+digital-asset access
+
+exchange architecture
+
+token-market education
+
+This does not establish Coinbase sponsorship or affiliation.
+
+==================================================
+LAB REPLICATION PRINCIPLE
+==================================================
+
+Each Market Lab should use the same core methodology:
+
+QUESTION
+
+↓
+
+HYPOTHESIS
+
+↓
+
+MANIFEST
+
+↓
+
+REFERENCE ASSET
+
+↓
+
+PREFLIGHT
+
+↓
+
+HUMAN RELEASE
+
+↓
+
+ROB OBSERVATION
+
+↓
+
+AAR
+
+↓
+
+REPLICATION
+
+This creates cross-lab comparability.
+
+==================================================
+STUDENT LAB LEVELS
+==================================================
+
+LEVEL 1 — OBSERVER
+
+No wallet required.
+
+Read transactions.
+
+LEVEL 2 — ANALYST
+
+Reconstruct experiments.
+
+LEVEL 3 — BUILDER
+
+Build schemas, APIs, dashboards, or agent modules.
+
+LEVEL 4 — RESEARCHER
+
+Design hypotheses and replications.
+
+LEVEL 5 — OPERATOR
+
+Participate in approved preparation under human governance.
+
+LEVEL 6 — REVIEWER
+
+Audit reproducibility and methodology.
+
+Live financial authority is not automatically granted by educational level.
+
+==================================================
+ASSESSMENT MODEL
+==================================================
+
+PONS $101 should evaluate:
+
+UNDERSTANDING
+
+not:
+
+TOKEN PROFIT.
+
+Recommended assessments:
+
+transaction reconstruction
+
+manifest creation
+
+fee classification
+
+bot-like behavior analysis
+
+preflight review
+
+AAR writing
+
+schema validation
+
+reproducibility challenge
+
+security review
+
+public-good accounting
+
+==================================================
+CAPSTONE
+==================================================
+
+PONS $101 CAPSTONE
+
+Student receives one completed experiment.
+
+The student must independently produce:
+
+1. Canonical token identity.
+
+2. Network identity.
+
+3. Launch transaction.
+
+4. Launch T0.
+
+5. First-trade latency.
+
+6. Opening-window activity.
+
+7. Fee breakdown.
+
+8. ROB classification critique.
+
+9. Human-release verification.
+
+10. Treasury-receipt verification.
+
+11. Evidence classification.
+
+12. Limitations.
+
+13. AAR.
+
+14. Reproducibility verification.
+
+==================================================
+CAPSTONE PASS STANDARD
+==================================================
+
+A student does not pass by agreeing with ROB.
+
+A student passes by showing:
+
+EVIDENCE
+
+METHOD
+
+REASONING
+
+LIMITATIONS
+
+and
+
+REPRODUCIBILITY.
+
+==================================================
+EDUCATIONAL DISCLOSURE
+==================================================
+
+PONS $101 is educational and experimental.
+
+Students should understand that token launches can involve:
+
+high volatility
+
+loss of principal
+
+illiquidity
+
+technical failure
+
+smart-contract risk
+
+protocol risk
+
+wallet risk
+
+regulatory uncertainty
+
+and rapidly changing market conditions.
+
+Educational participation does not require purchasing a token.
+
+==================================================
+NO PURCHASE REQUIREMENT
+==================================================
+
+Core PONS $101 education should remain understandable without requiring a learner to:
+
+buy $101
+
+trade a token
+
+provide capital
+
+or connect a production wallet.
+
+Live experiments are demonstrations and research objects.
+
+==================================================
+RESEARCH BEFORE SPECULATION
+==================================================
+
+The educational hierarchy is:
+
+LEARN
+
+BEFORE
+
+TRADE.
+
+VERIFY
+
+BEFORE
+
+BELIEVE.
+
+RESEARCH
+
+BEFORE
+
+PROMOTION.
+
+PROVENANCE
+
+BEFORE
+
+CLAIM.
+
+==================================================
+INSTRUCTOR ROLE
+==================================================
+
+Instructor responsibilities:
+
+explain concepts
+
+state uncertainty
+
+separate research from promotion
+
+preserve disclosures
+
+teach evidence discipline
+
+encourage critique
+
+retain negative results
+
+protect student safety
+
+maintain human governance
+
+==================================================
+AGENT TEACHING ROLE
+==================================================
+
+AI agents may:
+
+explain
+
+quiz
+
+generate synthetic examples
+
+check manifests
+
+help students read transactions
+
+compare hypotheses
+
+assist with coding
+
+produce research summaries
+
+Agents should not pressure students to:
+
+buy
+
+sell
+
+deposit funds
+
+or imitate a live transaction.
+
+==================================================
+PONS $101 CLASS TEMPLATE
+==================================================
+
+Every class may use:
+
+TITLE
+
+LEARNING OBJECTIVE
+
+CONCEPT
+
+CHAIN EXAMPLE
+
+ROB QUESTION
+
+EVIDENCE QUESTION
+
+LAB
+
+AAR
+
+NEXT STEP
+
+==================================================
+FIVE-MINUTE LECTURE FORMAT
+==================================================
+
+For short-form distribution:
+
+MINUTE 0–1
+
+THE QUESTION
+
+MINUTE 1–2
+
+THE CONCEPT
+
+MINUTE 2–3
+
+THE CHAIN EVIDENCE
+
+MINUTE 3–4
+
+THE ROB INTERPRETATION
+
+MINUTE 4–5
+
+THE HUMAN TAKEAWAY
+
+End with:
+
+WHAT DID WE KNOW BEFORE THE OUTCOME?
+
+==================================================
+PONS $101 SHORT FORMAT
+==================================================
+
+HOOK
+
+“YOU SAW A WALLET BUY ONE SECOND AFTER LAUNCH. IS IT A BOT?”
+
+ANSWER
+
+“NOT YET.”
+
+TEACH
+
+Timing is observation.
+
+Automation is inference.
+
+Identity requires stronger evidence.
+
+CTA
+
+Learn the chain before labeling the wallet.
+
+PONS $101.
+
+==================================================
+COURSE EVIDENCE STANDARD
+==================================================
+
+Students should learn to label statements:
+
+VERIFIED
+
+CORROBORATED
+
+AUTHOR-ORIGINATED
+
+PROPOSED
+
+FUTURE EXPERIMENT
+
+UNKNOWN
+
+This evidence discipline should appear across all Market Labs.
+
+==================================================
+COURSE REPOSITORY STANDARD
+==================================================
+
+Every educational lab should eventually contain:
+
+START HERE
+
+SYLLABUS
+
+CASE STUDY
+
+EXPERIMENTS
+
+DATA
+
+AAR
+
+REPRODUCIBILITY
+
+SECURITY
+
+DISCLOSURES
+
+AGENT SPEC
+
+==================================================
+COURSE DISCORD STANDARD
+==================================================
+
+Every Market Lab Discord should contain:
+
+START HERE
+
+CLASSROOM
+
+RESEARCH
+
+ROB OBSERVATIONS
+
+CASE STUDIES
+
+AAR
+
+COMMUNITY
+
+DISCLOSURES
+
+Where live experiments occur:
+
+PRIVATE RELEASE GATE
+
+must remain separate.
+
+==================================================
+COURSE PROGRESSION
+==================================================
+
+PONS $101
+
+FOUNDATION
+
+↓
+
+MARKET LAB
+
+CASE STUDY
+
+↓
+
+ROB OBSERVATION
+
+↓
+
+RESEARCH METHOD
+
+↓
+
+AGENT BUILD
+
+↓
+
+REPRODUCTION
+
+↓
+
+EXTERNAL REVIEW
+
+==================================================
+CERTIFICATE / COMPLETION EVIDENCE
+==================================================
+
+A future completion credential may record:
+
+course
+
+student pseudonymous identifier
+
+completion date
+
+modules completed
+
+capstone experiment
+
+dataset version
+
+credential hash
+
+No token purchase should be required to prove completion.
+
+==================================================
+PONS $101 RESEARCHER TRACK
+==================================================
+
+Advanced students may continue into:
+
+PONS $201
+
+comparative launch behavior
+
+PONS $301
+
+multi-agent market research
+
+PONS $402
+
+compliance, audit, machine payment, and governance
+
+Future numbering should preserve:
+
+101 = foundations
+
+402 = legal/compliance/governance architecture
+
+==================================================
+FINAL EDUCATION DOCTRINE
+==================================================
+
+THE TOKEN IS NOT THE LESSON.
+
+THE SYSTEM IS THE LESSON.
+
+THE PRICE IS NOT THE GRADE.
+
+THE EVIDENCE IS THE GRADE.
+
+A FAST WALLET IS NOT AUTOMATICALLY A BOT.
+
+A FEE ESTIMATE IS NOT AUTOMATICALLY REVENUE.
+
+A TOKEN SYMBOL IS NOT AN IDENTITY.
+
+A PAIR IS NOT A PEG.
+
+AN AGENT IS NOT THE FINAL AUTHORITY.
+
+A PUBLIC-GOOD MISSION IS NOT AN ACCOUNTING RECORD.
+
+EVERY CLAIM SHOULD HAVE A PROVENANCE PATH.
+
+==================================================
+PONS $101 EDUCATIONAL ARCHITECTURE
+==================================================
+
+STUDENT
+
+↓
+
+PONS $101
+
+↓
+
+MARKET LITERACY
+
+↓
+
+BLOCKCHAIN LITERACY
+
+↓
+
+TOKEN LAUNCH LITERACY
+
+↓
+
+ROB TELEMETRY
+
+↓
+
+RESEARCH METHODS
+
+↓
+
+AGENT LITERACY
+
+↓
+
+HUMAN GOVERNANCE
+
+↓
+
+PROVENANCE
+
+↓
+
+REPRODUCIBILITY
+
+↓
+
+MARKET LAB CASE STUDIES
+
+↓
+
+INDEPENDENT REPLICATION
+
+==================================================
+GENESIS EDUCATION STATEMENT
+==================================================
+
+WE DO NOT TEACH STUDENTS TO CHASE THE FIRST WALLET.
+
+WE TEACH THEM TO READ THE FIRST BLOCK.
+
+WE DO NOT TEACH THEM TO TRUST A TICKER.
+
+WE TEACH THEM TO VERIFY THE CONTRACT.
+
+WE DO NOT TEACH THEM TO CALL EVERYTHING A BOT.
+
+WE TEACH THEM TO CLASSIFY EVIDENCE.
+
+WE DO NOT TEACH THEM THAT A FEE EVENT IS MONEY IN THE BANK.
+
+WE TEACH THEM TO VERIFY THE RECEIPT.
+
+WE DO NOT TEACH THEM TO GIVE AN AGENT THE KEYS.
+
+WE TEACH THEM AUGMENTATION WITHOUT ABDICATION.
+
+THE LAB MAY CREATE A TOKEN.
+
+THE COURSE CREATES A RESEARCHER.
+
+PONS $101
+
+LEARN THE MARKET.
+
+READ THE CHAIN.
+
+QUESTION THE AGENT.
+
+VERIFY THE EVIDENCE.
+
+PRESERVE THE RECORD.
+
+REPLICATE THE RESULT.
+
+WHAT DID WE KNOW BEFORE THE OUTCOME?
+
+IN JESUS' NAME.
