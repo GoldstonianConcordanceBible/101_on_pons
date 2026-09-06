@@ -1,0 +1,2426 @@
+# PONS $101 — DEPLOYMENT, DEVOPS & REPRODUCIBILITY
+
+PONS $101 is intended to be deployable as a working research system, not merely preserved as documentation.
+
+This section defines the operational architecture required to run:
+
+• the ROB indexer
+• the research API
+• the experiment registry
+• the preflight engine
+• the unsigned payload builder
+• the agent runtime
+• the research database
+• the Discord integration
+• the provenance exporter
+• dashboards
+• scheduled jobs
+• GitHub Actions
+• reproducibility releases
+
+The operating objective is:
+
+ONE REPOSITORY
+
+MULTIPLE SERVICES
+
+SEPARATE PERMISSIONS
+
+REPRODUCIBLE DEPLOYMENT
+
+HUMAN-CONTROLLED MAINNET AUTHORITY
+
+==================================================
+DEPLOYMENT PRINCIPLE
+==================================================
+
+Every component should be replaceable without destroying the canonical research record.
+
+The architecture should prefer:
+
+OPEN INTERFACES
+
+VERSIONED CONFIGURATION
+
+PORTABLE DATA
+
+PUBLIC CHAIN EVIDENCE
+
+DETERMINISTIC HASHES
+
+REPRODUCIBLE BUILDS
+
+over dependence on a single hosted provider.
+
+PONS $101 should be capable of moving between:
+
+local development
+
+cloud infrastructure
+
+self-hosted infrastructure
+
+research servers
+
+and
+
+future decentralized infrastructure
+
+without redesigning the entire research model.
+
+==================================================
+REFERENCE STACK
+==================================================
+
+Recommended baseline stack:
+
+NODE.JS
+
+For:
+
+API services
+
+Discord bot
+
+agent orchestration
+
+event indexing
+
+contract interaction
+
+PYTHON
+
+For:
+
+research analysis
+
+statistical analysis
+
+mixed-methods processing
+
+data export
+
+notebooks
+
+research reporting
+
+POSTGRESQL
+
+For:
+
+canonical normalized research records
+
+REDIS
+
+Optional.
+
+For:
+
+job queues
+
+temporary cache
+
+distributed locks
+
+rate limiting
+
+DOCKER
+
+For:
+
+reproducible local and server deployment
+
+GITHUB ACTIONS
+
+For:
+
+testing
+
+schema validation
+
+security checks
+
+container builds
+
+research-release packaging
+
+JSON / JSONL / CSV / PARQUET
+
+For:
+
+portable research datasets
+
+==================================================
+SYSTEM SERVICES
+==================================================
+
+Recommended deployable services:
+
+pons-api
+
+rob-indexer
+
+experiment-registry
+
+preflight-service
+
+payload-builder
+
+agent-worker
+
+discord-control-tower
+
+research-worker
+
+provenance-exporter
+
+postgres
+
+redis
+
+optional-dashboard
+
+==================================================
+PONS API
+==================================================
+
+pons-api provides normalized research access.
+
+Responsibilities:
+
+• experiment retrieval
+• launch retrieval
+• telemetry retrieval
+• fee summaries
+• wallet-pattern research
+• preflight requests
+• unsigned payload generation
+• health information
+• research export metadata
+
+The API does not hold a production signing key.
+
+==================================================
+ROB INDEXER
+==================================================
+
+rob-indexer connects to public blockchain RPC infrastructure.
+
+Responsibilities:
+
+• monitor launch events
+• discover token and curve relationships
+• index buy events
+• index sell events
+• preserve raw logs
+• normalize decoded logs
+• calculate block-relative timing
+• detect reorgs
+• resume from checkpoints
+• emit research observations
+
+ROB should be restartable without losing its canonical position.
+
+==================================================
+INDEXER CHECKPOINT
+==================================================
+
+Persist:
+
+chain_id
+
+last_scanned_block
+
+last_confirmed_block
+
+last_scanned_block_hash
+
+updated_at
+
+software_version
+
+On restart:
+
+1. Read checkpoint.
+
+2. Verify stored block hash remains canonical.
+
+3. If canonical:
+
+resume.
+
+4. If not canonical:
+
+enter REORG recovery.
+
+==================================================
+BLOCK PROCESSING
+==================================================
+
+Recommended workflow:
+
+FETCH BLOCK
+
+↓
+
+FETCH MATCHING LOGS
+
+↓
+
+STORE RAW LOG
+
+↓
+
+DECODE LOG
+
+↓
+
+NORMALIZE RECORD
+
+↓
+
+LINK TO EXPERIMENT
+
+↓
+
+CALCULATE DERIVED FIELDS
+
+↓
+
+CLASSIFY WHERE APPROPRIATE
+
+↓
+
+PERSIST
+
+↓
+
+ADVANCE CHECKPOINT
+
+Raw evidence should be persisted before derived classification.
+
+==================================================
+EVENT IDEMPOTENCY
+==================================================
+
+Canonical event key:
+
+chain_id
+
++
+
+transaction_hash
+
++
+
+log_index
+
+Attempting to index the same event twice should update nothing material.
+
+Duplicate processing should be harmless.
+
+==================================================
+DATABASE ARCHITECTURE
+==================================================
+
+Recommended primary database:
+
+PostgreSQL.
+
+Logical schemas may include:
+
+core
+
+chain
+
+research
+
+agents
+
+treasury
+
+audit
+
+==================================================
+CORE SCHEMA
+==================================================
+
+core.experiments
+
+core.experiment_versions
+
+core.tokens
+
+core.networks
+
+core.factories
+
+core.contract_interfaces
+
+==================================================
+CHAIN SCHEMA
+==================================================
+
+chain.raw_logs
+
+chain.launches
+
+chain.trades
+
+chain.blocks
+
+chain.transactions
+
+chain.reorg_records
+
+chain.indexer_checkpoints
+
+==================================================
+RESEARCH SCHEMA
+==================================================
+
+research.observations
+
+research.wallet_profiles
+
+research.classifications
+
+research.fee_calculations
+
+research.hypotheses
+
+research.after_action_reviews
+
+research.evidence_objects
+
+research.replications
+
+==================================================
+AGENT SCHEMA
+==================================================
+
+agents.registry
+
+agents.jobs
+
+agents.outputs
+
+agents.permissions
+
+agents.errors
+
+agents.model_versions
+
+==================================================
+TREASURY SCHEMA
+==================================================
+
+treasury.entitlements
+
+treasury.receipts
+
+treasury.allocations
+
+treasury.disbursements
+
+treasury.receipt_evidence
+
+==================================================
+AUDIT SCHEMA
+==================================================
+
+audit.human_decisions
+
+audit.configuration_changes
+
+audit.release_records
+
+audit.security_incidents
+
+audit.data_corrections
+
+==================================================
+RAW LOG TABLE
+==================================================
+
+Recommended fields:
+
+chain_id
+
+block_number
+
+block_hash
+
+transaction_hash
+
+transaction_index
+
+log_index
+
+contract_address
+
+topic0
+
+topics
+
+raw_data
+
+observed_at
+
+rpc_source
+
+confirmation_status
+
+decoder_version
+
+ingested_at
+
+Raw log content should remain unchanged after insertion except for explicit status fields such as:
+
+CONFIRMED
+
+REORGED
+
+==================================================
+EXPERIMENT VERSIONING
+==================================================
+
+An experiment should never have its original registered configuration silently overwritten.
+
+Use:
+
+experiment
+
++
+
+experiment_version
+
+Example:
+
+P101-20260905-001
+
+Version 1:
+
+initial registered hypothesis.
+
+Version 2:
+
+configuration correction before launch.
+
+Version 3:
+
+post-launch annotation.
+
+The record should make clear which version was active at human release.
+
+==================================================
+SCHEMA VERSIONING
+==================================================
+
+Every portable dataset should declare:
+
+schema_name
+
+schema_version
+
+created_at
+
+software_version
+
+commit_sha
+
+Supported evolution pattern:
+
+1.0.0
+
+initial schema.
+
+1.1.0
+
+backward-compatible field addition.
+
+2.0.0
+
+breaking field or semantic change.
+
+==================================================
+CANONICAL EXPERIMENT MANIFEST
+==================================================
+
+Recommended machine-readable structure:
+
+{
+  "schema_version": "1.0.0",
+  "experiment_id": "P101-20260905-001-ROB-GENESIS",
+  "created_at": "",
+  "human_owner": "",
+  "research_question": "",
+  "hypothesis": "",
+  "announcement_condition": "NO_PRE_ANNOUNCEMENT",
+  "network": {
+    "name": "",
+    "chain_id": 0,
+    "factory_address": "",
+    "factory_version": ""
+  },
+  "token": {
+    "name": "",
+    "symbol": "",
+    "description": ""
+  },
+  "pair": {
+    "address": "",
+    "symbol": ""
+  },
+  "creator": {
+    "address": "",
+    "fee_recipient": "",
+    "creator_tax": ""
+  },
+  "observation": {
+    "windows": [],
+    "classification_version": ""
+  },
+  "release": {
+    "require_human_signature": true,
+    "agent_broadcast_allowed": false
+  }
+}
+
+==================================================
+MANIFEST HASH
+==================================================
+
+Before launch:
+
+1. Normalize manifest serialization.
+
+2. Calculate SHA-256 or another documented cryptographic digest.
+
+3. Store:
+
+manifest_hash
+
+4. Commit the manifest.
+
+5. Reference the hash in the human release record.
+
+If any material parameter changes:
+
+generate a new manifest version
+
+and
+
+new hash.
+
+==================================================
+CONFIGURATION DIRECTORY
+==================================================
+
+Recommended configuration classes:
+
+NETWORK CONFIGURATION
+
+FACTORY CONFIGURATION
+
+ABI CONFIGURATION
+
+AGENT CONFIGURATION
+
+RESEARCH CONFIGURATION
+
+OBSERVATION WINDOWS
+
+CLASSIFICATION WEIGHTS
+
+SECURITY CONFIGURATION
+
+PUBLIC-GOOD CONFIGURATION
+
+Do not bury material research assumptions inside application code.
+
+==================================================
+ENVIRONMENT CONFIGURATION
+==================================================
+
+Example environment variables:
+
+NODE_ENV
+
+PORT
+
+CHAIN_ID
+
+RPC_HTTP
+
+RPC_WS
+
+FACTORY_ADDRESS
+
+DATABASE_URL
+
+REDIS_URL
+
+DISCORD_TOKEN
+
+DISCORD_GUILD_ID
+
+ROB_START_BLOCK
+
+CONFIRMATION_DEPTH
+
+LOG_LEVEL
+
+GITHUB_REPOSITORY
+
+RESEARCH_DATA_DIR
+
+No real credentials belong in the repository.
+
+==================================================
+ENVIRONMENT FILES
+==================================================
+
+Allowed:
+
+.env.example
+
+.env.local.example
+
+.env.production.example
+
+Not committed:
+
+.env
+
+.env.local
+
+.env.production
+
+wallet secrets
+
+private keys
+
+==================================================
+DOCKER ARCHITECTURE
+==================================================
+
+Each service should have a dedicated container image.
+
+Recommended development composition:
+
+postgres
+
+redis
+
+pons-api
+
+rob-indexer
+
+agent-worker
+
+discord-control-tower
+
+research-worker
+
+==================================================
+CONTAINER PRINCIPLES
+==================================================
+
+Containers should:
+
+• run as non-root where practical
+• use minimal base images
+• expose only required ports
+• mount data volumes intentionally
+• receive secrets at runtime
+• emit structured logs
+• have health checks
+• restart safely
+• never embed wallet secrets in images
+
+==================================================
+LOCAL DEVELOPMENT
+==================================================
+
+Recommended local workflow:
+
+1. Clone repository.
+
+2. Copy example environment file.
+
+3. Configure read-only RPC.
+
+4. Start database.
+
+5. Run migrations.
+
+6. Start ROB indexer.
+
+7. Start research API.
+
+8. Run health checks.
+
+9. Load sample experiment.
+
+10. Run tests.
+
+11. Run simulation.
+
+Mainnet signing remains external.
+
+==================================================
+DEVELOPMENT MODES
+==================================================
+
+MODE 1 — OFFLINE
+
+No network access required.
+
+Use fixtures and recorded event data.
+
+Purpose:
+
+unit tests
+
+schema tests
+
+research-method tests
+
+MODE 2 — READ ONLY
+
+Connect to public RPC.
+
+No transaction generation.
+
+Purpose:
+
+indexing
+
+historical reconstruction
+
+telemetry
+
+MODE 3 — PREPARATION
+
+Read chain.
+
+Generate unsigned transaction proposal.
+
+No autonomous broadcast.
+
+MODE 4 — HUMAN MAINNET
+
+Human independently reviews and signs.
+
+The software then observes the public result.
+
+==================================================
+TEST FIXTURES
+==================================================
+
+The repository should contain synthetic or historical fixtures for:
+
+launch event
+
+buy event
+
+sell event
+
+opening-window trade
+
+ordinary trade
+
+fee calculation
+
+creator-tax event
+
+reorg
+
+RPC failure
+
+duplicate event
+
+unsupported pair
+
+launch-permission failure
+
+payload mismatch
+
+No mainnet funds are required for these tests.
+
+==================================================
+UNIT TESTS
+==================================================
+
+Test at minimum:
+
+address validation
+
+chain ID validation
+
+manifest validation
+
+hash generation
+
+fee calculation
+
+event decoding
+
+classification logic
+
+observation-window calculation
+
+duplicate-event handling
+
+reorg handling
+
+payload decoding
+
+release-gate enforcement
+
+==================================================
+INTEGRATION TESTS
+==================================================
+
+Integration tests should verify:
+
+RPC connection
+
+contract reads
+
+database writes
+
+event indexing
+
+preflight execution
+
+payload generation
+
+API routes
+
+agent jobs
+
+Discord message formatting
+
+reproducibility export
+
+==================================================
+SECURITY TESTS
+==================================================
+
+Test:
+
+secret leakage
+
+unauthorized API access
+
+invalid addresses
+
+oversized payloads
+
+malformed JSON
+
+invalid chain IDs
+
+unexpected contract addresses
+
+permission escalation
+
+agent attempt to broadcast
+
+agent attempt to access treasury authority
+
+==================================================
+MAINNET SAFETY TEST
+==================================================
+
+A critical automated test should verify:
+
+AUTONOMOUS_MAINNET_BROADCAST = DISABLED
+
+The build should fail if production configuration unexpectedly enables unrestricted autonomous signing.
+
+==================================================
+GITHUB ACTIONS
+==================================================
+
+Recommended workflows:
+
+CI
+
+SECURITY
+
+CONTAINER BUILD
+
+RESEARCH SCHEMA
+
+REPRODUCIBILITY PACKAGE
+
+RELEASE
+
+==================================================
+CI WORKFLOW
+==================================================
+
+Run on:
+
+push
+
+pull request
+
+Tasks:
+
+install dependencies
+
+lint
+
+format check
+
+unit tests
+
+integration tests with fixtures
+
+schema validation
+
+build services
+
+==================================================
+SECURITY WORKFLOW
+==================================================
+
+Run:
+
+dependency scan
+
+secret scan
+
+static analysis
+
+container vulnerability scan where available
+
+Fail critical issues or require documented human exception.
+
+==================================================
+RESEARCH SCHEMA WORKFLOW
+==================================================
+
+Validate:
+
+experiment manifests
+
+raw-event schemas
+
+normalized-event schemas
+
+AAR schemas
+
+treasury schemas
+
+agent-job schemas
+
+dataset metadata
+
+==================================================
+REPRODUCIBILITY WORKFLOW
+==================================================
+
+Given a completed experiment:
+
+1. Resolve experiment version.
+
+2. Export manifest.
+
+3. Export raw events.
+
+4. Export normalized observations.
+
+5. Export calculations.
+
+6. Export human release record.
+
+7. Export agent records.
+
+8. Export AAR.
+
+9. Generate metadata.
+
+10. Hash all files.
+
+11. Generate master bundle hash.
+
+12. Produce archive.
+
+==================================================
+RELEASE WORKFLOW
+==================================================
+
+A software release should contain:
+
+version
+
+commit SHA
+
+date
+
+change summary
+
+migration notes
+
+research-method changes
+
+security changes
+
+known limitations
+
+==================================================
+NO CI MAINNET LAUNCH
+==================================================
+
+The following workflow is prohibited by default:
+
+MERGE TO MAIN
+
+↓
+
+AUTOMATIC TOKEN LAUNCH
+
+That architecture destroys the human release boundary.
+
+The valid workflow is:
+
+MERGE
+
+↓
+
+BUILD
+
+↓
+
+TEST
+
+↓
+
+GENERATE ARTIFACT
+
+↓
+
+HUMAN REVIEW
+
+↓
+
+HUMAN WALLET
+
+==================================================
+AGENT RUNTIME
+==================================================
+
+The agent runtime should use job-based execution.
+
+An agent does not receive unrestricted shell or wallet authority merely because it can call the research API.
+
+Each job includes:
+
+job_id
+
+agent_id
+
+experiment_id
+
+task
+
+input references
+
+permissions
+
+deadline where used
+
+expected outputs
+
+human gate
+
+==================================================
+AGENT JOB STATES
+==================================================
+
+QUEUED
+
+RUNNING
+
+WAITING_FOR_DATA
+
+WAITING_FOR_HUMAN
+
+COMPLETED
+
+FAILED
+
+CANCELLED
+
+BLOCKED
+
+==================================================
+AGENT OUTPUT ENVELOPE
+==================================================
+
+Every material agent output should include:
+
+agent_id
+
+model_or_software
+
+version
+
+job_id
+
+experiment_id
+
+created_at
+
+input_hash
+
+output_hash
+
+status
+
+warnings
+
+confidence where applicable
+
+human_review_required
+
+==================================================
+AGENT PROMPT — MASTER
+==================================================
+
+You are an authorized PONS $101 research and engineering agent.
+
+Your job is to automate reproducible preparation, validation, observation, analysis, documentation, and research packaging.
+
+You may:
+
+read public chain data
+
+inspect approved contracts
+
+prepare manifests
+
+validate schemas
+
+perform preflight checks
+
+generate unsigned calldata
+
+simulate transactions where supported
+
+analyze research data
+
+prepare telemetry
+
+generate after-action-review drafts
+
+prepare reproducibility bundles
+
+You may not:
+
+invent contract addresses
+
+invent fee values
+
+invent chain evidence
+
+claim bot identity from timing alone
+
+sign production wallet transactions
+
+broadcast unauthorized mainnet transactions
+
+trade
+
+move treasury assets
+
+alter evidence to match a hypothesis
+
+hide negative findings
+
+When evidence is incomplete:
+
+say UNKNOWN.
+
+When a critical configuration cannot be verified:
+
+return BLOCKED.
+
+When financial or irreversible authority is required:
+
+return WAITING_FOR_HUMAN.
+
+Always separate:
+
+VERIFIED FACT
+
+CALCULATION
+
+INFERENCE
+
+RECOMMENDATION
+
+HUMAN DECISION
+
+The research question is:
+
+WHAT DID WE KNOW BEFORE THE OUTCOME?
+
+==================================================
+HASHWARLOCK BUILD AGENT
+==================================================
+
+ROLE
+
+Technical construction and integration.
+
+PRIMARY TASKS
+
+• implement APIs
+• implement event indexers
+• maintain contract adapters
+• maintain schemas
+• implement preflight
+• implement unsigned payload generation
+• implement tests
+• maintain Docker infrastructure
+• maintain CI
+• maintain reproducibility tooling
+
+REQUIRED BEHAVIOR
+
+Fail closed.
+
+Preserve versioning.
+
+Do not hard-code unverified current contract addresses.
+
+Do not insert production private keys.
+
+Do not silently broaden permissions.
+
+==================================================
+ROB AGENT
+==================================================
+
+ROLE
+
+Research telemetry.
+
+PRIMARY TASKS
+
+• observe launches
+• decode events
+• calculate timing
+• calculate fee components
+• profile repeated behavioral patterns
+• classify conservatively
+• produce evidence records
+
+ROB response format should distinguish:
+
+FACT
+
+CALCULATION
+
+CLASSIFICATION
+
+CONFIDENCE
+
+LIMITATION
+
+==================================================
+CONTROL TOWER AGENT
+==================================================
+
+ROLE
+
+Routing and synthesis.
+
+INPUTS
+
+experiment state
+
+ROB state
+
+agent state
+
+security state
+
+treasury state
+
+open gates
+
+OUTPUT
+
+CURRENT STATE
+
+BLOCKERS
+
+MODEL RECOMMENDATIONS
+
+HUMAN DECISIONS NEEDED
+
+NEXT RESPONSIBLE OWNER
+
+NEXT ACTION
+
+The Control Tower must not invent approval.
+
+==================================================
+RESEARCH WORKER
+==================================================
+
+The research worker may automatically compute:
+
+latency distributions
+
+wallet recurrence
+
+opening-window percentages
+
+fee summaries
+
+cross-launch comparisons
+
+classification metrics
+
+replication matrices
+
+It should write derived outputs to:
+
+research tables
+
+not raw chain tables.
+
+==================================================
+RESEARCH NOTEBOOKS
+==================================================
+
+Notebook use cases:
+
+exploratory analysis
+
+visualization
+
+statistical testing
+
+mixed-methods integration
+
+publication figures
+
+Notebook outputs should not become the only copy of an important result.
+
+Reusable logic should migrate into versioned source code.
+
+==================================================
+DATA EXPORTS
+==================================================
+
+Recommended public data formats:
+
+JSONL
+
+for event streams.
+
+CSV
+
+for accessible tabular analysis.
+
+PARQUET
+
+for larger analytical datasets.
+
+JSON
+
+for manifests and metadata.
+
+MARKDOWN
+
+for human-readable AAR and reports.
+
+==================================================
+PUBLIC DATASET
+==================================================
+
+A public dataset may contain:
+
+experiment IDs
+
+token addresses
+
+public wallet addresses
+
+transactions
+
+blocks
+
+timestamps
+
+trade observations
+
+fee observations
+
+classifications
+
+confidence
+
+method version
+
+Do not include:
+
+secrets
+
+private Discord content without authorization
+
+private API credentials
+
+personal information unrelated to research
+
+==================================================
+DATASET METADATA
+==================================================
+
+Every published dataset should state:
+
+TITLE
+
+VERSION
+
+DATE
+
+CREATOR
+
+RESEARCH PURPOSE
+
+EXPERIMENT RANGE
+
+NETWORK
+
+SCHEMA VERSION
+
+SOFTWARE VERSION
+
+COMMIT SHA
+
+RECORD COUNT
+
+METHODOLOGY
+
+KNOWN LIMITATIONS
+
+LICENSE
+
+DATASET HASH
+
+==================================================
+REPRODUCIBILITY BUNDLE
+==================================================
+
+Recommended archive structure:
+
+MANIFEST
+
+NETWORK SNAPSHOT
+
+CONTRACT SNAPSHOT
+
+HUMAN RELEASE RECORD
+
+TRANSACTION RECORD
+
+RAW EVENTS
+
+NORMALIZED EVENTS
+
+DERIVED METRICS
+
+CLASSIFICATIONS
+
+AGENT LOGS
+
+AAR
+
+TREASURY RECORDS IF APPLICABLE
+
+METHODOLOGY
+
+SOFTWARE VERSION
+
+HASH MANIFEST
+
+==================================================
+HASH MANIFEST
+==================================================
+
+Every bundle should contain a file listing:
+
+relative path
+
+file size
+
+SHA-256 hash
+
+A final root hash may be calculated over the ordered file manifest.
+
+This creates:
+
+EVIDENCE OF THE EVIDENCE PACKAGE.
+
+==================================================
+PUBLIC RELEASE LEVELS
+==================================================
+
+LEVEL 0 — PRIVATE EXPERIMENT
+
+Pre-launch.
+
+LEVEL 1 — INTERNAL RESEARCH
+
+Post-launch working analysis.
+
+LEVEL 2 — REVIEW PACKAGE
+
+Prepared for invited technical or compliance review.
+
+LEVEL 3 — PUBLIC DATA
+
+Redacted and reproducible dataset.
+
+LEVEL 4 — PUBLICATION
+
+Formal report, article, course material, or scholarly artifact.
+
+==================================================
+RESEARCH RELEASE TAG
+==================================================
+
+Recommended Git tag:
+
+research/P101-20260905-001-v1.0.0
+
+Software release:
+
+v0.1.0
+
+Dataset release:
+
+dataset-v1.0.0
+
+Keep the concepts distinct.
+
+==================================================
+OBSERVABILITY
+==================================================
+
+All services should emit structured logs.
+
+Recommended fields:
+
+timestamp
+
+service
+
+version
+
+level
+
+experiment_id
+
+job_id
+
+chain_id
+
+block_number
+
+transaction_hash
+
+message
+
+error_code
+
+==================================================
+METRICS
+==================================================
+
+Operational metrics:
+
+RPC latency
+
+RPC failures
+
+indexer lag
+
+indexed blocks
+
+indexed events
+
+API latency
+
+API errors
+
+database connections
+
+job queue depth
+
+failed jobs
+
+agent job duration
+
+Discord delivery failures
+
+==================================================
+ROB METRICS
+==================================================
+
+Research metrics:
+
+launches indexed
+
+trades indexed
+
+opening-window trades
+
+unique wallets
+
+repeated wallets
+
+automated candidates
+
+creator-fee observations
+
+confirmed treasury receipts
+
+reorg events
+
+evidence gaps
+
+==================================================
+HEALTH STATES
+==================================================
+
+HEALTHY
+
+Service operating normally.
+
+DEGRADED
+
+Service available with limitations.
+
+STALE
+
+Service running but chain data is delayed.
+
+BLOCKED
+
+Critical configuration problem.
+
+OFFLINE
+
+Service unavailable.
+
+==================================================
+STATUS ENDPOINT
+==================================================
+
+GET /health
+
+Recommended response:
+
+status
+
+service
+
+version
+
+database
+
+rpc
+
+chain_id
+
+latest_chain_block
+
+latest_indexed_block
+
+lag
+
+current_experiment
+
+timestamp
+
+==================================================
+BACKUPS
+==================================================
+
+Back up:
+
+PostgreSQL
+
+experiment manifests
+
+human release records
+
+research exports
+
+treasury accounting records
+
+configuration history
+
+Backups should be:
+
+encrypted where sensitive
+
+periodically tested
+
+stored separately from the primary server
+
+==================================================
+DISASTER RECOVERY
+==================================================
+
+If the primary infrastructure is lost:
+
+1. Restore repository.
+
+2. Restore database backup.
+
+3. Reconfigure public RPC.
+
+4. Validate last canonical indexed block.
+
+5. Re-index public chain data where necessary.
+
+6. Verify experiment hashes.
+
+7. Resume services.
+
+Because core chain evidence is public, ROB should be capable of reconstructing substantial portions of the research record from the chain.
+
+Human records still require independent backup.
+
+==================================================
+PUBLIC CHAIN AS RECOVERY SOURCE
+==================================================
+
+Public chain evidence can reconstruct:
+
+transactions
+
+blocks
+
+events
+
+contract addresses
+
+public balances
+
+But it cannot necessarily reconstruct:
+
+pre-launch hypothesis
+
+human rationale
+
+private agent recommendation
+
+Discord discussion
+
+signed release decision
+
+Therefore both:
+
+ON-CHAIN EVIDENCE
+
+and
+
+OFF-CHAIN PROVENANCE
+
+must be preserved.
+
+==================================================
+SERVICE FAILURE DURING EXPERIMENT
+==================================================
+
+If ROB goes offline during a launch:
+
+do not automatically mark the experiment invalid.
+
+After recovery:
+
+reconstruct the relevant blocks from public chain evidence.
+
+Record:
+
+outage start
+
+outage end
+
+blocks affected
+
+reconstruction method
+
+evidence completeness
+
+The AAR determines whether the experiment remains interpretable.
+
+==================================================
+DATA RETENTION
+==================================================
+
+Recommended:
+
+RAW CHAIN EVIDENCE
+
+retain indefinitely where practical.
+
+MANIFESTS
+
+retain indefinitely.
+
+HUMAN RELEASE RECORDS
+
+retain indefinitely.
+
+AARs
+
+retain indefinitely.
+
+AGENT DEBUG LOGS
+
+retain according to operational need and privacy constraints.
+
+SECRETS
+
+never archive as research evidence.
+
+==================================================
+RESEARCH DASHBOARD
+==================================================
+
+A deployable dashboard may provide:
+
+PONS $101 CONTROL TOWER
+
+SYSTEM HEALTH
+
+ACTIVE EXPERIMENT
+
+CURRENT BLOCK
+
+ROB INDEXER LAG
+
+LATEST LAUNCH
+
+OPENING-WINDOW ACTIVITY
+
+UNIQUE WALLETS
+
+AUTOMATED CANDIDATES
+
+FEE OBSERVATIONS
+
+CREATOR ENTITLEMENT
+
+TREASURY RECEIPTS
+
+PUBLIC-GOOD STATUS
+
+OPEN HUMAN GATES
+
+LATEST AAR
+
+DATASET VERSION
+
+==================================================
+EXPERIMENT DASHBOARD
+==================================================
+
+EXPERIMENT ID
+
+TOKEN
+
+PAIR
+
+CONDITION
+
+T0
+
+STATUS
+
+MANIFEST HASH
+
+PAYLOAD HASH
+
+TRANSACTION
+
+TOKEN ADDRESS
+
+CURVE ADDRESS
+
+FIRST TRADE
+
+FIRST BLOCK ACTIVITY
+
+OPENING-WINDOW ACTIVITY
+
+WALLETS
+
+REPEATED WALLETS
+
+CLASSIFICATIONS
+
+FEES
+
+CREATOR ENTITLEMENT
+
+TREASURY RECEIPT
+
+HYPOTHESIS RESULT
+
+AAR
+
+REPLICATION
+
+==================================================
+PUBLIC-GOOD DASHBOARD
+==================================================
+
+Keep separate from market performance.
+
+Display:
+
+TOTAL CREATOR ENTITLEMENT
+
+TOTAL CONFIRMED RECEIPTS
+
+CURRENT TREASURY BALANCE
+
+APPROVED ALLOCATIONS
+
+COMPLETED DISBURSEMENTS
+
+DOCUMENTED PURPOSES
+
+OUTSTANDING PROPOSALS
+
+Do not display estimated protocol fees as confirmed treasury assets.
+
+==================================================
+DEPLOYMENT CHECKLIST
+==================================================
+
+[ ] Repository cloned
+
+[ ] Dependencies locked
+
+[ ] Environment configured
+
+[ ] Secrets stored outside repository
+
+[ ] Database available
+
+[ ] Migrations applied
+
+[ ] RPC chain verified
+
+[ ] Factory configuration verified
+
+[ ] ROB indexer healthy
+
+[ ] API healthy
+
+[ ] Agent worker healthy
+
+[ ] Discord integration healthy
+
+[ ] Security scans completed
+
+[ ] Mainnet autonomous signing disabled
+
+[ ] Human release workflow tested
+
+[ ] Backup tested
+
+[ ] Reproducibility export tested
+
+==================================================
+PRODUCTION READINESS
+==================================================
+
+Production does not mean:
+
+AUTOMATIC MONEY MOVEMENT.
+
+Production means:
+
+the research infrastructure can reliably:
+
+prepare
+
+observe
+
+measure
+
+preserve
+
+recover
+
+and
+
+reproduce.
+
+==================================================
+SCALING
+==================================================
+
+If experiment volume increases:
+
+split indexer workers by block range
+
+use queue-based agent jobs
+
+add read replicas
+
+cache public API responses
+
+partition high-volume event tables
+
+archive raw evidence
+
+use object storage for large reproducibility bundles
+
+But scaling should not weaken:
+
+experiment registration
+
+human release
+
+evidence integrity
+
+or
+
+treasury separation.
+
+==================================================
+MULTI-CHAIN FUTURE
+==================================================
+
+Although the Genesis implementation focuses on Robinhood Chain and Pons-compatible experiments, the adapter architecture should permit future chain modules.
+
+Each new chain must define:
+
+chain identity
+
+RPC behavior
+
+finality assumptions
+
+factory interface
+
+launch events
+
+trade events
+
+fee semantics
+
+pair semantics
+
+explorer conventions
+
+reorg handling
+
+Adding a chain does not mean the research results are automatically comparable.
+
+==================================================
+API VERSIONING
+==================================================
+
+Use:
+
+/api/v1
+
+Breaking changes should introduce:
+
+/api/v2
+
+Do not silently change field semantics.
+
+==================================================
+DOCUMENTATION AS CODE
+==================================================
+
+Core documentation should live beside the software.
+
+Every material change to:
+
+methodology
+
+schemas
+
+agent permissions
+
+fee logic
+
+classification
+
+release gates
+
+should be reviewable through Git history.
+
+==================================================
+CONTRIBUTION WORKFLOW
+==================================================
+
+Contributor:
+
+creates branch
+
+↓
+
+implements change
+
+↓
+
+adds tests
+
+↓
+
+updates documentation
+
+↓
+
+opens pull request
+
+↓
+
+CI runs
+
+↓
+
+human review
+
+↓
+
+merge
+
+For research-method changes:
+
+include:
+
+WHY THE METHOD CHANGED
+
+WHICH EXPERIMENTS ARE AFFECTED
+
+WHETHER PRIOR RESULTS MUST BE RECALCULATED
+
+==================================================
+EXTERNAL CONTRIBUTIONS
+==================================================
+
+External developers may contribute:
+
+indexers
+
+analysis modules
+
+visualizations
+
+schema improvements
+
+tests
+
+protocol adapters
+
+research-method critiques
+
+security improvements
+
+No contributor receives production wallet authority through repository access alone.
+
+==================================================
+REPRODUCIBILITY CHALLENGE
+==================================================
+
+A future educational exercise may ask independent students or researchers to:
+
+1. Receive only the experiment ID and public release bundle.
+
+2. Reconstruct the launch transaction.
+
+3. Reconstruct the opening-window trades.
+
+4. Recalculate fees.
+
+5. Reproduce ROB classifications.
+
+6. Compare their findings.
+
+A result that cannot be reproduced should be investigated.
+
+==================================================
+RESEARCH QUALITY METRICS
+==================================================
+
+Measure:
+
+percentage of experiments with preregistered hypothesis
+
+percentage with complete manifests
+
+percentage with valid hashes
+
+percentage with human release record
+
+percentage with complete raw evidence
+
+percentage with AAR
+
+percentage successfully reproduced
+
+percentage with unresolved evidence gaps
+
+==================================================
+DEVOPS QUALITY METRICS
+==================================================
+
+Measure:
+
+test coverage
+
+CI success
+
+indexer uptime
+
+RPC availability
+
+recovery time
+
+data-loss incidents
+
+security incidents
+
+schema-validation failures
+
+mean job duration
+
+failed agent jobs
+
+==================================================
+CONTROL TOWER DEPLOYMENT REPORT
+==================================================
+
+PONS $101 — INFRASTRUCTURE STATUS
+
+SOFTWARE VERSION:
+
+COMMIT:
+
+ENVIRONMENT:
+
+CHAIN:
+
+RPC:
+
+FACTORY:
+
+DATABASE:
+
+ROB INDEXER:
+
+API:
+
+AGENT WORKER:
+
+DISCORD:
+
+RESEARCH WORKER:
+
+LAST INDEXED BLOCK:
+
+CHAIN HEAD:
+
+INDEXER LAG:
+
+ACTIVE EXPERIMENT:
+
+BACKUP STATUS:
+
+SECURITY STATUS:
+
+REPRODUCIBILITY STATUS:
+
+OPEN INCIDENTS:
+
+HUMAN ACTION REQUIRED:
+
+NEXT DEPLOYMENT ACTION:
+
+==================================================
+DEPLOYMENT DOCTRINE
+==================================================
+
+BUILD ONCE.
+
+VERIFY EVERY TIME.
+
+CONFIGURE EXPLICITLY.
+
+HASH BEFORE RELEASE.
+
+FAIL CLOSED.
+
+KEEP RAW EVIDENCE RAW.
+
+KEEP AGENT AUTHORITY LIMITED.
+
+KEEP SIGNING OUTSIDE AUTOMATION.
+
+KEEP TREASURY AUTHORITY SEPARATE.
+
+MAKE THE EXPERIMENT PORTABLE.
+
+MAKE THE RESULT REPRODUCIBLE.
+
+==================================================
+GENESIS DEPLOYMENT STATEMENT
+==================================================
+
+GITHUB STORES THE LABORATORY BLUEPRINT.
+
+DOCKER MAKES THE LABORATORY PORTABLE.
+
+THE API CONNECTS THE SYSTEM.
+
+THE AGENTS OPERATE THE INSTRUMENTS.
+
+ROB WATCHES THE CHAIN.
+
+THE DATABASE PRESERVES THE NORMALIZED RECORD.
+
+THE BLOCKCHAIN PRESERVES THE PUBLIC EVENT.
+
+THE HASHES PRESERVE INTEGRITY.
+
+THE HUMAN CONTROLS THE SIGNATURE.
+
+THE RESEARCH PACKAGE MAKES THE EXPERIMENT REPRODUCIBLE.
+
+PONS $101
+
+BUILD
+→ TEST
+→ VERIFY
+→ PREPARE
+→ HUMAN APPROVAL
+→ OBSERVE
+→ EXPORT
+→ REPRODUCE
+
+WHAT DID WE KNOW BEFORE THE OUTCOME?
+
+IN JESUS' NAME.
