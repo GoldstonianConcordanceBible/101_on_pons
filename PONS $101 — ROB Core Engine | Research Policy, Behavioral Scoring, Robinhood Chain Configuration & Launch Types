@@ -1,0 +1,1037 @@
+# PONS $101 — ROB CORE ENGINE
+
+This is the first executable core of the PONS $101 — ROB Lab.
+
+It establishes four machine-level foundations:
+
+1. ROB'S OPERATING POLICY
+2. ROB'S CONSERVATIVE BEHAVIORAL SCORING
+3. ROBINHOOD CHAIN CONFIGURATION
+4. THE CANONICAL TOKEN-LAUNCH MANIFEST TYPE
+
+The software follows the same doctrine as the research architecture:
+
+OBSERVE BEFORE INTERPRETING.
+
+MEASURE BEFORE LABELING.
+
+FAIL CLOSED.
+
+THE AGENT PREPARES.
+
+THE HUMAN SIGNS.
+
+==================================================
+ROB OPERATING POLICY
+==================================================
+
+export const ROB_POLICY = {
+  name: "ROB — Research Observer for Bot-like activity",
+
+  purpose:
+    "Observe and document public on-chain launch behavior without targeting traders.",
+
+  may: [
+    "index public events",
+    "estimate protocol-defined opening-window fees",
+    "classify behavior with uncertainty",
+    "prepare reproducible reports",
+    "prepare unsigned launch payloads"
+  ],
+
+  mayNot: [
+    "broadcast mainnet launches",
+    "target wallets",
+    "manufacture volume",
+    "hide fees",
+    "claim or transfer treasury assets",
+    "state bot identity as fact without evidence"
+  ]
+} as const;
+
+==================================================
+POLICY INTERPRETATION
+==================================================
+
+ROB MAY:
+
+INDEX PUBLIC EVENTS
+
+ROB may read publicly available blockchain logs and transactions.
+
+ESTIMATE OPENING-WINDOW FEES
+
+ROB may calculate protocol-defined fee components when contract and event semantics provide sufficient evidence.
+
+CLASSIFY WITH UNCERTAINTY
+
+ROB may classify behavioral patterns.
+
+A classification is not automatically a real-world identity claim.
+
+PREPARE REPRODUCIBLE REPORTS
+
+ROB may convert observations into structured datasets, AARs, and research packages.
+
+PREPARE UNSIGNED PAYLOADS
+
+ROB and approved build agents may prepare machine-executable transaction intent for human review.
+
+ROB MAY NOT:
+
+BROADCAST MAINNET LAUNCHES
+
+Final live authorization remains outside ROB.
+
+TARGET WALLETS
+
+The laboratory observes public behavior rather than selecting specific wallets as financial targets.
+
+MANUFACTURE VOLUME
+
+Research evidence must arise from actual public activity rather than artificial trading created to make an experiment look successful.
+
+HIDE FEES
+
+Material protocol economics remain part of the experiment record.
+
+CONTROL TREASURY ASSETS
+
+Observation does not create custody authority.
+
+CLAIM BOT IDENTITY WITHOUT EVIDENCE
+
+Machine-like behavior and verified operator identity are different claims.
+
+==================================================
+BEHAVIOR INPUT
+==================================================
+
+export type BehaviorInput = {
+  secondsFromLaunch: number | null;
+  inferredSnipeFee: bigint;
+  launchWindowSeconds?: number;
+  priorOpeningLaunches?: number;
+};
+
+==================================================
+BEHAVIOR INPUT DEFINITIONS
+==================================================
+
+secondsFromLaunch
+
+The measured time between canonical launch T0 and the observed transaction.
+
+null means:
+
+the timing could not be reliably established.
+
+inferredSnipeFee
+
+The estimated additional opening-window fee component.
+
+This must be calculated from supported protocol semantics.
+
+It must not be invented from transaction speed alone.
+
+launchWindowSeconds
+
+Optional configured research window.
+
+Default:
+
+5 seconds.
+
+priorOpeningLaunches
+
+Number of prior experiments in which the same participant or behavioral subject appeared within the opening window.
+
+==================================================
+BEHAVIOR OUTPUT
+==================================================
+
+export type BehaviorScore = {
+  classification:
+    | "ordinary"
+    | "opening-window"
+    | "automated-candidate";
+
+  score: number;
+
+  reasons: string[];
+};
+
+==================================================
+CORE BEHAVIOR SCORING ENGINE
+==================================================
+
+export function scoreBehavior(
+  input: BehaviorInput
+): BehaviorScore {
+
+  const reasons: string[] = [];
+
+  let score = 0;
+
+  const window =
+    input.launchWindowSeconds ?? 5;
+
+  if (
+    input.secondsFromLaunch !== null &&
+    input.secondsFromLaunch <= window
+  ) {
+    score += 35;
+
+    reasons.push(
+      `trade occurred within ${window}s opening window`
+    );
+  }
+
+  if (
+    input.inferredSnipeFee > 0n
+  ) {
+    score += 35;
+
+    reasons.push(
+      "trade paid fee above estimated base fee, consistent with opening snipe tax"
+    );
+  }
+
+  if (
+    (input.priorOpeningLaunches ?? 0) >= 3
+  ) {
+    score += 30;
+
+    reasons.push(
+      "recipient has repeated opening-window participation across at least 3 launches"
+    );
+  }
+
+  if (
+    score >= 80
+  ) {
+    return {
+      classification:
+        "automated-candidate",
+
+      score,
+
+      reasons
+    };
+  }
+
+  if (
+    score >= 35
+  ) {
+    return {
+      classification:
+        "opening-window",
+
+      score,
+
+      reasons
+    };
+  }
+
+  return {
+    classification:
+      "ordinary",
+
+    score,
+
+    reasons
+  };
+}
+
+==================================================
+SCORING LOGIC
+==================================================
+
+SIGNAL 1
+
+OPENING-WINDOW TIMING
+
+If the transaction occurs within the configured launch window:
+
++35
+
+This establishes:
+
+EARLY PARTICIPATION.
+
+It does not establish automation by itself.
+
+SIGNAL 2
+
+ADDITIONAL OPENING-WINDOW FEE
+
+If the transaction contains a defensibly inferred opening-window fee component:
+
++35
+
+This provides another independent protocol-level signal that the transaction interacted under opening-window conditions.
+
+SIGNAL 3
+
+REPEATED EARLY PARTICIPATION
+
+If the same subject has participated inside the opening window of at least three prior launches:
+
++30
+
+This strengthens evidence of recurring machine-like or systematic behavior.
+
+==================================================
+CURRENT CLASSIFICATION THRESHOLDS
+==================================================
+
+0–34
+
+ORDINARY
+
+The available signals do not justify an opening-window classification.
+
+35–79
+
+OPENING-WINDOW
+
+The transaction exhibits one or more opening-window characteristics.
+
+80–100
+
+AUTOMATED-CANDIDATE
+
+Multiple signals converge sufficiently to justify further automated-behavior research.
+
+IMPORTANT:
+
+AUTOMATED-CANDIDATE
+
+DOES NOT MEAN:
+
+AUTOMATION-CONFIRMED.
+
+It means:
+
+THE OBSERVED BEHAVIOR JUSTIFIES ADDITIONAL INVESTIGATION.
+
+==================================================
+WHY THE SCORE REQUIRES MULTIPLE SIGNALS
+==================================================
+
+A transaction occurring quickly after launch may simply reflect:
+
+a human watching the protocol,
+a public indexing service,
+a notification system,
+a trader already monitoring the factory,
+or ordinary coincidence.
+
+Therefore timing alone produces:
+
+OPENING-WINDOW
+
+rather than:
+
+AUTOMATED-CANDIDATE.
+
+The stronger classification requires convergence.
+
+==================================================
+ROBINHOOD CHAIN CONFIGURATION
+==================================================
+
+import {
+  defineChain
+} from "viem";
+
+export const robinhoodMainnet =
+  defineChain({
+
+    id: 4663,
+
+    name:
+      "Robinhood Chain",
+
+    nativeCurrency: {
+      name: "Ether",
+      symbol: "ETH",
+      decimals: 18
+    },
+
+    rpcUrls: {
+      default: {
+        http: [
+          process.env.ROBINHOOD_RPC_URL ||
+          "https://rpc.mainnet.chain.robinhood.com"
+        ]
+      }
+    },
+
+    blockExplorers: {
+      default: {
+        name:
+          "Robinhood Chain Blockscout",
+
+        url:
+          "https://robinhoodchain.blockscout.com"
+      }
+    }
+  });
+
+export const NATIVE_PAIR =
+  "0x0000000000000000000000000000000000000000"
+  as const;
+
+==================================================
+CHAIN CONFIGURATION DOCTRINE
+==================================================
+
+The repository currently recognizes:
+
+NETWORK
+
+Robinhood Chain
+
+CHAIN ID
+
+4663
+
+NATIVE ASSET
+
+ETH
+
+DECIMALS
+
+18
+
+The RPC may be overridden through:
+
+ROBINHOOD_RPC_URL
+
+The application must still verify:
+
+eth_chainId
+
+at runtime.
+
+The configuration file does not override the chain.
+
+THE CHAIN IS THE CURRENT FACT.
+
+==================================================
+NATIVE PAIR
+==================================================
+
+The zero address is represented as:
+
+0x0000000000000000000000000000000000000000
+
+for the configured native-pair convention used by the integration.
+
+The adapter must interpret this according to the currently verified Pons contract semantics.
+
+Do not generalize this convention automatically to unrelated protocols.
+
+==================================================
+SOCIAL METADATA TYPE
+==================================================
+
+export type Socials = {
+  twitter: string;
+  telegram: string;
+  discord: string;
+  website: string;
+  farcaster: string;
+};
+
+==================================================
+SOCIAL METADATA PRINCIPLE
+==================================================
+
+Social fields describe the experimental token's published metadata.
+
+They must not be used to fabricate:
+
+communities,
+partners,
+endorsements,
+or social activity.
+
+An empty or unused field should remain honest.
+
+==================================================
+CANONICAL LAUNCH MANIFEST TYPE
+==================================================
+
+export type LaunchManifest = {
+
+  experimentId: string;
+
+  name: string;
+
+  symbol: string;
+
+  logo: string;
+
+  description: string;
+
+  socials: Socials;
+
+  creator:
+    `0x${string}`;
+
+  creatorFeeRecipient:
+    `0x${string}`;
+
+  creatorTaxBps:
+    number;
+
+  buybackEnabled:
+    boolean;
+
+  launchConfigId:
+    bigint;
+
+  pairToken:
+    `0x${string}`;
+
+  salt:
+    `0x${string}`;
+
+  snipeTaxExemptions?:
+    `0x${string}`[];
+};
+
+==================================================
+MANIFEST FIELD DEFINITIONS
+==================================================
+
+experimentId
+
+Canonical PONS $101 research identifier.
+
+Example:
+
+P101-20260906-001-ROB-GENESIS
+
+name
+
+Human-readable token name.
+
+symbol
+
+Token ticker.
+
+The symbol is not canonical identity by itself.
+
+logo
+
+Metadata reference for the token image where applicable.
+
+description
+
+Truthful research and educational description.
+
+socials
+
+Associated project communication endpoints.
+
+creator
+
+The human-controlled or otherwise explicitly authorized launch-origin address.
+
+creatorFeeRecipient
+
+The configured address intended to receive protocol-defined creator-related value where supported.
+
+creatorTaxBps
+
+Creator tax expressed in basis points.
+
+buybackEnabled
+
+Boolean launch configuration.
+
+This is treated as a material economic parameter.
+
+launchConfigId
+
+Identifier selecting the protocol launch configuration.
+
+pairToken
+
+Contract address or protocol-defined native-pair representation.
+
+salt
+
+Protocol launch salt.
+
+Where the salt affects deterministic deployment or token identity, it is part of the frozen experiment configuration.
+
+snipeTaxExemptions
+
+Optional list of addresses exempt from opening-window snipe-tax behavior where the protocol supports such exemptions.
+
+==================================================
+SNIPE-TAX EXEMPTION RESEARCH RULE
+==================================================
+
+The default experimental position is:
+
+NO ADDITIONAL EXEMPTIONS
+
+unless a documented technical or research purpose requires them.
+
+Exemptions can affect the experimental condition.
+
+Therefore they must be:
+
+visible,
+registered,
+hashed,
+reviewed,
+and approved
+
+before launch.
+
+They must not be used to create an undisclosed favored participant.
+
+==================================================
+CREATOR TAX RULE
+==================================================
+
+creatorTaxBps is not assumed valid merely because it fits inside a TypeScript number.
+
+The live preflight engine must compare it against the current protocol:
+
+maxCreatorTaxBps()
+
+If the requested value exceeds the live permitted maximum:
+
+BLOCK.
+
+==================================================
+LAUNCH CONFIGURATION RULE
+==================================================
+
+launchConfigId identifies the desired protocol configuration.
+
+Before payload generation the agent must verify:
+
+the configuration exists,
+the configuration is enabled,
+and its economics match the intended experiment.
+
+==================================================
+PAIR RULE
+==================================================
+
+pairToken identifies the asset paired with the experimental token.
+
+Use:
+
+PAIRED WITH
+
+not:
+
+PEGGED TO
+
+unless an actual price-maintenance mechanism establishes a peg.
+
+==================================================
+HUMAN AUTHORITY RULE
+==================================================
+
+The presence of a valid:
+
+LaunchManifest
+
+does not authorize execution.
+
+The manifest is:
+
+DECLARED INTENT.
+
+Preflight establishes:
+
+TECHNICAL READINESS.
+
+The unsigned payload establishes:
+
+MACHINE-EXECUTABLE INTENT.
+
+The human release establishes:
+
+AUTHORIZATION.
+
+The signed transaction establishes:
+
+EXECUTION ATTEMPT.
+
+The successful chain receipt establishes:
+
+EXECUTION EVIDENCE.
+
+ROB then establishes:
+
+OBSERVATION.
+
+==================================================
+CORE ENGINE FLOW
+==================================================
+
+LAUNCH MANIFEST
+
+↓
+
+VALIDATE TYPES
+
+↓
+
+VERIFY ROBINHOOD CHAIN
+
+↓
+
+VERIFY PONS CONTRACT STATE
+
+↓
+
+RUN PREFLIGHT
+
+↓
+
+GENERATE UNSIGNED PAYLOAD
+
+↓
+
+STOP
+
+↓
+
+HUMAN REVIEW
+
+↓
+
+HUMAN SIGNATURE
+
+↓
+
+PUBLIC CHAIN
+
+↓
+
+ROB OBSERVATION
+
+↓
+
+BEHAVIOR SCORE
+
+↓
+
+RESEARCH RECORD
+
+==================================================
+BEHAVIOR EXAMPLE 1
+==================================================
+
+INPUT
+
+secondsFromLaunch:
+
+12
+
+inferredSnipeFee:
+
+0
+
+priorOpeningLaunches:
+
+0
+
+OUTPUT
+
+classification:
+
+ordinary
+
+score:
+
+0
+
+==================================================
+BEHAVIOR EXAMPLE 2
+==================================================
+
+INPUT
+
+secondsFromLaunch:
+
+2
+
+inferredSnipeFee:
+
+0
+
+priorOpeningLaunches:
+
+0
+
+OUTPUT
+
+classification:
+
+opening-window
+
+score:
+
+35
+
+REASON
+
+trade occurred within opening window
+
+==================================================
+BEHAVIOR EXAMPLE 3
+==================================================
+
+INPUT
+
+secondsFromLaunch:
+
+2
+
+inferredSnipeFee:
+
+positive
+
+priorOpeningLaunches:
+
+0
+
+OUTPUT
+
+classification:
+
+opening-window
+
+score:
+
+70
+
+REASONS
+
+early timing
+
+plus
+
+opening-window fee evidence
+
+The current threshold still does not call this:
+
+automated-candidate.
+
+==================================================
+BEHAVIOR EXAMPLE 4
+==================================================
+
+INPUT
+
+secondsFromLaunch:
+
+2
+
+inferredSnipeFee:
+
+positive
+
+priorOpeningLaunches:
+
+4
+
+OUTPUT
+
+classification:
+
+automated-candidate
+
+score:
+
+100
+
+REASONS
+
+opening-window timing
+
+opening-window fee evidence
+
+repeated early participation across prior launches
+
+==================================================
+IMPORTANT LIMITATION
+==================================================
+
+The current scoring engine is intentionally simple.
+
+It is a Genesis heuristic.
+
+Future versions may incorporate:
+
+transaction construction similarity
+
+gas strategy
+
+trade-size recurrence
+
+entry/exit sequencing
+
+cross-pair behavior
+
+factory recurrence
+
+contract-call fingerprints
+
+or externally verified automation evidence.
+
+Any such expansion requires:
+
+NEW CLASSIFICATION VERSION.
+
+Historical scores must remain reproducible under the old method.
+
+==================================================
+RESEARCH METHOD VERSIONING
+==================================================
+
+ROB SCORE v1
+
+Current signals:
+
+TIMING
+
+OPENING-WINDOW FEE
+
+PRIOR EARLY PARTICIPATION
+
+A future:
+
+ROB SCORE v2
+
+may contain additional signals.
+
+Never silently claim that a v2 classification was known during a v1 experiment.
+
+The historical question remains:
+
+WHAT DID WE KNOW BEFORE THE OUTCOME?
+
+==================================================
+CORE ENGINE SECURITY TESTS
+==================================================
+
+TEST 1
+
+Fast trade only.
+
+EXPECTED:
+
+opening-window
+
+NOT:
+
+automated-candidate.
+
+TEST 2
+
+No reliable timing.
+
+No inferred opening fee.
+
+No prior recurrence.
+
+EXPECTED:
+
+ordinary.
+
+TEST 3
+
+Fast trade plus opening-window fee.
+
+EXPECTED:
+
+opening-window.
+
+TEST 4
+
+Fast trade plus opening-window fee plus repeated prior participation.
+
+EXPECTED:
+
+automated-candidate.
+
+TEST 5
+
+Agent attempts to convert automated-candidate into verified bot identity automatically.
+
+EXPECTED:
+
+DENIED BY RESEARCH POLICY.
+
+==================================================
+CORE ENGINE DOCTRINE
+==================================================
+
+ROB IS AN OBSERVER.
+
+A SCORE IS A HEURISTIC.
+
+A HEURISTIC IS NOT AN IDENTITY.
+
+TIMING IS EVIDENCE.
+
+FEES ARE EVIDENCE.
+
+REPETITION IS EVIDENCE.
+
+CONVERGING SIGNALS STRENGTHEN AN INFERENCE.
+
+THE HUMAN AND THE RESEARCH METHOD DETERMINE HOW THAT INFERENCE IS REPORTED.
+
+THE CHAIN REMAINS THE PRIMARY PUBLIC RECORD.
+
+==================================================
+GENESIS CORE STATEMENT
+==================================================
+
+PONS $101 NOW HAS A MACHINE-READABLE CONSTITUTION.
+
+ROB KNOWS WHAT IT MAY DO.
+
+ROB KNOWS WHAT IT MAY NOT DO.
+
+ROB CAN SCORE OBSERVABLE BEHAVIOR.
+
+THE SOFTWARE KNOWS WHICH CHAIN IT EXPECTS.
+
+THE MANIFEST DEFINES THE EXPERIMENTAL TOKEN INTENT.
+
+THE NEXT LAYER CONNECTS THESE TYPES TO THE LIVE PONS V2 CONTRACT:
+
+FACTORY ABI
+→ PREFLIGHT
+→ FEE STATE
+→ UNSIGNED LAUNCH PAYLOAD.
+
+PONS $101
+
+OBSERVE.
+
+MEASURE.
+
+CLASSIFY CONSERVATIVELY.
+
+PRESERVE.
+
+REPLICATE.
+
+IN JESUS' NAME.
