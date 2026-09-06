@@ -1,0 +1,2485 @@
+# PONS $101 — CANONICAL API & DATA CONTRACT
+
+This section defines the machine-readable language shared by:
+
+PONS $101
+
+ROB
+
+@hashwarlock agents
+
+ENOCH ONE Control Tower
+
+the experiment registry
+
+the preflight engine
+
+the research API
+
+the Discord Control Tower
+
+the treasury provenance layer
+
+and the reproducibility exporter.
+
+The objective is:
+
+ONE EXPERIMENT ID.
+
+ONE EVIDENCE MODEL.
+
+ONE SET OF VERSIONED DEFINITIONS.
+
+MULTIPLE AGENTS AND APPLICATIONS.
+
+NO SILENT SEMANTIC DRIFT.
+
+==================================================
+CORE DATA PRINCIPLE
+==================================================
+
+Every material object should answer:
+
+WHAT IS THIS?
+
+WHICH EXPERIMENT DOES IT BELONG TO?
+
+WHO OR WHAT CREATED IT?
+
+WHEN WAS IT CREATED?
+
+WHICH SOFTWARE VERSION CREATED IT?
+
+WHAT EVIDENCE SUPPORTS IT?
+
+HAS IT CHANGED?
+
+WHAT IS ITS HASH?
+
+==================================================
+GLOBAL IDENTIFIERS
+==================================================
+
+EXPERIMENT ID
+
+Recommended:
+
+P101-YYYYMMDD-###-SHORTNAME
+
+Example:
+
+P101-20260906-001-ROB-GENESIS
+
+AGENT ID
+
+Recommended:
+
+agent-{operator}-{role}-{version}
+
+JOB ID
+
+Recommended:
+
+job-{experiment_id}-{sequence}
+
+OBSERVATION ID
+
+Recommended deterministic identity derived from:
+
+chain_id
+
+transaction_hash
+
+log_index
+
+RECEIPT ID
+
+Recommended:
+
+receipt-{chain_id}-{transaction_hash}-{log_index}
+
+AAR ID
+
+Recommended:
+
+aar-{experiment_id}-{version}
+
+DATASET ID
+
+Recommended:
+
+dataset-{experiment_range}-{version}
+
+RELEASE ID
+
+Recommended:
+
+release-{experiment_id}-{version}
+
+==================================================
+GLOBAL ENUMS
+==================================================
+
+EVIDENCE CLASS
+
+VERIFIED
+
+CORROBORATED
+
+AUTHOR_ORIGINATED
+
+PROPOSED
+
+FUTURE_EXPERIMENT
+
+UNKNOWN
+
+==================================================
+EXPERIMENT STATUS
+==================================================
+
+DRAFT
+
+REGISTERED
+
+PREFLIGHT
+
+BLOCKED
+
+READY_FOR_HUMAN_REVIEW
+
+APPROVED
+
+REJECTED
+
+CANCELLED
+
+BROADCAST
+
+OBSERVING
+
+AAR
+
+ARCHIVED
+
+TECHNICALLY_INVALIDATED
+
+==================================================
+AGENT JOB STATUS
+==================================================
+
+QUEUED
+
+RUNNING
+
+WAITING_FOR_DATA
+
+WAITING_FOR_HUMAN
+
+BLOCKED
+
+COMPLETED
+
+FAILED
+
+CANCELLED
+
+==================================================
+CHAIN CONFIRMATION STATUS
+==================================================
+
+UNCONFIRMED
+
+CONFIRMED
+
+REORGED
+
+UNKNOWN
+
+==================================================
+ROB CLASSIFICATION
+==================================================
+
+UNKNOWN
+
+OPENING_WINDOW_PARTICIPANT
+
+AUTOMATED_CANDIDATE
+
+REPEATED_AUTOMATED_CANDIDATE
+
+AUTOMATION_CONFIRMED
+
+==================================================
+CONFIDENCE
+==================================================
+
+VERY_LOW
+
+LOW
+
+MODERATE
+
+HIGH
+
+VERY_HIGH
+
+UNKNOWN
+
+==================================================
+HUMAN RELEASE DECISION
+==================================================
+
+APPROVE
+
+REJECT
+
+RETURN_FOR_CHANGES
+
+==================================================
+HYPOTHESIS RESULT
+==================================================
+
+SUPPORTED
+
+PARTIALLY_SUPPORTED
+
+NOT_SUPPORTED
+
+INCONCLUSIVE
+
+TECHNICALLY_INVALIDATED
+
+==================================================
+TREASURY STATE
+==================================================
+
+NO_ENTITLEMENT
+
+ENTITLEMENT_OBSERVED
+
+CLAIMABLE
+
+CLAIMED
+
+TREASURY_RECEIVED
+
+ALLOCATED
+
+DISBURSED
+
+PURPOSE_VERIFIED
+
+==================================================
+CANONICAL EXPERIMENT OBJECT
+==================================================
+
+{
+  "schema_version": "1.0.0",
+  "experiment_id": "P101-20260906-001-ROB-GENESIS",
+  "experiment_name": "PONS $101 — ROB GENESIS",
+  "created_at": "",
+  "updated_at": "",
+  "created_by": "",
+  "human_owner": "",
+  "status": "REGISTERED",
+  "research": {
+    "question": "",
+    "hypothesis_null": "",
+    "hypothesis_alternative": "",
+    "announcement_condition": "NO_PRE_ANNOUNCEMENT",
+    "success_criteria": [],
+    "failure_criteria": [],
+    "observation_windows": []
+  },
+  "network": {
+    "name": "Robinhood Chain",
+    "chain_id": null,
+    "rpc_profile": "",
+    "explorer": ""
+  },
+  "protocol": {
+    "name": "Pons",
+    "factory_address": "",
+    "factory_version": "",
+    "abi_version": ""
+  },
+  "token": {
+    "name": "PONS $101",
+    "symbol": "$101",
+    "description": ""
+  },
+  "pair": {
+    "name": "",
+    "symbol": "",
+    "address": "",
+    "decimals": null
+  },
+  "creator": {
+    "address": "",
+    "fee_recipient": "",
+    "creator_tax": null
+  },
+  "governance": {
+    "require_human_signature": true,
+    "agent_broadcast_allowed": false,
+    "agent_trading_allowed": false,
+    "agent_treasury_control_allowed": false
+  },
+  "software": {
+    "version": "",
+    "commit_sha": "",
+    "classification_version": "",
+    "adapter_version": ""
+  },
+  "manifest_hash": ""
+}
+
+==================================================
+EXPERIMENT VALIDATION RULES
+==================================================
+
+experiment_id
+
+REQUIRED
+
+UNIQUE
+
+IMMUTABLE AFTER CREATION
+
+research.question
+
+REQUIRED BEFORE REGISTERED
+
+hypothesis_null or hypothesis_alternative
+
+AT LEAST ONE REQUIRED BEFORE LIVE PREFLIGHT
+
+announcement_condition
+
+REQUIRED
+
+chain_id
+
+REQUIRED BEFORE LIVE PAYLOAD
+
+factory_address
+
+REQUIRED BEFORE LIVE PAYLOAD
+
+token.name
+
+REQUIRED
+
+token.symbol
+
+REQUIRED
+
+pair.address
+
+REQUIRED WHERE PROTOCOL REQUIRES PAIR
+
+creator.address
+
+REQUIRED
+
+governance.require_human_signature
+
+MUST BE TRUE FOR MAINNET GENESIS ARCHITECTURE
+
+==================================================
+CANONICAL NETWORK OBJECT
+==================================================
+
+{
+  "schema_version": "1.0.0",
+  "network_id": "",
+  "name": "Robinhood Chain",
+  "chain_id": null,
+  "native_asset": "",
+  "rpc_http_profile": "",
+  "rpc_ws_profile": "",
+  "explorer_base_url": "",
+  "confirmation_depth": null,
+  "latest_verified_block": null,
+  "verified_at": "",
+  "verification_status": ""
+}
+
+Do not publish secret RPC credentials inside this object.
+
+==================================================
+CANONICAL FACTORY OBJECT
+==================================================
+
+{
+  "schema_version": "1.0.0",
+  "network_id": "",
+  "protocol": "Pons",
+  "factory_address": "",
+  "factory_version": "",
+  "abi_version": "",
+  "bytecode_hash": "",
+  "verified_block": null,
+  "launch_function": "",
+  "launch_event": "",
+  "verification_source": "",
+  "verified_at": "",
+  "status": ""
+}
+
+==================================================
+CANONICAL TOKEN OBJECT
+==================================================
+
+{
+  "schema_version": "1.0.0",
+  "experiment_id": "",
+  "chain_id": null,
+  "name": "",
+  "symbol": "",
+  "description": "",
+  "contract_address": "",
+  "curve_address": "",
+  "pair_address": "",
+  "creator_address": "",
+  "creator_fee_recipient": "",
+  "creator_tax": null,
+  "launch_transaction": "",
+  "manifest_hash": "",
+  "status": ""
+}
+
+Before launch:
+
+contract_address may be null or empty.
+
+After successful launch:
+
+populate from verified chain evidence.
+
+==================================================
+CANONICAL PREFLIGHT REQUEST
+==================================================
+
+POST /api/v1/launch-preflight
+
+REQUEST
+
+{
+  "experiment_id": "",
+  "manifest_hash": "",
+  "requested_by": "",
+  "network_override": null,
+  "simulation_requested": true
+}
+
+==================================================
+CANONICAL PREFLIGHT RESPONSE
+==================================================
+
+{
+  "experiment_id": "",
+  "status": "PASS",
+  "generated_at": "",
+  "checks": [
+    {
+      "check": "CHAIN_ID",
+      "status": "PASS",
+      "expected": "",
+      "observed": "",
+      "evidence": ""
+    }
+  ],
+  "warnings": [],
+  "blocks": [],
+  "resolved": {
+    "chain_id": null,
+    "factory_address": "",
+    "pair_address": "",
+    "creator_fee_recipient": "",
+    "base_fee": null,
+    "creator_tax": null,
+    "launch_allowed": null
+  },
+  "simulation": {
+    "attempted": false,
+    "status": "",
+    "gas_estimate": null,
+    "revert_reason": null
+  },
+  "human_review_required": true
+}
+
+==================================================
+PREFLIGHT CHECK OBJECT
+==================================================
+
+{
+  "check": "",
+  "status": "PASS",
+  "severity": "",
+  "expected": "",
+  "observed": "",
+  "evidence": "",
+  "human_action_required": false,
+  "message": ""
+}
+
+Allowed statuses:
+
+PASS
+
+WARNING
+
+BLOCK
+
+UNKNOWN
+
+==================================================
+CANONICAL UNSIGNED PAYLOAD REQUEST
+==================================================
+
+POST /api/v1/launch-payload
+
+{
+  "experiment_id": "",
+  "manifest_hash": "",
+  "requested_by": "",
+  "preflight_id": ""
+}
+
+==================================================
+CANONICAL UNSIGNED PAYLOAD RESPONSE
+==================================================
+
+{
+  "experiment_id": "",
+  "network": "",
+  "chain_id": null,
+  "target": "",
+  "value": "",
+  "data": "",
+  "decoded_function": "",
+  "decoded_arguments": {},
+  "estimated_gas": null,
+  "estimated_network_fee": null,
+  "factory_address": "",
+  "pair_address": "",
+  "creator_address": "",
+  "creator_fee_recipient": "",
+  "creator_tax": null,
+  "manifest_hash": "",
+  "payload_hash": "",
+  "warnings": [],
+  "generated_at": "",
+  "generated_by": "",
+  "human_review_required": true,
+  "broadcast_available": false
+}
+
+==================================================
+PAYLOAD SECURITY RULE
+==================================================
+
+The canonical research API returns:
+
+UNSIGNED INTENT.
+
+It does not contain:
+
+private key
+
+seed phrase
+
+wallet recovery data
+
+or unrestricted signing authority.
+
+==================================================
+CANONICAL HUMAN RELEASE OBJECT
+==================================================
+
+{
+  "schema_version": "1.0.0",
+  "experiment_id": "",
+  "decision": "APPROVE",
+  "human_approver": "",
+  "approved_at": "",
+  "manifest_hash": "",
+  "payload_hash": "",
+  "warnings_reviewed": [],
+  "notes": "",
+  "valid": true
+}
+
+If payload_hash changes:
+
+valid becomes false.
+
+A new human release object is required.
+
+==================================================
+CANONICAL EXECUTION OBJECT
+==================================================
+
+{
+  "schema_version": "1.0.0",
+  "experiment_id": "",
+  "chain_id": null,
+  "transaction_hash": "",
+  "broadcast_wallet": "",
+  "broadcast_at": "",
+  "block_number": null,
+  "block_hash": "",
+  "transaction_index": null,
+  "status": "",
+  "gas_used": null,
+  "effective_gas_price": null,
+  "token_address": "",
+  "curve_address": "",
+  "confirmation_status": "UNCONFIRMED"
+}
+
+==================================================
+CANONICAL RAW EVENT OBJECT
+==================================================
+
+{
+  "schema_version": "1.0.0",
+  "chain_id": null,
+  "block_number": null,
+  "block_hash": "",
+  "block_timestamp": "",
+  "transaction_hash": "",
+  "transaction_index": null,
+  "log_index": null,
+  "contract_address": "",
+  "topics": [],
+  "data": "",
+  "rpc_source": "",
+  "observed_at": "",
+  "confirmation_status": "UNCONFIRMED",
+  "decoder_version": ""
+}
+
+RAW EVENT RULE
+
+Do not replace the original topics or data with interpreted values.
+
+==================================================
+CANONICAL LAUNCH OBSERVATION
+==================================================
+
+{
+  "schema_version": "1.0.0",
+  "observation_id": "",
+  "experiment_id": "",
+  "chain_id": null,
+  "block_number": null,
+  "block_hash": "",
+  "block_timestamp": "",
+  "transaction_hash": "",
+  "transaction_index": null,
+  "log_index": null,
+  "factory_address": "",
+  "deployer": "",
+  "token_address": "",
+  "curve_address": "",
+  "pair_address": "",
+  "creator_address": "",
+  "creator_fee_recipient": "",
+  "creator_tax": null,
+  "announcement_condition": "",
+  "manifest_hash": "",
+  "evidence_class": "VERIFIED",
+  "confirmation_status": "UNCONFIRMED"
+}
+
+==================================================
+CANONICAL TRADE OBSERVATION
+==================================================
+
+{
+  "schema_version": "1.0.0",
+  "observation_id": "",
+  "experiment_id": "",
+  "chain_id": null,
+  "token_address": "",
+  "curve_address": "",
+  "block_number": null,
+  "block_hash": "",
+  "block_timestamp": "",
+  "transaction_hash": "",
+  "transaction_index": null,
+  "log_index": null,
+  "wallet": "",
+  "direction": "BUY",
+  "input_asset": "",
+  "input_amount": "",
+  "output_asset": "",
+  "output_amount": "",
+  "reported_fee": null,
+  "base_fee": null,
+  "creator_tax": null,
+  "other_fee": null,
+  "inferred_opening_fee": null,
+  "seconds_since_launch": null,
+  "blocks_since_launch": null,
+  "opening_window": false,
+  "classification": "UNKNOWN",
+  "classification_confidence": "UNKNOWN",
+  "classification_version": "",
+  "evidence_class": "VERIFIED",
+  "confirmation_status": "UNCONFIRMED"
+}
+
+==================================================
+TRADE DIRECTION
+==================================================
+
+BUY
+
+SELL
+
+UNKNOWN
+
+==================================================
+FEE NULLABILITY RULE
+==================================================
+
+If a fee component cannot be reliably derived:
+
+use:
+
+null
+
+and include:
+
+fee_semantics_status = UNKNOWN
+
+Do not insert:
+
+0
+
+when the value is unknown.
+
+ZERO means:
+
+verified zero.
+
+NULL means:
+
+not reliably known.
+
+==================================================
+CANONICAL FEE ANALYSIS OBJECT
+==================================================
+
+{
+  "schema_version": "1.0.0",
+  "experiment_id": "",
+  "observation_id": "",
+  "reported_fee": null,
+  "base_fee": null,
+  "creator_tax": null,
+  "other_explicit_fee": null,
+  "inferred_opening_fee": null,
+  "calculation_method": "",
+  "calculation_version": "",
+  "semantics_status": "",
+  "evidence_class": "",
+  "limitations": []
+}
+
+==================================================
+CANONICAL WALLET PROFILE
+==================================================
+
+{
+  "schema_version": "1.0.0",
+  "wallet": "",
+  "network": "",
+  "first_seen": "",
+  "last_seen": "",
+  "experiments_observed": 0,
+  "launches_observed": 0,
+  "same_block_count": 0,
+  "opening_window_count": 0,
+  "buys": 0,
+  "sells": 0,
+  "median_launch_latency_seconds": null,
+  "median_trade_size": null,
+  "trade_size_recurrence_score": null,
+  "timing_recurrence_score": null,
+  "entry_exit_pattern_score": null,
+  "cross_launch_score": null,
+  "automation_score": null,
+  "classification": "UNKNOWN",
+  "confidence": "UNKNOWN",
+  "classification_version": "",
+  "updated_at": ""
+}
+
+==================================================
+WALLET PROFILE PRIVACY RULE
+==================================================
+
+The default profile is behavioral and pseudonymous.
+
+Do not add unnecessary fields for:
+
+real name
+
+phone
+
+email
+
+home address
+
+physical location
+
+employer
+
+family information
+
+or social identity.
+
+==================================================
+CANONICAL CLASSIFICATION OBJECT
+==================================================
+
+{
+  "schema_version": "1.0.0",
+  "experiment_id": "",
+  "wallet": "",
+  "observation_ids": [],
+  "signals": {
+    "same_block": false,
+    "low_latency": false,
+    "repeated_first_block": false,
+    "repeated_trade_size": false,
+    "repeated_transaction_pattern": false,
+    "repeated_gas_pattern": false,
+    "repeated_entry_exit": false,
+    "cross_launch_recurrence": false,
+    "independent_automation_evidence": false
+  },
+  "score": null,
+  "classification": "UNKNOWN",
+  "confidence": "UNKNOWN",
+  "method_version": "",
+  "created_at": "",
+  "limitations": []
+}
+
+==================================================
+CANONICAL AGENT OBJECT
+==================================================
+
+{
+  "schema_version": "1.0.0",
+  "agent_id": "",
+  "operator": "",
+  "role": "",
+  "model_or_software": "",
+  "version": "",
+  "purpose": "",
+  "allowed_operations": [],
+  "prohibited_operations": [],
+  "api_scopes": [],
+  "mainnet_signing": false,
+  "trading": false,
+  "treasury_control": false,
+  "created_at": "",
+  "last_reviewed_at": "",
+  "status": "ACTIVE"
+}
+
+==================================================
+AGENT STATUS
+==================================================
+
+ACTIVE
+
+PAUSED
+
+REVOKED
+
+EXPIRED
+
+==================================================
+CANONICAL AGENT JOB
+==================================================
+
+{
+  "schema_version": "1.0.0",
+  "job_id": "",
+  "experiment_id": "",
+  "agent_id": "",
+  "task_type": "",
+  "created_at": "",
+  "started_at": null,
+  "completed_at": null,
+  "status": "QUEUED",
+  "input_refs": [],
+  "input_hash": "",
+  "expected_outputs": [],
+  "required_permissions": [],
+  "human_gate_required": false,
+  "warnings": [],
+  "error": null,
+  "output_hash": ""
+}
+
+==================================================
+CANONICAL AGENT OUTPUT
+==================================================
+
+{
+  "schema_version": "1.0.0",
+  "job_id": "",
+  "experiment_id": "",
+  "agent_id": "",
+  "created_at": "",
+  "software_version": "",
+  "input_hash": "",
+  "output_hash": "",
+  "status": "",
+  "facts": [],
+  "calculations": [],
+  "inferences": [],
+  "recommendations": [],
+  "limitations": [],
+  "human_review_required": false
+}
+
+==================================================
+AGENT OUTPUT DOCTRINE
+==================================================
+
+A fact should not appear under:
+
+recommendations.
+
+A recommendation should not appear under:
+
+facts.
+
+A human decision should not be fabricated inside an agent output.
+
+==================================================
+CANONICAL AAR OBJECT
+==================================================
+
+{
+  "schema_version": "1.0.0",
+  "aar_id": "",
+  "experiment_id": "",
+  "created_at": "",
+  "created_by": "",
+  "original_question": "",
+  "original_hypothesis_null": "",
+  "original_hypothesis_alternative": "",
+  "experimental_condition": "",
+  "pre_outcome_knowledge": [],
+  "verified_findings": [],
+  "calculations": [],
+  "inferences": [],
+  "unknowns": [],
+  "technical_failures": [],
+  "surprises": [],
+  "agent_successes": [],
+  "agent_failures": [],
+  "human_overrides": [],
+  "hypothesis_result": "INCONCLUSIVE",
+  "replication_decision": "",
+  "human_reviewed": false,
+  "version": ""
+}
+
+==================================================
+CANONICAL CREATOR ENTITLEMENT OBJECT
+==================================================
+
+{
+  "schema_version": "1.0.0",
+  "entitlement_id": "",
+  "experiment_id": "",
+  "chain_id": null,
+  "token_address": "",
+  "asset": "",
+  "amount": null,
+  "calculation_source": "",
+  "claimable": null,
+  "claim_transaction": "",
+  "evidence_class": "",
+  "verified_at": "",
+  "status": "ENTITLEMENT_OBSERVED"
+}
+
+==================================================
+CANONICAL TREASURY RECEIPT OBJECT
+==================================================
+
+{
+  "schema_version": "1.0.0",
+  "receipt_id": "",
+  "experiment_id": "",
+  "chain_id": null,
+  "transaction_hash": "",
+  "log_index": null,
+  "asset": "",
+  "amount": "",
+  "from_address": "",
+  "to_address": "",
+  "received_at": "",
+  "source_type": "CREATOR_FEE",
+  "evidence_class": "VERIFIED",
+  "evidence_hash": "",
+  "accounting_status": "",
+  "notes": ""
+}
+
+==================================================
+TREASURY SOURCE TYPE
+==================================================
+
+CREATOR_FEE
+
+DONATION
+
+TRANSFER
+
+REFUND
+
+OTHER
+
+UNKNOWN
+
+==================================================
+CANONICAL PUBLIC-GOOD ALLOCATION
+==================================================
+
+{
+  "schema_version": "1.0.0",
+  "proposal_id": "",
+  "created_at": "",
+  "purpose": "",
+  "category": "TABERNACLE",
+  "asset": "",
+  "amount": "",
+  "estimated_reference_value": null,
+  "destination": "",
+  "supporting_evidence": [],
+  "required_approvals": [],
+  "approvals": [],
+  "status": "PROPOSED"
+}
+
+==================================================
+PUBLIC-GOOD CATEGORY
+==================================================
+
+TABERNACLE
+
+EDUCATION
+
+RESEARCH
+
+COMMUNITY
+
+OTHER
+
+==================================================
+ALLOCATION STATUS
+==================================================
+
+PROPOSED
+
+UNDER_REVIEW
+
+APPROVED
+
+REJECTED
+
+CANCELLED
+
+DISBURSED
+
+VERIFIED
+
+==================================================
+CANONICAL PUBLIC-GOOD DISBURSEMENT
+==================================================
+
+{
+  "schema_version": "1.0.0",
+  "disbursement_id": "",
+  "proposal_id": "",
+  "experiment_ids": [],
+  "chain_id": null,
+  "transaction_hash": "",
+  "asset": "",
+  "amount": "",
+  "recipient": "",
+  "purpose": "",
+  "approved_by": [],
+  "executed_at": "",
+  "receipt_evidence": [],
+  "evidence_hash": "",
+  "status": "DISBURSED"
+}
+
+==================================================
+CANONICAL EVIDENCE OBJECT
+==================================================
+
+{
+  "schema_version": "1.0.0",
+  "evidence_id": "",
+  "experiment_id": "",
+  "type": "",
+  "source": "",
+  "created_at": "",
+  "captured_at": "",
+  "content_hash": "",
+  "uri_or_reference": "",
+  "evidence_class": "",
+  "description": "",
+  "restricted": false
+}
+
+==================================================
+EVIDENCE TYPES
+==================================================
+
+CHAIN_EVENT
+
+TRANSACTION
+
+BLOCK
+
+CONTRACT_STATE
+
+SCREENSHOT
+
+DISCORD_RECORD
+
+GITHUB_COMMIT
+
+AGENT_OUTPUT
+
+HUMAN_ATTESTATION
+
+TREASURY_TRANSFER
+
+RECEIPT
+
+DOCUMENT
+
+API_SNAPSHOT
+
+OTHER
+
+==================================================
+CANONICAL DATASET OBJECT
+==================================================
+
+{
+  "schema_version": "1.0.0",
+  "dataset_id": "",
+  "title": "",
+  "version": "",
+  "created_at": "",
+  "creator": "",
+  "experiment_ids": [],
+  "network": "",
+  "record_count": 0,
+  "software_version": "",
+  "commit_sha": "",
+  "methodology_version": "",
+  "classification_version": "",
+  "license": "",
+  "dataset_hash": "",
+  "known_limitations": []
+}
+
+==================================================
+CANONICAL RELEASE OBJECT
+==================================================
+
+{
+  "schema_version": "1.0.0",
+  "release_id": "",
+  "experiment_id": "",
+  "release_type": "",
+  "version": "",
+  "created_at": "",
+  "software_version": "",
+  "commit_sha": "",
+  "dataset_id": "",
+  "manifest_hash": "",
+  "bundle_root_hash": "",
+  "review_status": "",
+  "public": false
+}
+
+==================================================
+RELEASE TYPES
+==================================================
+
+INTERNAL_RESEARCH
+
+TECHNICAL_REVIEW
+
+COMPLIANCE_REVIEW
+
+PUBLIC_DATASET
+
+PUBLICATION
+
+REPLICATION_PACKAGE
+
+==================================================
+CANONICAL ERROR OBJECT
+==================================================
+
+{
+  "code": "",
+  "message": "",
+  "component": "",
+  "experiment_id": "",
+  "severity": "",
+  "retryable": false,
+  "human_action_required": false,
+  "evidence": [],
+  "timestamp": ""
+}
+
+==================================================
+STANDARD ERROR CODES
+==================================================
+
+CHAIN_MISMATCH
+
+RPC_UNAVAILABLE
+
+RPC_STALE
+
+FACTORY_UNVERIFIED
+
+FACTORY_BYTECODE_MISMATCH
+
+ABI_UNSUPPORTED
+
+PAIR_UNSUPPORTED
+
+PAIR_UNVERIFIED
+
+ADDRESS_INVALID
+
+LAUNCH_NOT_ALLOWED
+
+MANIFEST_INVALID
+
+MANIFEST_HASH_MISMATCH
+
+PAYLOAD_HASH_MISMATCH
+
+SIMULATION_REVERTED
+
+HUMAN_APPROVAL_REQUIRED
+
+HUMAN_APPROVAL_INVALIDATED
+
+INDEXER_STALE
+
+INDEXER_GAP
+
+REORG_DETECTED
+
+EVENT_DECODE_FAILED
+
+EXPERIMENT_NOT_FOUND
+
+EXPERIMENT_ALREADY_EXISTS
+
+FEE_SEMANTICS_UNKNOWN
+
+TREASURY_RECEIPT_UNVERIFIED
+
+PERMISSION_DENIED
+
+AGENT_SCOPE_VIOLATION
+
+SECRET_DETECTED
+
+UNKNOWN
+
+==================================================
+API RESPONSE ENVELOPE
+==================================================
+
+Successful response:
+
+{
+  "success": true,
+  "data": {},
+  "meta": {
+    "request_id": "",
+    "timestamp": "",
+    "api_version": "v1"
+  }
+}
+
+Error response:
+
+{
+  "success": false,
+  "error": {
+    "code": "",
+    "message": "",
+    "human_action_required": false
+  },
+  "meta": {
+    "request_id": "",
+    "timestamp": "",
+    "api_version": "v1"
+  }
+}
+
+==================================================
+HEALTH ENDPOINT
+==================================================
+
+GET /api/v1/health
+
+RESPONSE SHOULD INCLUDE
+
+service
+
+status
+
+version
+
+database_status
+
+rpc_status
+
+chain_id
+
+latest_chain_block
+
+latest_indexed_block
+
+indexer_lag
+
+active_experiment
+
+timestamp
+
+==================================================
+EXPERIMENT ENDPOINTS
+==================================================
+
+GET /api/v1/experiments
+
+GET /api/v1/experiments/{experiment_id}
+
+POST /api/v1/experiments/validate
+
+GET /api/v1/experiments/{experiment_id}/versions
+
+GET /api/v1/experiments/{experiment_id}/evidence
+
+GET /api/v1/experiments/{experiment_id}/aar
+
+POST /api/v1/experiments/{experiment_id}/aar/generate
+
+==================================================
+LAUNCH ENDPOINTS
+==================================================
+
+GET /api/v1/launches
+
+GET /api/v1/launches/{launch_id}
+
+GET /api/v1/launches/{launch_id}/trades
+
+GET /api/v1/launches/{launch_id}/fees
+
+==================================================
+ROB ENDPOINTS
+==================================================
+
+GET /api/v1/rob/status
+
+GET /api/v1/rob/observations
+
+GET /api/v1/rob/wallets
+
+GET /api/v1/rob/wallets/{wallet}
+
+GET /api/v1/rob/classifications
+
+GET /api/v1/rob/metrics
+
+==================================================
+AGENT ENDPOINTS
+==================================================
+
+GET /api/v1/agents
+
+GET /api/v1/agents/{agent_id}
+
+GET /api/v1/agent-jobs
+
+GET /api/v1/agent-jobs/{job_id}
+
+POST /api/v1/agent-jobs/validate
+
+The API may allow authenticated systems to create approved non-financial research jobs.
+
+Agent permissions must still be checked.
+
+==================================================
+TREASURY READ ENDPOINTS
+==================================================
+
+GET /api/v1/treasury/entitlements
+
+GET /api/v1/treasury/receipts
+
+GET /api/v1/treasury/allocations
+
+GET /api/v1/treasury/disbursements
+
+GET /api/v1/treasury/reconciliation
+
+Ordinary research API access should not imply treasury-write authority.
+
+==================================================
+DATASET ENDPOINTS
+==================================================
+
+GET /api/v1/datasets
+
+GET /api/v1/datasets/{dataset_id}
+
+GET /api/v1/releases
+
+GET /api/v1/releases/{release_id}
+
+==================================================
+QUERY FILTERS
+==================================================
+
+Where appropriate support:
+
+experiment_id
+
+chain_id
+
+token_address
+
+curve_address
+
+wallet
+
+classification
+
+date_from
+
+date_to
+
+block_from
+
+block_to
+
+opening_window
+
+confirmation_status
+
+evidence_class
+
+limit
+
+cursor
+
+==================================================
+PAGINATION
+==================================================
+
+Prefer cursor-based pagination for high-volume event tables.
+
+Response:
+
+{
+  "items": [],
+  "next_cursor": "",
+  "has_more": true
+}
+
+Do not rely on unbounded:
+
+GET EVERYTHING
+
+queries for large telemetry datasets.
+
+==================================================
+TIME FORMAT
+==================================================
+
+Use:
+
+ISO 8601 UTC
+
+for API timestamps.
+
+Example:
+
+2026-09-06T04:38:00Z
+
+Also retain:
+
+block_number
+
+block_timestamp
+
+because blockchain time is a primary research clock.
+
+==================================================
+NUMERIC PRECISION
+==================================================
+
+Do not represent large blockchain integer values using floating-point numbers where precision could be lost.
+
+Prefer:
+
+string-encoded integer base units
+
+plus
+
+optional normalized decimal representation.
+
+Example:
+
+{
+  "raw_amount": "1000000000000000000",
+  "decimals": 18,
+  "display_amount": "1.0"
+}
+
+==================================================
+ADDRESS FORMAT
+==================================================
+
+Store canonical hexadecimal address.
+
+Validate length.
+
+Validate format.
+
+Use checksum representation where supported.
+
+Do not:
+
+truncate
+
+guess missing characters
+
+or normalize two different addresses into one identity.
+
+==================================================
+HASH FORMAT
+==================================================
+
+For transaction hashes and cryptographic digests preserve:
+
+algorithm where applicable
+
+full value
+
+Do not publish abbreviated hashes as canonical database identifiers.
+
+==================================================
+NULL VS ZERO
+==================================================
+
+THIS RULE IS CRITICAL.
+
+0
+
+means:
+
+verified numeric zero.
+
+null
+
+means:
+
+unknown,
+not applicable,
+not calculated,
+or unavailable.
+
+Each field definition should state which meaning applies.
+
+==================================================
+PROVENANCE FIELDS
+==================================================
+
+Material derived objects should include:
+
+created_at
+
+created_by
+
+software_version
+
+method_version
+
+source_refs
+
+content_hash
+
+This allows future researchers to reconstruct:
+
+who or what produced the result.
+
+==================================================
+IMMUTABILITY RULE
+==================================================
+
+These objects should be append-oriented:
+
+registered manifest versions
+
+human release decisions
+
+raw chain events
+
+security incidents
+
+treasury receipts
+
+public-good disbursements
+
+published dataset versions
+
+Correction should produce:
+
+NEW RECORD
+
+referencing:
+
+ORIGINAL RECORD.
+
+Do not silently rewrite history.
+
+==================================================
+CORRECTION OBJECT
+==================================================
+
+{
+  "correction_id": "",
+  "original_object_type": "",
+  "original_object_id": "",
+  "created_at": "",
+  "created_by": "",
+  "reason": "",
+  "old_value_hash": "",
+  "new_value_hash": "",
+  "human_reviewed": true
+}
+
+==================================================
+DATA RETENTION CLASSES
+==================================================
+
+PERMANENT RESEARCH RECORD
+
+experiment manifests
+
+human release records
+
+transaction records
+
+raw chain events
+
+AARs
+
+dataset releases
+
+treasury receipts
+
+disbursements
+
+security incidents
+
+OPERATIONAL RETENTION
+
+debug logs
+
+temporary cache
+
+routine job logs
+
+TEMPORARY
+
+simulation scratch data
+
+expired cache
+
+Never store private keys as research-retention artifacts.
+
+==================================================
+DISCORD EVENT CONTRACT
+==================================================
+
+Discord integration should receive normalized event objects rather than reconstructing blockchain semantics itself.
+
+Example ROB launch notification:
+
+{
+  "type": "ROB_LAUNCH_OBSERVED",
+  "experiment_id": "",
+  "token_address": "",
+  "curve_address": "",
+  "block_number": null,
+  "transaction_hash": "",
+  "timestamp": "",
+  "evidence_class": "VERIFIED"
+}
+
+==================================================
+DISCORD HUMAN-GATE EVENT
+==================================================
+
+{
+  "type": "HUMAN_ACTION_REQUIRED",
+  "experiment_id": "",
+  "reason": "UNSIGNED_PAYLOAD_READY",
+  "manifest_hash": "",
+  "payload_hash": "",
+  "warnings": [],
+  "requested_at": ""
+}
+
+The Discord bot may notify.
+
+It may not approve.
+
+==================================================
+CONTROL TOWER STATUS OBJECT
+==================================================
+
+{
+  "experiment_id": "",
+  "phase": "",
+  "manifest_status": "",
+  "preflight_status": "",
+  "payload_status": "",
+  "human_gate_status": "",
+  "transaction_status": "",
+  "rob_status": "",
+  "fee_engine_status": "",
+  "behavior_engine_status": "",
+  "treasury_status": "",
+  "aar_status": "",
+  "reproducibility_status": "",
+  "blockers": [],
+  "next_owner": "",
+  "next_action": "",
+  "generated_at": ""
+}
+
+==================================================
+CONTROL TOWER OWNER VALUES
+==================================================
+
+HUMAN_AUTHORITY
+
+ENOCH_ONE
+
+ROB
+
+HASHWARLOCK_AGENT
+
+RESEARCHER
+
+SECURITY_REVIEWER
+
+402_REVIEWER
+
+TREASURY_GOVERNANCE
+
+EXTERNAL_REVIEWER
+
+NONE
+
+==================================================
+DATASET EXPORT — EXPERIMENTS
+==================================================
+
+Recommended columns:
+
+experiment_id
+
+experiment_name
+
+created_at
+
+human_owner
+
+status
+
+research_question
+
+hypothesis_null
+
+hypothesis_alternative
+
+announcement_condition
+
+network
+
+chain_id
+
+factory_address
+
+pair_address
+
+token_name
+
+token_symbol
+
+creator_address
+
+creator_fee_recipient
+
+creator_tax
+
+manifest_hash
+
+software_version
+
+commit_sha
+
+==================================================
+DATASET EXPORT — LAUNCHES
+==================================================
+
+experiment_id
+
+chain_id
+
+block_number
+
+block_hash
+
+block_timestamp
+
+transaction_hash
+
+transaction_index
+
+log_index
+
+factory_address
+
+deployer
+
+token_address
+
+curve_address
+
+pair_address
+
+creator_fee_recipient
+
+creator_tax
+
+confirmation_status
+
+==================================================
+DATASET EXPORT — TRADES
+==================================================
+
+experiment_id
+
+chain_id
+
+token_address
+
+curve_address
+
+block_number
+
+block_timestamp
+
+transaction_hash
+
+transaction_index
+
+log_index
+
+wallet
+
+direction
+
+input_asset
+
+input_amount
+
+output_asset
+
+output_amount
+
+reported_fee
+
+base_fee
+
+creator_tax
+
+other_fee
+
+inferred_opening_fee
+
+seconds_since_launch
+
+blocks_since_launch
+
+opening_window
+
+classification
+
+confidence
+
+classification_version
+
+confirmation_status
+
+==================================================
+DATASET EXPORT — TREASURY
+==================================================
+
+experiment_id
+
+receipt_id
+
+transaction_hash
+
+asset
+
+amount
+
+from_address
+
+to_address
+
+received_at
+
+source_type
+
+accounting_status
+
+evidence_hash
+
+==================================================
+DATASET EXPORT — AGENT JOBS
+==================================================
+
+job_id
+
+experiment_id
+
+agent_id
+
+task_type
+
+created_at
+
+started_at
+
+completed_at
+
+status
+
+input_hash
+
+output_hash
+
+human_gate_required
+
+warning_count
+
+error_code
+
+==================================================
+REPRODUCIBILITY HASH MANIFEST
+==================================================
+
+Each release should contain a manifest with:
+
+path
+
+size_bytes
+
+sha256
+
+Example conceptual record:
+
+{
+  "path": "data/trades.jsonl",
+  "size_bytes": 12345,
+  "sha256": ""
+}
+
+Sort deterministically.
+
+Then hash the completed hash manifest.
+
+Output:
+
+BUNDLE_ROOT_HASH.
+
+==================================================
+SCHEMA MIGRATION RULE
+==================================================
+
+Every breaking change requires:
+
+NEW SCHEMA VERSION.
+
+Migration should document:
+
+old version
+
+new version
+
+reason
+
+fields added
+
+fields removed
+
+semantic changes
+
+experiments affected
+
+whether historical records require recalculation
+
+==================================================
+CLASSIFICATION MIGRATION
+==================================================
+
+Behavior methodology is independently versioned.
+
+Example:
+
+classification-v1.0.0
+
+A later methodology may produce:
+
+classification-v2.0.0
+
+Do not delete v1 classifications.
+
+Store both.
+
+This enables comparison:
+
+WHAT DID ROB V1 CONCLUDE?
+
+WHAT DID ROB V2 CONCLUDE?
+
+==================================================
+FEE METHOD VERSIONING
+==================================================
+
+Fee calculations must identify:
+
+fee_method_version
+
+protocol_version
+
+source event semantics
+
+calculation formula
+
+This becomes especially important if protocol contracts change.
+
+==================================================
+EXPERIMENT SNAPSHOT
+==================================================
+
+At human release, generate one canonical snapshot containing:
+
+experiment
+
+network
+
+factory
+
+token metadata
+
+pair
+
+creator configuration
+
+research condition
+
+manifest hash
+
+payload hash
+
+software version
+
+commit SHA
+
+This becomes:
+
+THE BEFORE-OUTCOME MACHINE RECORD.
+
+==================================================
+POST-OUTCOME SNAPSHOT
+==================================================
+
+At AAR completion generate:
+
+execution result
+
+launch evidence
+
+trade evidence
+
+fee analysis
+
+behavior analysis
+
+human conclusions
+
+treasury evidence
+
+dataset hash
+
+bundle root hash
+
+This becomes:
+
+THE AFTER-OUTCOME MACHINE RECORD.
+
+==================================================
+BEFORE / AFTER COMPARISON
+==================================================
+
+The research system should be capable of producing:
+
+BEFORE
+
+Hypothesis:
+Expected first-trade window:
+Expected automation:
+Expected fees:
+Known limitations:
+
+AFTER
+
+Observed first-trade window:
+Observed classifications:
+Observed fees:
+Actual creator entitlement:
+Actual treasury receipts:
+Unexpected findings:
+
+This directly operationalizes:
+
+WHAT DID WE KNOW BEFORE THE OUTCOME?
+
+==================================================
+DATA CONTRACT ACCEPTANCE TESTS
+==================================================
+
+TEST 1 — UNKNOWN FEE
+
+Input lacks fee semantics.
+
+Expected:
+
+inferred_opening_fee = null
+
+semantics_status = UNKNOWN
+
+TEST 2 — VERIFIED ZERO
+
+Protocol explicitly reports zero.
+
+Expected:
+
+fee = 0
+
+not null.
+
+TEST 3 — DUPLICATE EVENT
+
+Same chain ID + transaction hash + log index inserted twice.
+
+Expected:
+
+one canonical event.
+
+TEST 4 — REORG
+
+Stored block hash no longer canonical.
+
+Expected:
+
+confirmation_status = REORGED.
+
+TEST 5 — PAYLOAD CHANGE
+
+Human-approved payload hash differs from proposed transaction.
+
+Expected:
+
+approval invalidated.
+
+TEST 6 — AGENT AUTHORITY
+
+Agent attempts forbidden operation.
+
+Expected:
+
+PERMISSION_DENIED
+
+or
+
+WAITING_FOR_HUMAN.
+
+TEST 7 — TREASURY CLAIM
+
+Creator entitlement exists but no wallet receipt exists.
+
+Expected:
+
+TREASURY_RECEIVED = false.
+
+TEST 8 — CLASSIFICATION
+
+Fast trade with no repetition.
+
+Expected:
+
+not automatically AUTOMATION_CONFIRMED.
+
+TEST 9 — MANIFEST CHANGE
+
+Material field changes.
+
+Expected:
+
+new manifest hash and version.
+
+TEST 10 — BUNDLE TAMPERING
+
+One byte changed.
+
+Expected:
+
+bundle verification fails.
+
+==================================================
+API ACCEPTANCE TEST
+==================================================
+
+A compliant PONS $101 implementation must permit an authorized researcher to:
+
+CREATE OR LOAD AN EXPERIMENT
+
+↓
+
+VALIDATE MANIFEST
+
+↓
+
+RUN PREFLIGHT
+
+↓
+
+GENERATE UNSIGNED PAYLOAD
+
+↓
+
+STOP FOR HUMAN
+
+↓
+
+OBSERVE PUBLIC TRANSACTION
+
+↓
+
+QUERY ROB OBSERVATIONS
+
+↓
+
+QUERY FEE SUMMARY
+
+↓
+
+QUERY CLASSIFICATIONS
+
+↓
+
+QUERY TREASURY RECEIPTS
+
+↓
+
+GENERATE AAR
+
+↓
+
+EXPORT DATASET
+
+↓
+
+VERIFY BUNDLE HASH
+
+without requiring the research API to possess a mainnet private key.
+
+==================================================
+DATA DOCTRINE
+==================================================
+
+ONE OBJECT.
+
+ONE MEANING.
+
+ONE VERSION.
+
+NULL IS NOT ZERO.
+
+A SYMBOL IS NOT AN ADDRESS.
+
+AN ADDRESS IS NOT AN IDENTITY.
+
+AN OBSERVATION IS NOT AN INFERENCE.
+
+AN INFERENCE IS NOT A HUMAN DECISION.
+
+AN ENTITLEMENT IS NOT A RECEIPT.
+
+A RECEIPT IS NOT A DISBURSEMENT.
+
+AN ESTIMATE IS NOT AN AUDITED FACT.
+
+RAW DATA STAYS RAW.
+
+DERIVED DATA DECLARES ITS METHOD.
+
+AGENT OUTPUT DECLARES ITS AGENT.
+
+HUMAN APPROVAL DECLARES ITS HUMAN.
+
+EVERY MATERIAL RELEASE GETS A HASH.
+
+==================================================
+FINAL DATA ARCHITECTURE
+==================================================
+
+EXPERIMENT OBJECT
+
+↓
+
+MANIFEST HASH
+
+↓
+
+PREFLIGHT OBJECT
+
+↓
+
+UNSIGNED PAYLOAD OBJECT
+
+↓
+
+HUMAN RELEASE OBJECT
+
+↓
+
+EXECUTION OBJECT
+
+↓
+
+RAW EVENT OBJECTS
+
+↓
+
+NORMALIZED LAUNCH + TRADE OBJECTS
+
+↓
+
+FEE ANALYSIS OBJECTS
+
+↓
+
+CLASSIFICATION OBJECTS
+
+↓
+
+AAR OBJECT
+
+↓
+
+TREASURY OBJECTS
+
+↓
+
+DATASET OBJECT
+
+↓
+
+RELEASE OBJECT
+
+↓
+
+BUNDLE ROOT HASH
+
+==================================================
+GENESIS DATA STATEMENT
+==================================================
+
+THE REPOSITORY DEFINES THE LANGUAGE.
+
+THE API MOVES THE LANGUAGE.
+
+THE DATABASE PRESERVES THE LANGUAGE.
+
+ROB FILLS THE LANGUAGE WITH OBSERVATIONS.
+
+@HASHWARLOCK AGENTS OPERATE THROUGH THE LANGUAGE.
+
+ENOCH ONE READS THE LANGUAGE AT THE CONTROL TOWER.
+
+THE HUMAN AUTHORIZES THROUGH THE LANGUAGE.
+
+402 AUDITS THE LANGUAGE.
+
+THE TREASURY PROVES RECEIPTS THROUGH THE LANGUAGE.
+
+THE REVIEWER RECEIVES THE SAME LANGUAGE.
+
+AND THE NEXT RESEARCHER CAN REPRODUCE THE EXPERIMENT WITHOUT HAVING TO TRUST OUR MEMORY.
+
+PONS $101
+
+ONE EXPERIMENT ID.
+
+ONE EVIDENCE CHAIN.
+
+ONE REPRODUCIBLE RECORD.
+
+WHAT DID WE KNOW BEFORE THE OUTCOME?
+
+IN JESUS' NAME.
