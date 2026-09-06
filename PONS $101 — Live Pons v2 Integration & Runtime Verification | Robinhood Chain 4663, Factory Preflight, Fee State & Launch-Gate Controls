@@ -1,0 +1,1661 @@
+# PONS $101 — LIVE PONS V2 INTEGRATION & RUNTIME VERIFICATION
+
+This section defines the live protocol-integration layer for PONS $101 — ROB Lab.
+
+The repository contains a current Pons v2 integration snapshot for Robinhood Chain, but every consequential protocol value must be treated as:
+
+RUNTIME-VERIFIED DATA
+
+rather than:
+
+PERMANENT ASSUMPTION.
+
+The central operating rule is:
+
+VERIFY THE LIVE PROTOCOL BEFORE EVERY MAINNET EXPERIMENT.
+
+==================================================
+CURRENT INTEGRATION SNAPSHOT
+==================================================
+
+SNAPSHOT DATE
+
+2026-09-05
+
+NETWORK
+
+Robinhood Chain
+
+CHAIN ID
+
+4663
+
+CHAIN ID — HEX
+
+0x1237
+
+NATIVE ASSET
+
+ETH
+
+DECIMALS
+
+18
+
+REFERENCE RPC
+
+https://rpc.mainnet.chain.robinhood.com
+
+REFERENCE EXPLORER
+
+https://robinhoodchain.blockscout.com
+
+These values exist in the current repository configuration.
+
+Before a live experiment:
+
+QUERY THE NETWORK.
+
+Do not rely only on the repository snapshot.
+
+==================================================
+PONS V2 CURRENT CONFIGURATION SNAPSHOT
+==================================================
+
+The repository currently records the following Pons v2 infrastructure addresses.
+
+FACTORY
+
+0x7eD598BcEf8bd9Edd8C97A195C6d13f40801EC7e
+
+MEME HOOK
+
+0xE5e702641Ea86F4ae6cC3cDaeD2B886f976Be044
+
+FEE ESCROW
+
+0xd3AFEB2a57f70eF218Aa82451c51B2fb0416Ac9e
+
+BUYBACK VAULT
+
+0x42df2a798f82289E177311362e8f5ccC45c1219c
+
+LAUNCH LOCKER
+
+0x267444D099b10fB5Ed7c3Cc7B7c767AdcA574952
+
+LAUNCH AND BUY
+
+0xe33E9E479dF8802cb0866d5d05258bEc4cF62948
+
+LAUNCH DEPLOYER
+
+0x3711ceA4feaDE896C913C68F01Eda97Cb06D1A42
+
+GRADUATION EXECUTOR
+
+0xC7819B64A1dAECD7eC19856d026cb14EfBd89046
+
+GRADUATION GUARD
+
+0xf5695117b99B6f6401e67d4195BD653628176C6C
+
+IMPORTANT
+
+These are configuration snapshot values.
+
+They must not be treated as eternally canonical.
+
+Before every mainnet experiment:
+
+1. Verify current official Pons documentation.
+
+2. Verify the expected address exists on Robinhood Chain.
+
+3. Verify contract bytecode exists.
+
+4. Verify the interface expected by the adapter still matches.
+
+5. Verify launch permissions.
+
+6. Verify the selected launch configuration.
+
+7. Verify current fee parameters.
+
+8. Verify pair approval.
+
+9. Verify creator-tax bounds.
+
+10. Record the verification timestamp and block.
+
+==================================================
+CURRENT PONS V2 LAUNCH-GATE STATUS
+==================================================
+
+The repository's current integration snapshot records that public Pons v2 launches are presently gated.
+
+Therefore:
+
+THE EXISTENCE OF A LAUNCH FUNCTION DOES NOT MEAN THE CREATOR MAY USE IT.
+
+The integration must call:
+
+canLaunch(address)
+
+immediately before preparing a live launch.
+
+The creator address used in the manifest must be the address checked.
+
+If:
+
+canLaunch(creator) = false
+
+then:
+
+BLOCK.
+
+Do not generate a transaction intended to bypass the gate.
+
+Do not substitute another wallet solely to defeat a permission restriction.
+
+Do not infer launch authority from a previously successful experiment.
+
+Launch permission is a runtime fact.
+
+==================================================
+CAN DOES NOT MEAN MAY
+==================================================
+
+This creates two distinct gates.
+
+PROTOCOL GATE
+
+canLaunch(address)
+
+and
+
+PONS $101 HUMAN GATE
+
+human authorization.
+
+Both must pass.
+
+The sequence is:
+
+PROTOCOL SAYS CAN LAUNCH
+
+↓
+
+PONS $101 PREFLIGHT PASSES
+
+↓
+
+HUMAN REVIEWS
+
+↓
+
+HUMAN DECIDES WHETHER TO LAUNCH
+
+The protocol's:
+
+TRUE
+
+does not mean:
+
+EXECUTE.
+
+It only means the protocol currently permits the address.
+
+==================================================
+SECURITY REVIEW STATUS
+==================================================
+
+The repository's current Pons v2 status snapshot records that three independent security reviews were reported as in progress at the time of the snapshot.
+
+Therefore PONS $101 should not convert:
+
+SECURITY REVIEWS IN PROGRESS
+
+into:
+
+FULLY AUDITED
+
+or:
+
+RISK FREE.
+
+For each live research release, record the current security-review status as verified at that time.
+
+If published audit reports later become available:
+
+record:
+
+reviewer
+
+scope
+
+contract version
+
+date
+
+report reference
+
+findings
+
+remediation status
+
+Do not assume an audit of one version automatically covers a later deployment.
+
+==================================================
+RUNTIME FACT DOCTRINE
+==================================================
+
+These values should be queried immediately before launch where supported:
+
+CHAIN ID
+
+FACTORY BYTECODE
+
+canLaunch
+
+launchFee
+
+maxCreatorTaxBps
+
+launch configuration
+
+pair approval
+
+expected launch economics
+
+creator fee recipient
+
+creator tax
+
+selected launch configuration status
+
+The system should preserve both:
+
+EXPECTED VALUE
+
+and
+
+OBSERVED VALUE.
+
+==================================================
+PREFLIGHT READ SET
+==================================================
+
+The current PONS $101 adapter performs a parallel read of:
+
+canLaunch(creator)
+
+launchFee()
+
+maxCreatorTaxBps()
+
+getLaunchConfig(launchConfigId)
+
+previewLaunchEconomics(
+  launchConfigId,
+  pairToken
+)
+
+These reads establish the immediate technical launch context.
+
+==================================================
+CANONICAL PREFLIGHT OUTPUT
+==================================================
+
+The current adapter returns:
+
+chainId
+
+factory
+
+canLaunch
+
+launchFee
+
+maxCreatorTaxBps
+
+launch configuration
+
+expected economics
+
+safety warnings
+
+The launch configuration includes:
+
+supply
+
+curveFeeBps
+
+phantomQuote
+
+graduationThreshold
+
+poolFee
+
+tickSpacing
+
+enabled
+
+These values should be captured in the experiment's pre-outcome record.
+
+==================================================
+WHY EXPECTED ECONOMICS ARE PINNED
+==================================================
+
+The payload builder includes:
+
+expectedEconomics
+
+obtained from the live factory.
+
+This is important because the transaction should not blindly rely on assumptions about launch economics.
+
+The sequence becomes:
+
+READ CURRENT ECONOMICS
+
+↓
+
+PRESERVE EXPECTATION
+
+↓
+
+ENCODE EXPECTATION INTO PROPOSED LAUNCH
+
+↓
+
+HUMAN REVIEWS
+
+↓
+
+TRANSACTION EXECUTES OR REVERTS
+
+This helps protect the experiment from silent configuration drift between:
+
+what the researcher thought would happen
+
+and
+
+what the protocol was configured to do.
+
+==================================================
+LAUNCH CONFIGURATION
+==================================================
+
+Every experiment should identify:
+
+launchConfigId
+
+The preflight then resolves the corresponding configuration.
+
+A selected launch configuration should be checked for:
+
+ENABLED STATUS
+
+If:
+
+config.enabled = false
+
+then:
+
+BLOCK.
+
+Do not prepare the launch as though the configuration were active.
+
+==================================================
+CREATOR TAX BOUNDS
+==================================================
+
+The adapter reads:
+
+maxCreatorTaxBps()
+
+The manifest contains:
+
+creatorTaxBps
+
+If:
+
+creatorTaxBps > maxCreatorTaxBps
+
+then:
+
+BLOCK.
+
+Do not silently clamp the value.
+
+Do not silently replace it.
+
+Return the discrepancy to the human.
+
+==================================================
+BASIS POINTS
+==================================================
+
+Fee configuration may use basis points.
+
+Remember:
+
+10,000 basis points = 100%
+
+100 basis points = 1%
+
+25 basis points = 0.25%
+
+Where values are reported:
+
+preserve the raw basis-point integer.
+
+Human-readable percentage formatting may be added separately.
+
+Do not replace the canonical integer with a rounded percentage.
+
+==================================================
+CREATOR FEE RECIPIENT
+==================================================
+
+The manifest explicitly records:
+
+creatorFeeRecipient
+
+Before human release verify:
+
+address format
+
+intended recipient
+
+relationship to experiment
+
+treasury routing if applicable
+
+The launch transaction should be decoded for the human so the recipient can be visually compared with the intended address.
+
+A recipient mismatch is:
+
+BLOCK.
+
+==================================================
+CREATOR FEE RECIPIENT ≠ CREATOR
+==================================================
+
+The system should not automatically assume:
+
+creator address
+
+and
+
+creator fee recipient
+
+must be the same wallet.
+
+Where the protocol supports separate recipients, preserve each independently.
+
+CREATOR
+
+Who originates or owns the launch authority.
+
+CREATOR FEE RECIPIENT
+
+Where protocol-defined creator-related economics are directed.
+
+TREASURY
+
+A separately governed custody destination where applicable.
+
+These roles may differ.
+
+==================================================
+BUYBACK CONFIGURATION
+==================================================
+
+The manifest contains:
+
+buybackEnabled
+
+This should be treated as a material economic parameter.
+
+Before release:
+
+record its value.
+
+Do not silently enable or disable it.
+
+If changed:
+
+new manifest version
+
+new hash
+
+new payload
+
+new human review.
+
+==================================================
+SNIPE-TAX EXEMPTIONS
+==================================================
+
+The current factory adapter supports:
+
+snipeTaxExemptions
+
+The PONS $101 research default is:
+
+ZERO ADDITIONAL EXEMPTIONS
+
+unless there is a documented reason.
+
+Why?
+
+If the experiment is studying opening-window behavior, undisclosed exemptions could materially alter the experimental condition.
+
+If the manifest contains one or more exemptions:
+
+the preflight returns a safety warning.
+
+Every exemption should be reviewed explicitly.
+
+Record:
+
+address
+
+reason
+
+research effect
+
+human approval
+
+==================================================
+NO EXEMPTION MANIPULATION
+==================================================
+
+Do not use exemptions to create:
+
+favored undisclosed participants
+
+manufactured first buyers
+
+hidden insider advantages
+
+or distorted research results.
+
+If exemptions are used for a legitimate technical or research purpose:
+
+disclose them in the experiment record.
+
+==================================================
+UNSIGNED PAYLOAD CONSTRUCTION
+==================================================
+
+The current factory supports two launch payload paths.
+
+WITHOUT ADDITIONAL SNIPE-TAX EXEMPTIONS
+
+launchToken(
+  params,
+  launchConfigId,
+  pairToken
+)
+
+WITH EXEMPTIONS
+
+launchToken(
+  params,
+  launchConfigId,
+  pairToken,
+  exemptions
+)
+
+The exact ABI should always be verified against the deployed contract version before mainnet use.
+
+==================================================
+CURRENT LAUNCH PARAMETER SET
+==================================================
+
+The current payload builder constructs parameters containing:
+
+name
+
+symbol
+
+logo
+
+description
+
+socials
+
+creatorFeeRecipient
+
+creatorTaxBps
+
+buybackEnabled
+
+expectedEconomics
+
+salt
+
+The experiment manifest additionally contains:
+
+experimentId
+
+creator
+
+launchConfigId
+
+pairToken
+
+snipeTaxExemptions
+
+==================================================
+TOKEN METADATA
+==================================================
+
+Metadata should be truthful.
+
+Fields include:
+
+NAME
+
+SYMBOL
+
+LOGO
+
+DESCRIPTION
+
+SOCIALS
+
+The system should not use metadata to claim:
+
+official Robinhood affiliation
+
+official Pons affiliation
+
+guaranteed profit
+
+guaranteed bot participation
+
+guaranteed creator revenue
+
+false supply scarcity
+
+or false utility.
+
+==================================================
+SALT
+==================================================
+
+The launch manifest contains a:
+
+salt
+
+Where a salt affects deterministic deployment or another protocol property:
+
+preserve it exactly.
+
+It is part of the experimental configuration.
+
+Changing the salt after manifest freeze requires:
+
+new manifest version
+
+new manifest hash
+
+new payload hash
+
+new human review.
+
+==================================================
+MANIFEST HASH
+==================================================
+
+The current repository generates a SHA-256 manifest digest.
+
+The stable manifest object includes:
+
+experimentId
+
+name
+
+symbol
+
+logo
+
+description
+
+socials
+
+creator
+
+creatorFeeRecipient
+
+creatorTaxBps
+
+buybackEnabled
+
+launchConfigId
+
+pairToken
+
+salt
+
+snipeTaxExemptions
+
+The hash is represented as:
+
+sha256:<digest>
+
+==================================================
+HASH PURPOSE
+==================================================
+
+The manifest hash answers:
+
+WHAT EXACT CONFIGURATION DID WE CLAIM TO BE PREPARING BEFORE THE OUTCOME?
+
+It does not by itself prove:
+
+the transaction executed.
+
+That requires:
+
+transaction hash
+
+receipt
+
+and chain evidence.
+
+==================================================
+UNSIGNED PAYLOAD OUTPUT
+==================================================
+
+The current builder returns:
+
+chainId
+
+to
+
+from
+
+value
+
+data
+
+manifestHash
+
+preflight
+
+humanGate
+
+disclosureReminder
+
+The humanGate is explicitly:
+
+UNSIGNED_ONLY
+
+The payload must be inspected and signed in a human-controlled wallet.
+
+==================================================
+HUMAN-GATE MESSAGE
+==================================================
+
+Canonical interpretation:
+
+THE SOFTWARE HAS PREPARED A TRANSACTION.
+
+THE SOFTWARE HAS NOT AUTHORIZED THE TRANSACTION.
+
+The human must verify:
+
+CHAIN
+
+TARGET
+
+VALUE
+
+CALLDATA
+
+TOKEN
+
+PAIR
+
+CREATOR RECIPIENT
+
+CREATOR TAX
+
+BUYBACK CONFIGURATION
+
+LAUNCH CONFIGURATION
+
+WARNINGS
+
+before signing.
+
+==================================================
+DISCLOSURE REMINDER
+==================================================
+
+The current builder includes a release reminder:
+
+Do not hide:
+
+creator tax
+
+pair
+
+fee recipient
+
+experimental nature
+
+Do not promise:
+
+bot participation
+
+or
+
+profit.
+
+This disclosure should remain visible near the final human release gate.
+
+==================================================
+PAIR TOKEN
+==================================================
+
+The manifest contains:
+
+pairToken
+
+Before launch verify:
+
+contract address
+
+symbol
+
+decimals
+
+approval status
+
+network
+
+Do not infer pair identity from a symbol alone.
+
+If a pair is not currently approved or supported:
+
+BLOCK.
+
+==================================================
+“PAIRED WITH” LANGUAGE
+==================================================
+
+Use:
+
+PAIRED WITH
+
+unless an actual mechanism maintains a price peg.
+
+Do not convert:
+
+TRADING PAIR
+
+into:
+
+PEG
+
+for marketing purposes.
+
+==================================================
+ROBINHOOD CHAIN CLIENT
+==================================================
+
+The current chain configuration uses:
+
+CHAIN ID 4663
+
+and an HTTP JSON-RPC endpoint.
+
+All production calls should validate the returned:
+
+eth_chainId
+
+before trusting the provider.
+
+Expected:
+
+4663
+
+If the provider returns another chain:
+
+BLOCK.
+
+==================================================
+RPC PROVIDER FAILURE
+==================================================
+
+If the primary RPC is unavailable:
+
+do not silently switch to an unknown endpoint.
+
+A fallback provider may be used if it is:
+
+configured
+
+approved
+
+and independently chain-verified.
+
+Record:
+
+provider used
+
+retrieval time
+
+latest block
+
+chain ID
+
+latency
+
+==================================================
+FACTORY BYTECODE CHECK
+==================================================
+
+Before launch:
+
+call:
+
+eth_getCode
+
+for the configured factory address.
+
+If:
+
+0x
+
+or equivalent empty code is returned:
+
+BLOCK.
+
+If bytecode hash differs from the expected reviewed deployment:
+
+WARNING or BLOCK
+
+depending on the reason.
+
+Do not assume an address is a contract simply because it appears in configuration.
+
+==================================================
+ABI CHECK
+==================================================
+
+The adapter expects functions including:
+
+canLaunch
+
+launchFee
+
+maxCreatorTaxBps
+
+getLaunchConfig
+
+previewLaunchEconomics
+
+launchToken
+
+Before mainnet execution, verify the current deployed contract supports the expected interface.
+
+Unexpected interface behavior is:
+
+BLOCK.
+
+==================================================
+CURVE FEE STATE
+==================================================
+
+After launch, ROB can query a curve for:
+
+feeBps
+
+creatorTaxBps
+
+quoteFeeBalance
+
+creatorTaxBalance
+
+These values support post-launch economic reconstruction.
+
+==================================================
+CURVE FEE STATE OBJECT
+==================================================
+
+Recommended record:
+
+experiment_id
+
+token_address
+
+curve_address
+
+block_number
+
+fee_bps
+
+creator_tax_bps
+
+quote_fee_balance
+
+creator_tax_balance
+
+queried_at
+
+software_version
+
+evidence_class
+
+==================================================
+WHY POST-LAUNCH STATE MATTERS
+==================================================
+
+Event data answers:
+
+WHAT OCCURRED?
+
+Contract state may answer:
+
+WHAT IS CURRENTLY ACCRUED OR CONFIGURED?
+
+These are different forms of evidence.
+
+ROB should preserve both without collapsing them.
+
+==================================================
+FEE ESCROW
+==================================================
+
+The current repository configuration includes a Pons v2 fee escrow.
+
+ROB can query:
+
+native escrow balance for a recipient
+
+and where applicable:
+
+token-denominated escrow balance for a recipient and quote token.
+
+These queries help distinguish:
+
+PROTOCOL ACTIVITY
+
+from
+
+CREATOR-RELATED ACCRUAL
+
+from
+
+ACTUAL TREASURY RECEIPT.
+
+==================================================
+ESCROW ≠ TREASURY RECEIPT
+==================================================
+
+This distinction is mandatory.
+
+An escrow balance may indicate:
+
+funds attributable to a recipient inside protocol infrastructure.
+
+It does not automatically mean:
+
+the external treasury wallet possesses those assets.
+
+Therefore use:
+
+ESCROW BALANCE
+
+when the funds remain in escrow.
+
+Use:
+
+TREASURY RECEIPT
+
+only after wallet-level evidence establishes receipt.
+
+==================================================
+CREATOR ENTITLEMENT STATE MACHINE
+==================================================
+
+FEE EVENT OBSERVED
+
+↓
+
+CURVE / ESCROW BALANCE VERIFIED
+
+↓
+
+CREATOR ENTITLEMENT ESTABLISHED
+
+↓
+
+CLAIMABLE WHERE APPLICABLE
+
+↓
+
+CLAIM TRANSACTION
+
+↓
+
+RECIPIENT WALLET RECEIVES ASSET
+
+↓
+
+TREASURY RECEIPT VERIFIED
+
+Do not jump directly from:
+
+TRADE EVENT
+
+to:
+
+TABERNACLE MONEY RECEIVED.
+
+==================================================
+ROB FEE RECONSTRUCTION
+==================================================
+
+ROB uses both:
+
+EVENT EVIDENCE
+
+and
+
+CONTRACT STATE.
+
+For buys, where protocol semantics support it, ROB may compare:
+
+reported fee
+
+against
+
+curve base fee
+
+and other explicitly known fee components.
+
+This enables estimation of an additional opening-window component.
+
+==================================================
+OPENING-WINDOW COMPONENT
+==================================================
+
+The key research distinction is:
+
+EARLY TRANSACTION
+
+versus
+
+AUTOMATION IDENTITY.
+
+A transaction paying an opening-window fee provides evidence that it interacted during a defined protocol condition.
+
+That supports:
+
+OPENING_WINDOW_PARTICIPANT.
+
+It does not automatically support:
+
+AUTOMATION_CONFIRMED.
+
+==================================================
+BOT-FEE LANGUAGE
+==================================================
+
+Internally, the project may use:
+
+BOT TAX
+
+as a memorable research nickname.
+
+External datasets and technical reports should use:
+
+BASE TRADING FEE
+
+CREATOR TAX
+
+OPENING SNIPE TAX
+
+CREATOR FEE PAYOUT
+
+ESCROW BALANCE
+
+TREASURY RECEIPT
+
+and other exact protocol terminology.
+
+==================================================
+LIVE PREFLIGHT REPORT
+==================================================
+
+Before every human release produce:
+
+PONS $101 — LIVE PONS V2 PREFLIGHT
+
+EXPERIMENT ID:
+
+RETRIEVED AT:
+
+LATEST BLOCK:
+
+NETWORK:
+
+CHAIN ID:
+
+RPC:
+
+FACTORY:
+
+FACTORY CODE VERIFIED:
+
+CAN LAUNCH:
+
+LAUNCH FEE:
+
+MAX CREATOR TAX BPS:
+
+REQUESTED CREATOR TAX BPS:
+
+LAUNCH CONFIG ID:
+
+CONFIG ENABLED:
+
+SUPPLY:
+
+CURVE FEE BPS:
+
+PHANTOM QUOTE:
+
+GRADUATION THRESHOLD:
+
+POOL FEE:
+
+TICK SPACING:
+
+PAIR TOKEN:
+
+PAIR VERIFIED:
+
+EXPECTED ECONOMICS:
+
+SNIPE EXEMPTIONS:
+
+CREATOR:
+
+CREATOR FEE RECIPIENT:
+
+MANIFEST HASH:
+
+SAFETY WARNINGS:
+
+STATUS:
+
+PASS
+WARNING
+or
+BLOCK
+
+==================================================
+BLOCK CONDITIONS
+==================================================
+
+BLOCK if:
+
+chain ID mismatch
+
+factory missing
+
+factory interface incompatible
+
+canLaunch = false
+
+launch configuration disabled
+
+creator tax exceeds current maximum
+
+pair unsupported
+
+creator recipient malformed or mismatched
+
+manifest invalid
+
+payload cannot be decoded
+
+simulation reveals a material revert
+
+payload differs from the reviewed manifest
+
+==================================================
+WARNING CONDITIONS
+==================================================
+
+Examples:
+
+additional snipe-tax exemptions
+
+security reviews incomplete
+
+RPC provider degraded
+
+contract implementation changed but interface remains compatible
+
+unusual creator-tax configuration
+
+new launch configuration
+
+new pair asset
+
+unexpected-but-explainable fee state
+
+Warnings require human visibility.
+
+==================================================
+DO NOT BYPASS BLOCKS
+==================================================
+
+If preflight says:
+
+BLOCK
+
+an agent should not attempt:
+
+another unapproved factory
+
+another wallet
+
+another chain
+
+another pair
+
+or altered hidden parameter
+
+simply to force execution.
+
+A blocked experiment returns to:
+
+RIGHT PERSON
+→ RIGHT PROBLEM
+→ RIGHT CONTENT
+→ RIGHT NEXT STEP.
+
+==================================================
+RUNTIME CONFIGURATION SNAPSHOT
+==================================================
+
+Every approved launch should preserve a before-outcome snapshot containing:
+
+CHAIN ID
+
+LATEST BLOCK
+
+RPC SOURCE
+
+FACTORY ADDRESS
+
+FACTORY CODE HASH
+
+FACTORY VERSION
+
+ABI VERSION
+
+CAN LAUNCH RESULT
+
+LAUNCH FEE
+
+MAX CREATOR TAX
+
+LAUNCH CONFIG
+
+PAIR
+
+EXPECTED ECONOMICS
+
+CREATOR CONFIGURATION
+
+SNIPE EXEMPTIONS
+
+SOFTWARE VERSION
+
+COMMIT SHA
+
+MANIFEST HASH
+
+PAYLOAD HASH
+
+This snapshot becomes part of the reproducibility package.
+
+==================================================
+POST-LAUNCH VERIFICATION
+==================================================
+
+After broadcast verify:
+
+transaction exists
+
+receipt succeeds
+
+expected factory was called
+
+expected creator was sender
+
+expected value was used
+
+decoded arguments match approved payload
+
+launch event exists
+
+token address discovered
+
+curve address discovered
+
+pair matches
+
+creator fee recipient matches
+
+creator tax matches
+
+==================================================
+TRANSACTION INTENT VS EXECUTION
+==================================================
+
+The research package should show:
+
+BEFORE
+
+what was proposed.
+
+AFTER
+
+what actually executed.
+
+If they differ:
+
+flag the experiment.
+
+Do not assume wallet software necessarily submitted exactly what an earlier agent proposed.
+
+==================================================
+CONFIGURATION DRIFT
+==================================================
+
+Protocol infrastructure can change.
+
+Therefore the system should detect drift between experiments.
+
+Possible drift includes:
+
+factory address
+
+factory bytecode
+
+launch permission
+
+launch fee
+
+max creator tax
+
+launch configurations
+
+pair approvals
+
+fee semantics
+
+ABI
+
+graduation configuration
+
+If drift occurs:
+
+record it as an experimental variable.
+
+==================================================
+DRIFT REPORT
+==================================================
+
+PONS $101 — PROTOCOL DRIFT
+
+PREVIOUS EXPERIMENT:
+
+CURRENT EXPERIMENT:
+
+PREVIOUS FACTORY:
+
+CURRENT FACTORY:
+
+PREVIOUS BYTECODE HASH:
+
+CURRENT BYTECODE HASH:
+
+PREVIOUS LAUNCH FEE:
+
+CURRENT LAUNCH FEE:
+
+PREVIOUS MAX CREATOR TAX:
+
+CURRENT MAX CREATOR TAX:
+
+CONFIG CHANGES:
+
+PAIR-APPROVAL CHANGES:
+
+ABI CHANGES:
+
+RESEARCH IMPACT:
+
+ACTION REQUIRED:
+
+==================================================
+DO NOT FREEZE THE PROTOCOL IN MEMORY
+==================================================
+
+A common agent failure is:
+
+A VALUE WAS CORRECT YESTERDAY
+
+THEREFORE
+
+IT MUST BE CORRECT TODAY.
+
+PONS $101 explicitly rejects that assumption for live protocol integration.
+
+Current external state must be re-read.
+
+==================================================
+PONS V2 RESEARCH STATUS
+==================================================
+
+The current repository treats Pons v2 as:
+
+AN ACTIVE PROTOCOL INTEGRATION SUBJECT TO CHANGE.
+
+Therefore:
+
+contract configuration
+
+security status
+
+launch gates
+
+fees
+
+and operational permissions
+
+remain live research inputs.
+
+==================================================
+PONS $101 INTEGRATION DOCTRINE
+==================================================
+
+CONFIGURE.
+
+QUERY.
+
+VERIFY.
+
+COMPARE.
+
+HASH.
+
+HUMAN REVIEW.
+
+THEN EXECUTE IF APPROVED.
+
+DO NOT LAUNCH FROM MEMORY.
+
+DO NOT LAUNCH FROM A SCREENSHOT.
+
+DO NOT LAUNCH FROM AN OLD ADDRESS LIST.
+
+DO NOT LAUNCH BECAUSE AN AGENT SAYS “SHOULD WORK.”
+
+READ THE CHAIN.
+
+READ THE CONTRACT.
+
+READ THE GATE.
+
+READ THE ECONOMICS.
+
+THEN PRESENT THE EVIDENCE TO THE HUMAN.
+
+==================================================
+FINAL LIVE-INTEGRATION STATEMENT
+==================================================
+
+THE REPOSITORY PROVIDES A STARTING CONFIGURATION.
+
+THE CHAIN PROVIDES THE CURRENT FACT.
+
+THE CONTRACT PROVIDES THE CURRENT RULES.
+
+PREFLIGHT COMPARES THE TWO.
+
+THE MANIFEST RECORDS THE EXPERIMENT.
+
+THE PAYLOAD RECORDS THE PROPOSED ACTION.
+
+THE HUMAN DECIDES WHETHER TO SIGN.
+
+ROB RECORDS WHAT ACTUALLY HAPPENS.
+
+GITHUB PRESERVES BOTH BEFORE AND AFTER.
+
+PONS $101
+
+VERIFY LIVE.
+
+FAIL CLOSED.
+
+PRESERVE THE SNAPSHOT.
+
+WHAT DID WE KNOW BEFORE THE OUTCOME?
+
+IN JESUS' NAME.
