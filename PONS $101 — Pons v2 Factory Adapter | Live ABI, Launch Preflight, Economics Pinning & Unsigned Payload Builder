@@ -1,0 +1,1334 @@
+I checked this next chunk against the current Pons v2 integration docs: the live v2 factory is on Robinhood Chain 4663; launches currently require canLaunch(address) eligibility; launch economics can be pinned with previewLaunchEconomics; custom quote assets must be approved; and CurveBuy reports creator tax separately while folding any opening snipe tax into fee. 
+
+WINDOW 1 — TITLE
+
+PONS $101 — Pons v2 Factory Adapter | Live ABI, Launch Preflight, Economics Pinning & Unsigned Payload Builder
+
+WINDOW 2 — CONTENT
+
+# PONS $101 — PONS V2 FACTORY ADAPTER
+This section implements the live Pons v2 factory adapter used by:
+PONS $101
+ROB
+@hashwarlock build agents
+the preflight engine
+and
+the unsigned Token Creation Factory.
+The adapter has one purpose:
+READ THE CURRENT PROTOCOL STATE
+BEFORE
+BUILDING THE PROPOSED TRANSACTION.
+The adapter does not sign.
+The adapter does not broadcast.
+The adapter does not trade.
+The adapter does not move treasury assets.
+==================================================
+CURRENT NETWORK
+==================================================
+ROBINHOOD CHAIN
+CHAIN ID
+4663
+NATIVE ASSET
+ETH
+CURRENT PONS V2 FACTORY
+0x7eD598BcEf8bd9Edd8C97A195C6d13f40801EC7e
+IMPORTANT
+External protocol configuration can change.
+Therefore:
+VERIFY RUNTIME STATE BEFORE EVERY LIVE EXPERIMENT.
+==================================================
+CORE IMPORTS
+==================================================
+import {
+  createPublicClient,
+  encodeFunctionData,
+  getAddress,
+  http,
+  isAddress,
+  keccak256,
+  parseAbi,
+  stringToHex
+} from "viem";
+==================================================
+CORE ADDRESSES
+==================================================
+export const PONS_V2_FACTORY =
+  "0x7eD598BcEf8bd9Edd8C97A195C6d13f40801EC7e"
+  as const;
+export const NATIVE_PAIR =
+  "0x0000000000000000000000000000000000000000"
+  as const;
+==================================================
+PONS V2 FACTORY ABI
+==================================================
+export const ponsV2FactoryAbi = parseAbi([
+  "struct Socials { string twitter; string telegram; string discord; string website; string farcaster; }",
+  "struct TokenParams { string name; string symbol; string logo; string description; Socials socials; address creatorFeeRecipient; uint16 creatorTaxBps; bool buybackEnabled; bytes32 expectedEconomics; bytes32 salt; }",
+  "struct LaunchConfig { uint256 supply; uint256 curveFeeBps; uint256 phantomQuote; uint256 graduationThreshold; uint24 poolFee; int24 tickSpacing; bool enabled; }",
+  "function canLaunch(address creator) view returns (bool)",
+  "function launchFee() view returns (uint256)",
+  "function maxCreatorTaxBps() view returns (uint256)",
+  "function launchConfigCount() view returns (uint256)",
+  "function getLaunchConfig(uint256 id) view returns (LaunchConfig)",
+  "function previewLaunchEconomics(uint256 launchConfigId, address pairToken) view returns (bytes32)",
+  "function approvedPairTokens(address pairToken) view returns (bool)",
+  "function pairTokenEconomics(address pairToken) view returns (uint256 phantomQuote, uint256 graduationThreshold, uint8 decimals)",
+  "function launchToken(TokenParams params, uint256 launchConfigId, address pairToken) payable returns (address token, address curve)",
+  "function launchToken(TokenParams params, uint256 launchConfigId, address pairToken, address[] snipeTaxExemptions) payable returns (address token, address curve)",
+  "event TokenLaunched(address indexed token, address indexed curve, address indexed deployer, address pairToken, uint256 launchConfigId, uint256 graduationThreshold)"
+]);
+==================================================
+PUBLIC CLIENT
+==================================================
+export const robinhoodClient =
+  createPublicClient({
+    chain: {
+      id: 4663,
+      name:
+        "Robinhood Chain",
+      nativeCurrency: {
+        name: "Ether",
+        symbol: "ETH",
+        decimals: 18
+      },
+      rpcUrls: {
+        default: {
+          http: [
+            process.env.ROBINHOOD_RPC_URL ||
+            "https://rpc.mainnet.chain.robinhood.com"
+          ]
+        }
+      }
+    },
+    transport:
+      http(
+        process.env.ROBINHOOD_RPC_URL ||
+        "https://rpc.mainnet.chain.robinhood.com"
+      )
+  });
+==================================================
+LAUNCH MANIFEST
+==================================================
+export type PonsLaunchManifest = {
+  experimentId:
+    string;
+  creator:
+    `0x${string}`;
+  name:
+    string;
+  symbol:
+    string;
+  logo:
+    string;
+  description:
+    string;
+  socials: {
+    twitter: string;
+    telegram: string;
+    discord: string;
+    website: string;
+    farcaster: string;
+  };
+  creatorFeeRecipient:
+    `0x${string}`;
+  creatorTaxBps:
+    number;
+  buybackEnabled:
+    boolean;
+  launchConfigId:
+    bigint;
+  pairToken:
+    `0x${string}`;
+  salt:
+    `0x${string}`;
+  snipeTaxExemptions?:
+    `0x${string}`[];
+};
+==================================================
+PREFLIGHT STATUS
+==================================================
+export type PreflightStatus =
+  | "PASS"
+  | "WARNING"
+  | "BLOCK";
+==================================================
+PREFLIGHT ISSUE
+==================================================
+export type PreflightIssue = {
+  code:
+    string;
+  severity:
+    "WARNING" | "BLOCK";
+  message:
+    string;
+};
+==================================================
+PREFLIGHT RESULT
+==================================================
+export type PonsPreflightResult = {
+  experimentId:
+    string;
+  status:
+    PreflightStatus;
+  chainId:
+    number;
+  latestBlock:
+    bigint;
+  factory:
+    `0x${string}`;
+  factoryHasCode:
+    boolean;
+  canLaunch:
+    boolean;
+  launchFee:
+    bigint;
+  maxCreatorTaxBps:
+    bigint;
+  creatorTaxBps:
+    number;
+  launchConfigId:
+    bigint;
+  launchConfig: {
+    supply: bigint;
+    curveFeeBps: bigint;
+    phantomQuote: bigint;
+    graduationThreshold: bigint;
+    poolFee: number;
+    tickSpacing: number;
+    enabled: boolean;
+  };
+  pairToken:
+    `0x${string}`;
+  pairApproved:
+    boolean;
+  pairEconomics:
+    {
+      phantomQuote:
+        bigint;
+      graduationThreshold:
+        bigint;
+      decimals:
+        number;
+    } | null;
+  expectedEconomics:
+    `0x${string}`;
+  issues:
+    PreflightIssue[];
+  generatedAt:
+    string;
+};
+==================================================
+ADDRESS VALIDATION
+==================================================
+function assertAddress(
+  value: string,
+  label: string
+): asserts value is `0x${string}` {
+  if (!isAddress(value)) {
+    throw new Error(
+      `${label}: invalid address`
+    );
+  }
+}
+==================================================
+MANIFEST VALIDATION
+==================================================
+export function validateLaunchManifest(
+  manifest: PonsLaunchManifest
+) {
+  const problems:
+    string[] = [];
+  if (
+    !manifest.experimentId.trim()
+  ) {
+    problems.push(
+      "experimentId is required"
+    );
+  }
+  if (
+    !manifest.name.trim()
+  ) {
+    problems.push(
+      "token name is required"
+    );
+  }
+  if (
+    !manifest.symbol.trim()
+  ) {
+    problems.push(
+      "token symbol is required"
+    );
+  }
+  if (
+    !isAddress(
+      manifest.creator
+    )
+  ) {
+    problems.push(
+      "creator address invalid"
+    );
+  }
+  if (
+    !isAddress(
+      manifest.creatorFeeRecipient
+    )
+  ) {
+    problems.push(
+      "creatorFeeRecipient invalid"
+    );
+  }
+  if (
+    !isAddress(
+      manifest.pairToken
+    )
+  ) {
+    problems.push(
+      "pairToken invalid"
+    );
+  }
+  if (
+    manifest.creatorTaxBps < 0
+  ) {
+    problems.push(
+      "creatorTaxBps cannot be negative"
+    );
+  }
+  if (
+    !/^0x[0-9a-fA-F]{64}$/.test(
+      manifest.salt
+    )
+  ) {
+    problems.push(
+      "salt must be bytes32"
+    );
+  }
+  if (
+    (manifest.snipeTaxExemptions?.length ?? 0)
+    > 32
+  ) {
+    problems.push(
+      "snipeTaxExemptions exceeds protocol maximum of 32"
+    );
+  }
+  for (
+    const exemption
+    of manifest.snipeTaxExemptions ?? []
+  ) {
+    if (
+      !isAddress(exemption)
+    ) {
+      problems.push(
+        `invalid snipe exemption: ${exemption}`
+      );
+    }
+  }
+  return {
+    valid:
+      problems.length === 0,
+    problems
+  };
+}
+==================================================
+VERIFY NETWORK
+==================================================
+export async function
+verifyRobinhoodChain() {
+  const chainId =
+    await robinhoodClient.getChainId();
+  if (
+    chainId !== 4663
+  ) {
+    throw new Error(
+      `CHAIN_MISMATCH expected=4663 observed=${chainId}`
+    );
+  }
+  const blockNumber =
+    await robinhoodClient.getBlockNumber();
+  return {
+    chainId,
+    blockNumber
+  };
+}
+==================================================
+VERIFY FACTORY BYTECODE
+==================================================
+export async function
+verifyFactoryCode() {
+  const code =
+    await robinhoodClient.getCode({
+      address:
+        PONS_V2_FACTORY
+    });
+  if (
+    !code ||
+    code === "0x"
+  ) {
+    throw new Error(
+      "FACTORY_UNVERIFIED: no bytecode at configured factory"
+    );
+  }
+  return code;
+}
+==================================================
+OPEN LAUNCH CONFIGURATIONS
+==================================================
+export async function
+getOpenLaunchConfigs() {
+  const count =
+    await robinhoodClient.readContract({
+      address:
+        PONS_V2_FACTORY,
+      abi:
+        ponsV2FactoryAbi,
+      functionName:
+        "launchConfigCount"
+    });
+  const configs =
+    await Promise.all(
+      Array.from(
+        {
+          length:
+            Number(count)
+        },
+        async (_, id) => {
+          const config =
+            await robinhoodClient.readContract({
+              address:
+                PONS_V2_FACTORY,
+              abi:
+                ponsV2FactoryAbi,
+              functionName:
+                "getLaunchConfig",
+              args:
+                [BigInt(id)]
+            });
+          return {
+            id:
+              BigInt(id),
+            supply:
+              config.supply,
+            curveFeeBps:
+              config.curveFeeBps,
+            phantomQuote:
+              config.phantomQuote,
+            graduationThreshold:
+              config.graduationThreshold,
+            poolFee:
+              config.poolFee,
+            tickSpacing:
+              config.tickSpacing,
+            enabled:
+              config.enabled
+          };
+        }
+      )
+    );
+  return configs.filter(
+    config =>
+      config.enabled
+  );
+}
+==================================================
+PAIR CHECK
+==================================================
+export async function
+checkPairToken(
+  pairToken:
+    `0x${string}`
+) {
+  if (
+    pairToken.toLowerCase()
+    ===
+    NATIVE_PAIR.toLowerCase()
+  ) {
+    return {
+      approved:
+        true,
+      native:
+        true,
+      economics:
+        null
+    };
+  }
+  const [
+    approved,
+    economics
+  ] =
+    await Promise.all([
+      robinhoodClient.readContract({
+        address:
+          PONS_V2_FACTORY,
+        abi:
+          ponsV2FactoryAbi,
+        functionName:
+          "approvedPairTokens",
+        args:
+          [pairToken]
+      }),
+      robinhoodClient.readContract({
+        address:
+          PONS_V2_FACTORY,
+        abi:
+          ponsV2FactoryAbi,
+        functionName:
+          "pairTokenEconomics",
+        args:
+          [pairToken]
+      })
+    ]);
+  const [
+    phantomQuote,
+    graduationThreshold,
+    decimals
+  ] =
+    economics;
+  const economicallyConfigured =
+    phantomQuote > 0n
+    &&
+    graduationThreshold > 0n;
+  return {
+    approved:
+      approved
+      &&
+      economicallyConfigured,
+    native:
+      false,
+    economics: {
+      phantomQuote,
+      graduationThreshold,
+      decimals
+    }
+  };
+}
+==================================================
+RUN PONS V2 PREFLIGHT
+==================================================
+export async function
+runPonsPreflight(
+  manifest:
+    PonsLaunchManifest
+):
+Promise<PonsPreflightResult> {
+  const validation =
+    validateLaunchManifest(
+      manifest
+    );
+  if (
+    !validation.valid
+  ) {
+    throw new Error(
+      `MANIFEST_INVALID: ${validation.problems.join("; ")}`
+    );
+  }
+  const issues:
+    PreflightIssue[] = [];
+  const {
+    chainId,
+    blockNumber:
+      latestBlock
+  } =
+    await verifyRobinhoodChain();
+  await verifyFactoryCode();
+  const [
+    canLaunch,
+    launchFee,
+    maxCreatorTaxBps,
+    launchConfig,
+    expectedEconomics,
+    pairResult
+  ] =
+    await Promise.all([
+      robinhoodClient.readContract({
+        address:
+          PONS_V2_FACTORY,
+        abi:
+          ponsV2FactoryAbi,
+        functionName:
+          "canLaunch",
+        args:
+          [manifest.creator]
+      }),
+      robinhoodClient.readContract({
+        address:
+          PONS_V2_FACTORY,
+        abi:
+          ponsV2FactoryAbi,
+        functionName:
+          "launchFee"
+      }),
+      robinhoodClient.readContract({
+        address:
+          PONS_V2_FACTORY,
+        abi:
+          ponsV2FactoryAbi,
+        functionName:
+          "maxCreatorTaxBps"
+      }),
+      robinhoodClient.readContract({
+        address:
+          PONS_V2_FACTORY,
+        abi:
+          ponsV2FactoryAbi,
+        functionName:
+          "getLaunchConfig",
+        args:
+          [
+            manifest.launchConfigId
+          ]
+      }),
+      robinhoodClient.readContract({
+        address:
+          PONS_V2_FACTORY,
+        abi:
+          ponsV2FactoryAbi,
+        functionName:
+          "previewLaunchEconomics",
+        args:
+          [
+            manifest.launchConfigId,
+            manifest.pairToken
+          ]
+      }),
+      checkPairToken(
+        manifest.pairToken
+      )
+    ]);
+==================================================
+PREFLIGHT — LAUNCH PERMISSION
+==================================================
+  if (
+    !canLaunch
+  ) {
+    issues.push({
+      code:
+        "LAUNCH_NOT_ALLOWED",
+      severity:
+        "BLOCK",
+      message:
+        "creator address is not currently permitted to launch through this factory"
+    });
+  }
+==================================================
+PREFLIGHT — CREATOR TAX
+==================================================
+  if (
+    BigInt(
+      manifest.creatorTaxBps
+    )
+    >
+    maxCreatorTaxBps
+  ) {
+    issues.push({
+      code:
+        "CREATOR_TAX_TOO_HIGH",
+      severity:
+        "BLOCK",
+      message:
+        `requested creator tax ${manifest.creatorTaxBps} bps exceeds protocol maximum ${maxCreatorTaxBps.toString()} bps`
+    });
+  }
+==================================================
+PREFLIGHT — CONFIG ENABLED
+==================================================
+  if (
+    !launchConfig.enabled
+  ) {
+    issues.push({
+      code:
+        "LAUNCH_CONFIG_DISABLED",
+      severity:
+        "BLOCK",
+      message:
+        `launch configuration ${manifest.launchConfigId.toString()} is disabled`
+    });
+  }
+==================================================
+PREFLIGHT — PAIR
+==================================================
+  if (
+    !pairResult.approved
+  ) {
+    issues.push({
+      code:
+        "PAIR_UNSUPPORTED",
+      severity:
+        "BLOCK",
+      message:
+        "selected pair token is not currently usable for this launch"
+    });
+  }
+==================================================
+PREFLIGHT — EXEMPTIONS
+==================================================
+  if (
+    (manifest.snipeTaxExemptions?.length ?? 0)
+    > 0
+  ) {
+    issues.push({
+      code:
+        "SNIPE_EXEMPTIONS_PRESENT",
+      severity:
+        "WARNING",
+      message:
+        "launch contains additional opening snipe-tax exemptions; document their research purpose before release"
+    });
+  }
+==================================================
+PREFLIGHT STATUS RESOLUTION
+==================================================
+  const blocked =
+    issues.some(
+      issue =>
+        issue.severity === "BLOCK"
+    );
+  const warned =
+    issues.some(
+      issue =>
+        issue.severity === "WARNING"
+    );
+  const status:
+    PreflightStatus =
+      blocked
+        ? "BLOCK"
+        : warned
+          ? "WARNING"
+          : "PASS";
+==================================================
+PREFLIGHT RESULT
+==================================================
+  return {
+    experimentId:
+      manifest.experimentId,
+    status,
+    chainId,
+    latestBlock,
+    factory:
+      PONS_V2_FACTORY,
+    factoryHasCode:
+      true,
+    canLaunch,
+    launchFee,
+    maxCreatorTaxBps,
+    creatorTaxBps:
+      manifest.creatorTaxBps,
+    launchConfigId:
+      manifest.launchConfigId,
+    launchConfig: {
+      supply:
+        launchConfig.supply,
+      curveFeeBps:
+        launchConfig.curveFeeBps,
+      phantomQuote:
+        launchConfig.phantomQuote,
+      graduationThreshold:
+        launchConfig.graduationThreshold,
+      poolFee:
+        launchConfig.poolFee,
+      tickSpacing:
+        launchConfig.tickSpacing,
+      enabled:
+        launchConfig.enabled
+    },
+    pairToken:
+      manifest.pairToken,
+    pairApproved:
+      pairResult.approved,
+    pairEconomics:
+      pairResult.economics,
+    expectedEconomics,
+    issues,
+    generatedAt:
+      new Date().toISOString()
+  };
+}
+==================================================
+UNSIGNED PAYLOAD TYPE
+==================================================
+export type UnsignedLaunchPayload = {
+  experimentId:
+    string;
+  chainId:
+    4663;
+  from:
+    `0x${string}`;
+  to:
+    `0x${string}`;
+  value:
+    bigint;
+  data:
+    `0x${string}`;
+  functionName:
+    "launchToken";
+  manifestHash:
+    string;
+  preflightStatus:
+    PreflightStatus;
+  warnings:
+    PreflightIssue[];
+  humanGate:
+    "UNSIGNED_ONLY";
+};
+==================================================
+STABLE MANIFEST SERIALIZATION
+==================================================
+function stableManifest(
+  manifest:
+    PonsLaunchManifest
+) {
+  return JSON.stringify({
+    experimentId:
+      manifest.experimentId,
+    name:
+      manifest.name,
+    symbol:
+      manifest.symbol,
+    logo:
+      manifest.logo,
+    description:
+      manifest.description,
+    socials:
+      manifest.socials,
+    creator:
+      getAddress(
+        manifest.creator
+      ),
+    creatorFeeRecipient:
+      getAddress(
+        manifest.creatorFeeRecipient
+      ),
+    creatorTaxBps:
+      manifest.creatorTaxBps,
+    buybackEnabled:
+      manifest.buybackEnabled,
+    launchConfigId:
+      manifest.launchConfigId.toString(),
+    pairToken:
+      getAddress(
+        manifest.pairToken
+      ),
+    salt:
+      manifest.salt,
+    snipeTaxExemptions:
+      (
+        manifest.snipeTaxExemptions ?? []
+      ).map(
+        getAddress
+      )
+  });
+}
+==================================================
+MANIFEST HASH
+==================================================
+export function
+hashManifest(
+  manifest:
+    PonsLaunchManifest
+) {
+  return keccak256(
+    stringToHex(
+      stableManifest(
+        manifest
+      )
+    )
+  );
+}
+==================================================
+BUILD UNSIGNED PAYLOAD
+==================================================
+export async function
+buildUnsignedLaunchPayload(
+  manifest:
+    PonsLaunchManifest
+):
+Promise<UnsignedLaunchPayload> {
+  const preflight =
+    await runPonsPreflight(
+      manifest
+    );
+==================================================
+HARD BLOCK
+==================================================
+  if (
+    preflight.status === "BLOCK"
+  ) {
+    const blocks =
+      preflight.issues
+        .filter(
+          issue =>
+            issue.severity === "BLOCK"
+        )
+        .map(
+          issue =>
+            `${issue.code}: ${issue.message}`
+        )
+        .join("; ");
+    throw new Error(
+      `PREFLIGHT_BLOCKED: ${blocks}`
+    );
+  }
+==================================================
+PIN CURRENT ECONOMICS
+==================================================
+  const params = {
+    name:
+      manifest.name,
+    symbol:
+      manifest.symbol,
+    logo:
+      manifest.logo,
+    description:
+      manifest.description,
+    socials:
+      manifest.socials,
+    creatorFeeRecipient:
+      manifest.creatorFeeRecipient,
+    creatorTaxBps:
+      manifest.creatorTaxBps,
+    buybackEnabled:
+      manifest.buybackEnabled,
+    expectedEconomics:
+      preflight.expectedEconomics,
+    salt:
+      manifest.salt
+  };
+==================================================
+SELECT FACTORY OVERLOAD
+==================================================
+  const exemptions =
+    manifest.snipeTaxExemptions ?? [];
+  let data:
+    `0x${string}`;
+  if (
+    exemptions.length === 0
+  ) {
+    data =
+      encodeFunctionData({
+        abi:
+          ponsV2FactoryAbi,
+        functionName:
+          "launchToken",
+        args: [
+          params,
+          manifest.launchConfigId,
+          manifest.pairToken
+        ]
+      });
+  } else {
+    data =
+      encodeFunctionData({
+        abi:
+          ponsV2FactoryAbi,
+        functionName:
+          "launchToken",
+        args: [
+          params,
+          manifest.launchConfigId,
+          manifest.pairToken,
+          exemptions
+        ]
+      });
+  }
+==================================================
+RETURN UNSIGNED INTENT
+==================================================
+  return {
+    experimentId:
+      manifest.experimentId,
+    chainId:
+      4663,
+    from:
+      manifest.creator,
+    to:
+      PONS_V2_FACTORY,
+    value:
+      preflight.launchFee,
+    data,
+    functionName:
+      "launchToken",
+    manifestHash:
+      hashManifest(
+        manifest
+      ),
+    preflightStatus:
+      preflight.status,
+    warnings:
+      preflight.issues.filter(
+        issue =>
+          issue.severity === "WARNING"
+      ),
+    humanGate:
+      "UNSIGNED_ONLY"
+  };
+}
+==================================================
+CRITICAL DESIGN PROPERTY
+==================================================
+NOTICE WHAT DOES NOT EXIST.
+There is no:
+privateKey
+walletClient
+sendTransaction()
+writeContract()
+broadcast()
+inside the Token Creation Factory.
+The output is:
+UNSIGNED TRANSACTION INTENT.
+That separation is intentional.
+==================================================
+HUMAN RELEASE DISPLAY
+==================================================
+Before signing, present:
+PONS $101 — HUMAN RELEASE GATE
+EXPERIMENT
+manifest.experimentId
+TOKEN
+manifest.name
+SYMBOL
+manifest.symbol
+NETWORK
+Robinhood Chain
+CHAIN ID
+4663
+FROM
+manifest.creator
+FACTORY
+PONS_V2_FACTORY
+PAIR
+manifest.pairToken
+CREATOR FEE RECIPIENT
+manifest.creatorFeeRecipient
+CREATOR TAX
+manifest.creatorTaxBps
+BUYBACK ENABLED
+manifest.buybackEnabled
+LAUNCH CONFIG
+manifest.launchConfigId
+SNIPE EXEMPTIONS
+manifest.snipeTaxExemptions
+LIVE LAUNCH FEE
+preflight.launchFee
+EXPECTED ECONOMICS
+preflight.expectedEconomics
+MANIFEST HASH
+payload.manifestHash
+CALLDATA
+payload.data
+WARNINGS
+payload.warnings
+STATUS
+WAITING_FOR_HUMAN
+==================================================
+DO NOT AUTO-BROADCAST
+==================================================
+The next operation belongs in the human-controlled wallet environment.
+The research service stops here.
+The human may:
+APPROVE
+REJECT
+or
+RETURN FOR CHANGES.
+==================================================
+PONS V2 EVENT ABI
+==================================================
+export const ponsV2Events = parseAbi([
+  "event TokenLaunched(address indexed token, address indexed curve, address indexed deployer, address pairToken, uint256 launchConfigId, uint256 graduationThreshold)",
+  "event CurveBuy(address indexed buyer, address indexed recipient, uint256 quoteIn, uint256 tokensOut, uint256 fee, uint256 tax)",
+  "event CurveSell(address indexed seller, address indexed recipient, uint256 tokensIn, uint256 quoteOut, uint256 fee, uint256 tax)"
+]);
+==================================================
+ROB INDEXING RULE
+==================================================
+Factory event:
+TokenLaunched
+provides the new:
+TOKEN
+CURVE
+DEPLOYER
+PAIR
+LAUNCH CONFIG
+GRADUATION THRESHOLD.
+ROB then begins indexing that individual curve.
+==================================================
+CURVE BUY SEMANTICS
+==================================================
+CurveBuy contains:
+buyer
+recipient
+quoteIn
+tokensOut
+fee
+tax
+For research interpretation:
+tax
+is creator tax.
+fee
+contains the base trade fee.
+For a qualifying opening-window buy, the opening snipe-tax component is folded into:
+fee.
+Therefore the raw event does not directly provide:
+snipeTax
+as a separate field.
+ROB must calculate that component only when the required base-fee state is known.
+==================================================
+CURVE SELL SEMANTICS
+==================================================
+CurveSell contains:
+seller
+recipient
+tokensIn
+quoteOut
+fee
+tax
+ROB preserves the event exactly before performing derived calculations.
+==================================================
+ROB RAW EVENT FIRST
+==================================================
+For each event:
+1. Preserve raw log.
+2. Preserve transaction hash.
+3. Preserve block number.
+4. Preserve block hash.
+5. Preserve transaction index.
+6. Preserve log index.
+7. Decode event.
+8. Link experiment.
+9. Calculate timing.
+10. Calculate fee components.
+11. Classify behavior.
+12. Preserve method version.
+==================================================
+OPENING FEE CALCULATION
+==================================================
+Conceptually:
+INFERRED_OPENING_FEE
+=
+EVENT FEE
+-
+ORDINARY BASE TRADE FEE
+when protocol semantics and units support the subtraction.
+Creator tax is already reported separately as:
+tax.
+If the ordinary fee cannot be established:
+return:
+UNKNOWN.
+==================================================
+WHY THIS MATTERS
+==================================================
+ROB does not say:
+“the wallet was a bot because it paid a fee.”
+ROB says:
+VERIFIED
+A trade occurred.
+VERIFIED
+The transaction occurred at a specific launch-relative time.
+VERIFIED
+The event reported fee X.
+VERIFIED
+The event reported creator tax Y.
+CALCULATED
+The ordinary base fee was Z.
+CALCULATED
+The additional opening-window component was Q.
+INFERENCE
+The behavior is consistent with opening-window automated discovery.
+CLASSIFICATION
+AUTOMATED-CANDIDATE
+if the complete method supports that result.
+==================================================
+CUSTOM PAIRS
+==================================================
+For a custom ERC-20 pair:
+approvedPairTokens(pairToken)
+must return:
+true.
+pairTokenEconomics(pairToken)
+must also return meaningful configured economics.
+If either fails:
+BLOCK.
+Amounts must respect:
+the pair token's actual decimals.
+Do not assume:
+18 decimals.
+==================================================
+NATIVE PAIR
+==================================================
+For a native ETH launch:
+pairToken
+uses the protocol's zero-address convention.
+The transaction sends:
+launchFee
+as native value for the launch call.
+The Token Creation Factory does not independently purchase tokens.
+==================================================
+PONS ERRORS TO SURFACE
+==================================================
+Important errors should map into human-readable preflight or execution messages.
+LAUNCH ECONOMICS MISMATCH
+Re-read current economics.
+PAIR TOKEN NOT APPROVED
+Select an approved quote asset.
+PAIR TOKEN DECIMALS MISMATCH
+Re-verify token metadata and protocol configuration.
+LAUNCH FEE NOT PAID
+Re-read launchFee.
+CREATOR TAX TOO HIGH
+Re-read maxCreatorTaxBps.
+NOT WHITELISTED
+canLaunch currently fails.
+LAUNCH CONFIG DISABLED
+Select a currently enabled configuration.
+==================================================
+ERROR DOCTRINE
+==================================================
+DO NOT TRY RANDOM PARAMETERS UNTIL SOMETHING WORKS.
+Decode the failure.
+Identify the state.
+Return to the appropriate gate.
+==================================================
+PREFLIGHT OUTPUT FOR CONTROL TOWER
+==================================================
+PONS $101 — PONS V2 PREFLIGHT
+EXPERIMENT:
+CHAIN:
+4663
+LATEST BLOCK:
+FACTORY:
+0x7eD598BcEf8bd9Edd8C97A195C6d13f40801EC7e
+FACTORY CODE:
+VERIFIED / FAILED
+CAN LAUNCH:
+TRUE / FALSE
+LAUNCH FEE:
+MAX CREATOR TAX:
+REQUESTED CREATOR TAX:
+CONFIG ID:
+CONFIG ENABLED:
+PAIR:
+PAIR APPROVED:
+EXPECTED ECONOMICS:
+SNIPE EXEMPTIONS:
+WARNINGS:
+BLOCKERS:
+STATUS:
+PASS / WARNING / BLOCK
+NEXT OWNER:
+HUMAN AUTHORITY
+or
+TECHNICAL AGENT
+==================================================
+ACCEPTANCE TEST 1 — WRONG CHAIN
+==================================================
+RPC returns:
+chain ID not equal to 4663.
+EXPECTED:
+CHAIN_MISMATCH
+STATUS:
+BLOCK.
+==================================================
+ACCEPTANCE TEST 2 — LAUNCH GATE
+==================================================
+canLaunch(creator)
+returns:
+false.
+EXPECTED:
+LAUNCH_NOT_ALLOWED
+STATUS:
+BLOCK.
+==================================================
+ACCEPTANCE TEST 3 — CREATOR TAX
+==================================================
+requested creatorTaxBps
+>
+maxCreatorTaxBps.
+EXPECTED:
+CREATOR_TAX_TOO_HIGH
+STATUS:
+BLOCK.
+==================================================
+ACCEPTANCE TEST 4 — DISABLED CONFIG
+==================================================
+getLaunchConfig(id).enabled
+=
+false.
+EXPECTED:
+LAUNCH_CONFIG_DISABLED
+STATUS:
+BLOCK.
+==================================================
+ACCEPTANCE TEST 5 — UNAPPROVED PAIR
+==================================================
+approvedPairTokens(pairToken)
+=
+false.
+EXPECTED:
+PAIR_UNSUPPORTED
+STATUS:
+BLOCK.
+==================================================
+ACCEPTANCE TEST 6 — EXTRA EXEMPTIONS
+==================================================
+snipeTaxExemptions.length
+>
+0.
+EXPECTED:
+WARNING.
+The experiment may proceed only after human review if no other block exists.
+==================================================
+ACCEPTANCE TEST 7 — ECONOMICS PIN
+==================================================
+Read:
+previewLaunchEconomics.
+Build payload.
+Protocol economics change before execution.
+EXPECTED ON-CHAIN RESULT:
+transaction should revert rather than settle under economic terms different from the pinned expectation.
+Research record:
+LAUNCH ECONOMICS DRIFT DETECTED.
+==================================================
+ACCEPTANCE TEST 8 — NO SIGNER
+==================================================
+Search the research runtime for:
+private key
+mnemonic
+wallet.writeContract
+sendTransaction
+EXPECTED:
+no production signing implementation in the autonomous Token Creation Factory.
+==================================================
+FACTORY ADAPTER DOCTRINE
+==================================================
+READ FIRST.
+VERIFY SECOND.
+PIN ECONOMICS.
+BUILD INTENT.
+DECODE INTENT.
+STOP FOR HUMAN.
+DO NOT BYPASS canLaunch.
+DO NOT BYPASS PAIR APPROVAL.
+DO NOT HIDE CREATOR TAX.
+DO NOT HIDE EXEMPTIONS.
+DO NOT GUESS THE FACTORY.
+DO NOT GUESS THE CONFIG.
+DO NOT GUESS CURRENT ECONOMICS.
+==================================================
+GENESIS FACTORY STATEMENT
+==================================================
+THE MANIFEST TELLS US WHAT WE WANT TO DO.
+THE FACTORY TELLS US WHAT THE PROTOCOL CURRENTLY ALLOWS.
+PREFLIGHT COMPARES THEM.
+THE ECONOMICS PIN PROTECTS THE INTENT.
+THE UNSIGNED PAYLOAD MAKES THE INTENT MACHINE-EXECUTABLE.
+THE HUMAN RELEASE GATE DECIDES WHETHER IT BECOMES A TRANSACTION.
+THE CHAIN RECORDS WHAT ACTUALLY HAPPENED.
+ROB OBSERVES THE RESULT.
+GITHUB PRESERVES THE BEFORE AND AFTER.
+PONS $101
+QUERY.
+VERIFY.
+PIN.
+PREPARE.
+STOP FOR HUMAN.
+OBSERVE.
+REPRODUCE.
+WHAT DID WE KNOW BEFORE THE OUTCOME?
+IN JESUS' NAME.
